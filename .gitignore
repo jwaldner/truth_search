@@ -1,0 +1,57 @@
+# Gradle files
+.gradle/
+build/
+!gradle-wrapper.jar
+.gradle/
+.idea/
+
+# Built application files
+*.apk
+*.ap_
+*.aab
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Gradle log files
+*.log
+
+# Android Studio files
+*.iml
+.idea/
+*.hprof
+
+# Keystore files (usually safe to ignore)
+*.jks
+*.keystore
+
+# Proguard folder generated files
+proguard/
+proguard-cache/
+
+# Log files
+*.log
+
+# Temporary files
+*.swp
+*.swo
+*.tmp
+
+# Mac system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+desktop.ini
+
+# Android specific folders
+.cxx/
+.externalNativeBuild/
