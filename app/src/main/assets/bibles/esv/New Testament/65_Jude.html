@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>Jude</title>
+<link rel='stylesheet' href='../style.css'>
+<style>
+#sticky-title { position: sticky; top: 0; background-color: white; z-index: 1000; padding: 10px; border-bottom: 2px solid #ccc; font-size: 1.5em; text-align: center; }
+</style>
+</head>
+<body>
+<script>const bookId = '65';</script>
+<div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Jude - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
+<a href='./64_III_John.html'>Prev: III John</a><br>
+<a href='./66_Revelation_of_John.html'>Next: Revelation of John</a>
+<h1>Jude</h1>
+<h2 id='chapter_1'>Chapter 1</h2>
+<p id='65_01:001'><strong>1.</strong> Jude, a servant of Jesus Christ and brother of James, To those who are called, beloved in God the Father and kept for Jesus Christ:</p>
+<p id='65_01:002'><strong>2.</strong> May mercy, peace, and love be multiplied to you.</p>
+<p id='65_01:003'><strong>3.</strong> Beloved, although I was very eager to write to you about our common salvation, I found it necessary to write appealing to you to contend for the faith that was once for all delivered to the saints.</p>
+<p id='65_01:004'><strong>4.</strong> For certain people have crept in unnoticed who long ago were designated for this condemnation, ungodly people, who pervert the grace of our God into sensuality and deny our only Master and Lord, Jesus Christ.</p>
+<p id='65_01:005'><strong>5.</strong> Now I want to remind you, although you once fully knew it, that Jesus, who saved a people out of the land of Egypt, afterward destroyed those who did not believe.</p>
+<p id='65_01:006'><strong>6.</strong> And the angels who did not stay within their own position of authority, but left their proper dwelling, he has kept in eternal chains under gloomy darkness until the judgment of the great day —</p>
+<p id='65_01:007'><strong>7.</strong> just as Sodom and Gomorrah and the surrounding cities, which likewise indulged in sexual immorality and pursued unnatural desire, serve as an example by undergoing a punishment of eternal fire.</p>
+<p id='65_01:008'><strong>8.</strong> Yet in like manner these people also, relying on their dreams, defile the flesh, reject authority, and blaspheme the glorious ones.</p>
+<p id='65_01:009'><strong>9.</strong> But when the archangel Michael, contending with the devil, was disputing about the body of Moses, he did not presume to pronounce a blasphemous judgment, but said, The Lord rebuke you.</p>
+<p id='65_01:010'><strong>10.</strong> But these people blaspheme all that they do not understand, and they are destroyed by all that they, like unreasoning animals, understand instinctively.</p>
+<p id='65_01:011'><strong>11.</strong> Woe to them! For they walked in the way of Cain and abandoned themselves for the sake of gain to Balaam’s error and perished in Korah’s rebellion.</p>
+<p id='65_01:012'><strong>12.</strong> These are hidden reefs at your love feasts, as they feast with you without fear, shepherds feeding themselves; waterless clouds, swept along by winds; fruitless trees in late autumn, twice dead, uprooted;</p>
+<p id='65_01:013'><strong>13.</strong> wild waves of the sea, casting up the foam of their own shame; wandering stars, for whom the gloom of utter darkness has been reserved forever.</p>
+<p id='65_01:014'><strong>14.</strong> It was also about these that Enoch, the seventh from Adam, prophesied, saying, Behold, the Lord comes with ten thousands of his holy ones,</p>
+<p id='65_01:015'><strong>15.</strong> to execute judgment on all and to convict all the ungodly of all their deeds of ungodliness that they have committed in such an ungodly way, and of all the harsh things that ungodly sinners have spoken against him.</p>
+<p id='65_01:016'><strong>16.</strong> These are grumblers, malcontents, following their own sinful desires; they are loud-mouthed boasters, showing favoritism to gain advantage.</p>
+<p id='65_01:017'><strong>17.</strong> But you must remember, beloved, the predictions of the apostles of our Lord Jesus Christ.</p>
+<p id='65_01:018'><strong>18.</strong> They said to you, In the last time there will be scoffers, following their own ungodly passions.</p>
+<p id='65_01:019'><strong>19.</strong> It is these who cause divisions, worldly people, devoid of the Spirit.</p>
+<p id='65_01:020'><strong>20.</strong> But you, beloved, building yourselves up in your most holy faith and praying in the Holy Spirit,</p>
+<p id='65_01:021'><strong>21.</strong> keep yourselves in the love of God, waiting for the mercy of our Lord Jesus Christ that leads to eternal life.</p>
+<p id='65_01:022'><strong>22.</strong> And have mercy on those who doubt;</p>
+<p id='65_01:023'><strong>23.</strong> save others by snatching them out of the fire; to others show mercy with fear, hating even the garment stained by the flesh.</p>
+<p id='65_01:024'><strong>24.</strong> Now to him who is able to keep you from stumbling and to present you blameless before the presence of his glory with great joy,</p>
+<p id='65_01:025'><strong>25.</strong> to the only God, our Savior, through Jesus Christ our Lord, be glory, majesty, dominion, and authority, before all time and now and forever. Amen.</p>
+<a href='./64_III_John.html'>Prev: III John</a><br>
+<a href='./66_Revelation_of_John.html'>Next: Revelation of John</a>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const stickyTitle = document.getElementById('sticky-title');
+  const chapters = document.querySelectorAll('h2');
+  let lastSentChapter = ''; // Track last sent chapter
+  window.addEventListener('scroll', () => {
+    let currentChapter = 'Chapter 1';
+    let currentChapterNum = 1;
+    chapters.forEach((chapter, index) => {
+      const rect = chapter.getBoundingClientRect();
+      if (rect.top <= window.innerHeight / 2) {
+        currentChapter = chapter.textContent;
+        currentChapterNum = index + 1; // Chapters are 1-indexed
+      }
+    });
+    const payload = `${bookId}_${currentChapterNum.toString().padStart(2, '0')}:001`;
+    if (lastSentChapter !== payload) { // Check if the payload has changed
+      lastSentChapter = payload;
+      fetch('/mark', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ payload: payload })
+      });
+    }
+    const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;
+    document.title = document.title.split(' - ')[0] + ' - ' + currentChapter;
+  });
+  const targetId = window.location.hash.substring(1); // Extract the fragment ID
+  if (targetId) {
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.style.backgroundColor = '#ffff99'; // Apply highlight color
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Scroll to the verse
+      setTimeout(() => {
+        targetElement.style.transition = 'background-color 1s';
+        targetElement.style.backgroundColor = 'transparent'; // Fade out highlight
+      }, 3000); // Highlight fades after 3 seconds
+    }
+  }
+});
+</script>
+</body>
+</html>
