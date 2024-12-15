@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '29';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Joel - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./28_Hosea.html'>Prev: Hosea</a><br>
 <a href='./30_Amos.html'>Next: Amos</a>
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

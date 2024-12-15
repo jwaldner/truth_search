@@ -10,12 +10,13 @@
 </head>
 <body>
 <script>const bookId = '48';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Galatians - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./47_II_Corinthians.html'>Prev: II Corinthians</a><br>
 <a href='./49_Ephesians.html'>Next: Ephesians</a>
 <h1>Galatians</h1>
 <h2 id='chapter_1'>Chapter 1</h2>
-<p id='48_01:001'><strong>1.</strong> Paul, an apostle, ( not of men, neither by man, but by Jesus Christ, and God the Father, who raised him from the dead;)</p>
+<p id='48_01:001'><strong>1.</strong> Paul, an apostle, (not of men, neither by man, but by Jesus Christ, and God the Father, who raised him from the dead;)</p>
 <p id='48_01:002'><strong>2.</strong> And all the brethren which are with me, unto the churches of Galatia:</p>
 <p id='48_01:003'><strong>3.</strong> Grace be to you and peace from God the Father, and from our Lord Jesus Christ,</p>
 <p id='48_01:004'><strong>4.</strong> Who gave himself for our sins, that he might deliver us from this present evil world, according to the will of God and our Father:</p>
@@ -45,9 +46,9 @@
 <p id='48_02:003'><strong>3.</strong> But neither Titus, who was with me, being a Greek, was compelled to be circumcised:</p>
 <p id='48_02:004'><strong>4.</strong> And that because of false brethren unawares brought in, who came in privily to spy out our liberty which we have in Christ Jesus, that they might bring us into bondage:</p>
 <p id='48_02:005'><strong>5.</strong> To whom we gave place by subjection, no, not for an hour; that the truth of the gospel might continue with you.</p>
-<p id='48_02:006'><strong>6.</strong> But of these who seemed to be somewhat, ( whatsoever they were, it maketh no matter to me: God accepteth no man’s person:) for they who seemed to be somewhat in conference added nothing to me:</p>
+<p id='48_02:006'><strong>6.</strong> But of these who seemed to be somewhat, (whatsoever they were, it maketh no matter to me: God accepteth no man’s person:) for they who seemed to be somewhat in conference added nothing to me:</p>
 <p id='48_02:007'><strong>7.</strong> But contrariwise, when they saw that the gospel of the uncircumcision was committed unto me, as the gospel of the circumcision was unto Peter;</p>
-<p id='48_02:008'><strong>8.</strong> ( For he that wrought effectually in Peter to the apostleship of the circumcision, the same was mighty in me toward the Gentiles:)</p>
+<p id='48_02:008'><strong>8.</strong> (For he that wrought effectually in Peter to the apostleship of the circumcision, the same was mighty in me toward the Gentiles:)</p>
 <p id='48_02:009'><strong>9.</strong> And when James, Cephas, and John, who seemed to be pillars, perceived the grace that was given unto me, they gave to me and Barnabas the right hands of fellowship; that we should go unto the heathen, and they unto the circumcision.</p>
 <p id='48_02:010'><strong>10.</strong> Only they would that we should remember the poor; the same which I also was forward to do.</p>
 <p id='48_02:011'><strong>11.</strong> But when Peter was come to Antioch, I withstood him to the face, because he was to be blamed.</p>
@@ -192,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '09';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> I Samuel - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./08_Ruth.html'>Prev: Ruth</a><br>
 <a href='./10_II_Samuel.html'>Next: II Samuel</a>
@@ -210,7 +211,7 @@
 <p id='09_09:006'><strong>6.</strong> And he said unto him, Behold now, there is in this city a man of God, and he is an honourable man; all that he saith cometh surely to pass: now let us go thither; peradventure he can shew us our way that we should go.</p>
 <p id='09_09:007'><strong>7.</strong> Then said Saul to his servant, But, behold, if we go, what shall we bring the man? for the bread is spent in our vessels, and there is not a present to bring to the man of God: what have we?</p>
 <p id='09_09:008'><strong>8.</strong> And the servant answered Saul again, and said, Behold, I have here at hand the fourth part of a shekel of silver: that will I give to the man of God, to tell us our way.</p>
-<p id='09_09:009'><strong>9.</strong> ( Beforetime in Israel, when a man went to enquire of God, thus he spake, Come, and let us go to the seer: for he that is now called a Prophet was beforetime called a Seer.)</p>
+<p id='09_09:009'><strong>9.</strong> (Beforetime in Israel, when a man went to enquire of God, thus he spake, Come, and let us go to the seer: for he that is now called a Prophet was beforetime called a Seer.)</p>
 <p id='09_09:010'><strong>10.</strong> Then said Saul to his servant, Well said; come, let us go. So they went unto the city where the man of God was.</p>
 <p id='09_09:011'><strong>11.</strong> And as they went up the hill to the city, they found young maidens going out to draw water, and said unto them, Is the seer here?</p>
 <p id='09_09:012'><strong>12.</strong> And they answered them, and said, He is; behold, he is before you: make haste now, for he came to day to the city; for there is a sacrifice of the people to day in the high place:</p>
@@ -305,7 +306,7 @@
 <p id='09_13:003'><strong>3.</strong> And Jonathan smote the garrison of the Philistines that was in Geba, and the Philistines heard of it. And Saul blew the trumpet throughout all the land, saying, Let the Hebrews hear.</p>
 <p id='09_13:004'><strong>4.</strong> And all Israel heard say that Saul had smitten a garrison of the Philistines, and that Israel also was had in abomination with the Philistines. And the people were called together after Saul to Gilgal.</p>
 <p id='09_13:005'><strong>5.</strong> And the Philistines gathered themselves together to fight with Israel, thirty thousand chariots, and six thousand horsemen, and people as the sand which is on the sea shore in multitude: and they came up, and pitched in Michmash, eastward from Beth–aven.</p>
-<p id='09_13:006'><strong>6.</strong> When the men of Israel saw that they were in a strait, ( for the people were distressed,) then the people did hide themselves in caves, and in thickets, and in rocks, and in high places, and in pits.</p>
+<p id='09_13:006'><strong>6.</strong> When the men of Israel saw that they were in a strait, (for the people were distressed,) then the people did hide themselves in caves, and in thickets, and in rocks, and in high places, and in pits.</p>
 <p id='09_13:007'><strong>7.</strong> And some of the Hebrews went over Jordan to the land of Gad and Gilead. As for Saul, he was yet in Gilgal, and all the people followed him trembling.</p>
 <p id='09_13:008'><strong>8.</strong> And he tarried seven days, according to the set time that Samuel had appointed: but Samuel came not to Gilgal; and the people were scattered from him.</p>
 <p id='09_13:009'><strong>9.</strong> And Saul said, Bring hither a burnt offering to me, and peace offerings. And he offered the burnt offering.</p>
@@ -878,7 +879,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

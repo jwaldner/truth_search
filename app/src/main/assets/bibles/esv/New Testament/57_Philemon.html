@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '57';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Philemon - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./56_Titus.html'>Prev: Titus</a><br>
 <a href='./58_Hebrews.html'>Next: Hebrews</a>
@@ -25,7 +26,7 @@
 <p id='57_01:008'><strong>8.</strong> Accordingly, though I am bold enough in Christ to command you to do what is required,</p>
 <p id='57_01:009'><strong>9.</strong> yet for love’s sake I prefer to appeal to you — I, Paul, an old man and now a prisoner also for Christ Jesus —</p>
 <p id='57_01:010'><strong>10.</strong> I appeal to you for my child, Onesimus, whose father I became in my imprisonment.</p>
-<p id='57_01:011'><strong>11.</strong> ( Formerly he was useless to you, but now he is indeed useful to you and to me.)</p>
+<p id='57_01:011'><strong>11.</strong> (Formerly he was useless to you, but now he is indeed useful to you and to me.)</p>
 <p id='57_01:012'><strong>12.</strong> I am sending him back to you, sending my very heart.</p>
 <p id='57_01:013'><strong>13.</strong> I would have been glad to keep him with me, in order that he might serve me on your behalf during my imprisonment for the gospel,</p>
 <p id='57_01:014'><strong>14.</strong> but I preferred to do nothing without your consent in order that your goodness might not be by compulsion but of your own accord.</p>
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

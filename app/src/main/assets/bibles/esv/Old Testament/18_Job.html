@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '18';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Job - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./17_Esther.html'>Prev: Esther</a><br>
 <a href='./19_Psalms.html'>Next: Psalms</a>
@@ -781,7 +782,7 @@
 <p id='18_31:015'><strong>15.</strong> Did not he who made me in the womb make him? And did not one fashion us in the womb?</p>
 <p id='18_31:016'><strong>16.</strong> If I have withheld anything that the poor desired, or have caused the eyes of the widow to fail,</p>
 <p id='18_31:017'><strong>17.</strong> or have eaten my morsel alone, and the fatherless has not eaten of it</p>
-<p id='18_31:018'><strong>18.</strong> (for from my youth the fatherless grew up with me as with a father, and from my mother’s womb I guided the widow ),</p>
+<p id='18_31:018'><strong>18.</strong> (for from my youth the fatherless grew up with me as with a father, and from my mother’s womb I guided the widow),</p>
 <p id='18_31:019'><strong>19.</strong> if I have seen anyone perish for lack of clothing, or the needy without covering,</p>
 <p id='18_31:020'><strong>20.</strong> if his body has not blessed me, and if he was not warmed with the fleece of my sheep,</p>
 <p id='18_31:021'><strong>21.</strong> if I have raised my hand against the fatherless, because I saw my help in the gate,</p>
@@ -793,12 +794,12 @@
 <p id='18_31:027'><strong>27.</strong> and my heart has been secretly enticed, and my mouth has kissed my hand,</p>
 <p id='18_31:028'><strong>28.</strong> this also would be an iniquity to be punished by the judges, for I would have been false to God above.</p>
 <p id='18_31:029'><strong>29.</strong> If I have rejoiced at the ruin of him who hated me, or exulted when evil overtook him</p>
-<p id='18_31:030'><strong>30.</strong> ( I have not let my mouth sin by asking for his life with a curse ),</p>
+<p id='18_31:030'><strong>30.</strong> (I have not let my mouth sin by asking for his life with a curse),</p>
 <p id='18_31:031'><strong>31.</strong> if the men of my tent have not said, Who is there that has not been filled with his meat?</p>
-<p id='18_31:032'><strong>32.</strong> ( the sojourner has not lodged in the street; I have opened my doors to the traveler ),</p>
+<p id='18_31:032'><strong>32.</strong> (the sojourner has not lodged in the street; I have opened my doors to the traveler),</p>
 <p id='18_31:033'><strong>33.</strong> if I have concealed my transgressions as others do by hiding my iniquity in my heart,</p>
 <p id='18_31:034'><strong>34.</strong> because I stood in great fear of the multitude, and the contempt of families terrified me, so that I kept silence, and did not go out of doors —</p>
-<p id='18_31:035'><strong>35.</strong> Oh, that I had one to hear me! ( Here is my signature! Let the Almighty answer me!) Oh, that I had the indictment written by my adversary!</p>
+<p id='18_31:035'><strong>35.</strong> Oh, that I had one to hear me! (Here is my signature! Let the Almighty answer me!) Oh, that I had the indictment written by my adversary!</p>
 <p id='18_31:036'><strong>36.</strong> Surely I would carry it on my shoulder; I would bind it on me as a crown;</p>
 <p id='18_31:037'><strong>37.</strong> I would give him an account of all my steps; like a prince I would approach him.</p>
 <p id='18_31:038'><strong>38.</strong> If my land has cried out against me and its furrows have wept together,</p>
@@ -1149,7 +1150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

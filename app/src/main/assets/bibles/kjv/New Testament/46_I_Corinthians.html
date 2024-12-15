@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '46';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> I Corinthians - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./45_Romans.html'>Prev: Romans</a><br>
 <a href='./47_II_Corinthians.html'>Next: II Corinthians</a>
@@ -190,7 +191,7 @@
 <p id='46_08:002'><strong>2.</strong> And if any man think that he knoweth any thing, he knoweth nothing yet as he ought to know.</p>
 <p id='46_08:003'><strong>3.</strong> But if any man love God, the same is known of him.</p>
 <p id='46_08:004'><strong>4.</strong> As concerning therefore the eating of those things that are offered in sacrifice unto idols, we know that an idol is nothing in the world, and that there is none other God but one.</p>
-<p id='46_08:005'><strong>5.</strong> For though there be that are called gods, whether in heaven or in earth, ( as there be gods many, and lords many,)</p>
+<p id='46_08:005'><strong>5.</strong> For though there be that are called gods, whether in heaven or in earth, (as there be gods many, and lords many,)</p>
 <p id='46_08:006'><strong>6.</strong> But to us there is but one God, the Father, of whom are all things, and we in him; and one Lord Jesus Christ, by whom are all things, and we by him.</p>
 <p id='46_08:007'><strong>7.</strong> Howbeit there is not in every man that knowledge: for some with conscience of the idol unto this hour eat it as a thing offered unto an idol; and their conscience being weak is defiled.</p>
 <p id='46_08:008'><strong>8.</strong> But meat commendeth us not to God: for neither, if we eat, are we the better; neither, if we eat not, are we the worse.</p>
@@ -220,7 +221,7 @@
 <p id='46_09:018'><strong>18.</strong> What is my reward then? Verily that, when I preach the gospel, I may make the gospel of Christ without charge, that I abuse not my power in the gospel.</p>
 <p id='46_09:019'><strong>19.</strong> For though I be free from all men, yet have I made myself servant unto all, that I might gain the more.</p>
 <p id='46_09:020'><strong>20.</strong> And unto the Jews I became as a Jew, that I might gain the Jews; to them that are under the law, as under the law, that I might gain them that are under the law;</p>
-<p id='46_09:021'><strong>21.</strong> To them that are without law, as without law, ( being not without law to God, but under the law to Christ,) that I might gain them that are without law.</p>
+<p id='46_09:021'><strong>21.</strong> To them that are without law, as without law, (being not without law to God, but under the law to Christ,) that I might gain them that are without law.</p>
 <p id='46_09:022'><strong>22.</strong> To the weak became I as weak, that I might gain the weak: I am made all things to all men, that I might by all means save some.</p>
 <p id='46_09:023'><strong>23.</strong> And this I do for the gospel’s sake, that I might be partaker thereof with you.</p>
 <p id='46_09:024'><strong>24.</strong> Know ye not that they which run in a race run all, but one receiveth the prize? So run, that ye may obtain.</p>
@@ -457,7 +458,7 @@
 <p id='46_16:012'><strong>12.</strong> As touching our brother Apollos, I greatly desired him to come unto you with the brethren: but his will was not at all to come at this time; but he will come when he shall have convenient time.</p>
 <p id='46_16:013'><strong>13.</strong> Watch ye, stand fast in the faith, quit you like men, be strong.</p>
 <p id='46_16:014'><strong>14.</strong> Let all your things be done with charity.</p>
-<p id='46_16:015'><strong>15.</strong> I beseech you, brethren, ( ye know the house of Stephanas, that it is the firstfruits of Achaia, and that they have addicted themselves to the ministry of the saints,)</p>
+<p id='46_16:015'><strong>15.</strong> I beseech you, brethren, (ye know the house of Stephanas, that it is the firstfruits of Achaia, and that they have addicted themselves to the ministry of the saints,)</p>
 <p id='46_16:016'><strong>16.</strong> That ye submit yourselves unto such, and to every one that helpeth with us, and laboureth.</p>
 <p id='46_16:017'><strong>17.</strong> I am glad of the coming of Stephanas and Fortunatus and Achaicus: for that which was lacking on your part they have supplied.</p>
 <p id='46_16:018'><strong>18.</strong> For they have refreshed my spirit and yours: therefore acknowledge ye them that are such.</p>
@@ -490,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

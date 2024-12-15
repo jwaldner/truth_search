@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '19';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Psalms - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./18_Job.html'>Prev: Job</a><br>
 <a href='./20_Proverbs.html'>Next: Proverbs</a>
@@ -779,7 +780,7 @@
 <p id='19_49:005'><strong>5.</strong> Wherefore should I fear in the days of evil, when the iniquity of my heels shall compass me about?</p>
 <p id='19_49:006'><strong>6.</strong> They that trust in their wealth, and boast themselves in the multitude of their riches;</p>
 <p id='19_49:007'><strong>7.</strong> None of them can by any means redeem his brother, nor give to God a ransom for him:</p>
-<p id='19_49:008'><strong>8.</strong> ( For the redemption of their soul is precious, and it ceaseth for ever:)</p>
+<p id='19_49:008'><strong>8.</strong> (For the redemption of their soul is precious, and it ceaseth for ever:)</p>
 <p id='19_49:009'><strong>9.</strong> That he should still live for ever, and not see corruption.</p>
 <p id='19_49:010'><strong>10.</strong> For he seeth that wise men die, likewise the fool and the brutish person perish, and leave their wealth to others.</p>
 <p id='19_49:011'><strong>11.</strong> Their inward thought is, that their houses shall continue for ever, and their dwelling places to all generations; they call their lands after their own names.</p>
@@ -2648,7 +2649,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

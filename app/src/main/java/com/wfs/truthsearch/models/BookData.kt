@@ -2,14 +2,14 @@ package com.wfs.truthsearch.models
 import android.content.Context
 import android.util.Log
 
-data class BookData(val id: String, val displayName: String, val filename: String)
+data class BookData(val id: String, val version: String, val displayName: String, val filename: String)
 
-data class BookVerseData(val id: String, val displayName: String, val filename: String, val testament: String)
+data class BookVerseData(val id: String, val version: String, val displayName: String, val filename: String, val testament: String)
 
-fun getBooksFromAssets(context: Context, testament: String): Map<String, BookData> {
+fun getBooksFromAssets(context: Context, version: String, testament: String): Map<String, BookData> {
     val path = when (testament) {
-        "Old Testament" -> "bibles/esv/Old Testament"
-        "New Testament" -> "bibles/esv/New Testament"
+        "Old Testament" -> "bibles/${version}/Old Testament"
+        "New Testament" -> "bibles/${version}/New Testament"
         else -> return emptyMap()
     }
 
@@ -23,7 +23,7 @@ fun getBooksFromAssets(context: Context, testament: String): Map<String, BookDat
                     .replace("_", " ")
                     .removeSuffix(".html") // Remove the file extension
 
-                displayName to BookData(id, displayName, filename) // Create the key-value pair
+                displayName to BookData(id, version, displayName, filename) // Create the key-value pair
             } ?: emptyMap()
     } catch (e: Exception) {
         Log.e("AssetError", "Error accessing assets at $path: ${e.message}")
@@ -31,7 +31,7 @@ fun getBooksFromAssets(context: Context, testament: String): Map<String, BookDat
     }
 }
 
-fun getBookFromAssets(context: Context, fileName: String): BookData? {
+fun getBookFromAssets(context: Context, version: String, fileName: String): BookData? {
 
     val bookId = fileName.substringBefore("_").toInt()
     val testament = if (bookId < 40) {
@@ -45,7 +45,7 @@ fun getBookFromAssets(context: Context, fileName: String): BookData? {
         .replace("_", " ")
         .removeSuffix(".html") // Remove the file extension
 
-    return getBooksFromAssets(context, testament) [displayName]
+    return getBooksFromAssets(context, version, testament) [displayName]
 }
 //
 //fun getBookFromVerse(context: Context, verse: String): String? {
@@ -62,18 +62,18 @@ fun getBookFromAssets(context: Context, fileName: String): BookData? {
 //    return id
 //}
 
-fun resolveBookById(context: Context, bookId: String): BookData? {
+fun resolveBookById(context: Context, version: String, bookId: String): BookData? {
 
     val bookList =
-        getBooksFromAssets(context, "Old Testament") + getBooksFromAssets(context, "New Testament") // Combined book list
+        getBooksFromAssets(context, version, "Old Testament") + getBooksFromAssets(context, version,"New Testament") // Combined book list
     val book =   bookList.values.firstOrNull { it.id.substringBefore("_") == bookId.substringBefore("_") }
     return book
 }
 
-fun getBookFromAssetsMyVerse(context: Context, verseId: String): BookVerseData? {
+fun getBookFromAssetsMyVerse(context: Context, version: String, verseId: String): BookVerseData? {
     val path = when (val id = verseId.substringBefore("_").toInt()) {
-        in 1..39 -> "bibles/esv/Old Testament"
-        in 40..66 -> "bibles/esv/New Testament"
+        in 1..39 -> "bibles/${version}/Old Testament"
+        in 40..66 -> "bibles/${version}/New Testament"
         else -> return null
     }
 
@@ -86,7 +86,7 @@ fun getBookFromAssetsMyVerse(context: Context, verseId: String): BookVerseData? 
                 .substringAfter("_")
                 .replace("_", " ")
                 .removeSuffix(".html")
-            BookVerseData(id, displayName, filename, path)
+            BookVerseData(id, version, displayName, filename, path)
         }
     } catch (e: Exception) {
         Log.e("AssetError", "Error accessing assets at $path: ${e.message}")

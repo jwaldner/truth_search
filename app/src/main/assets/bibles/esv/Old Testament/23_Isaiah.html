@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '23';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Isaiah - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./22_Song_of_Solomon.html'>Prev: Song of Solomon</a><br>
 <a href='./24_Jeremiah.html'>Next: Jeremiah</a>
@@ -591,7 +592,7 @@
 <p id='23_29:007'><strong>7.</strong> And the multitude of all the nations that fight against Ariel, all that fight against her and her stronghold and distress her, shall be like a dream, a vision of the night.</p>
 <p id='23_29:008'><strong>8.</strong> As when a hungry man dreams, and behold, he is eating and awakes with his hunger not satisfied, or as when a thirsty man dreams, and behold, he is drinking and awakes faint, with his thirst not quenched, so shall the multitude of all the nations be that fight against Mount Zion.</p>
 <p id='23_29:009'><strong>9.</strong> Astonish yourselves and be astonished; blind yourselves and be blind! Be drunk, but not with wine; stagger, but not with strong drink!</p>
-<p id='23_29:010'><strong>10.</strong> For the Lord has poured out upon you a spirit of deep sleep, and has closed your eyes (the prophets ), and covered your heads (the seers ).</p>
+<p id='23_29:010'><strong>10.</strong> For the Lord has poured out upon you a spirit of deep sleep, and has closed your eyes (the prophets), and covered your heads (the seers).</p>
 <p id='23_29:011'><strong>11.</strong> And the vision of all this has become to you like the words of a book that is sealed. When men give it to one who can read, saying, Read this, he says, I cannot, for it is sealed.</p>
 <p id='23_29:012'><strong>12.</strong> And when they give the book to one who cannot read, saying, Read this, he says, I cannot read.</p>
 <p id='23_29:013'><strong>13.</strong> And the Lord said: Because this people draw near with their mouth and honor me with their lips, while their hearts are far from me, and their fear of me is a commandment taught by men,</p>
@@ -1395,7 +1396,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

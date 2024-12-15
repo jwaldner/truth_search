@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '23';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Isaiah - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./22_Song_of_Solomon.html'>Prev: Song of Solomon</a><br>
 <a href='./24_Jeremiah.html'>Next: Jeremiah</a>
@@ -409,7 +410,7 @@
 <p id='23_19:024'><strong>24.</strong> In that day shall Israel be the third with Egypt and with Assyria, even a blessing in the midst of the land:</p>
 <p id='23_19:025'><strong>25.</strong> Whom the Lord of hosts shall bless, saying, Blessed be Egypt my people, and Assyria the work of my hands, and Israel mine inheritance.</p>
 <h2 id='chapter_20'>Chapter 20</h2>
-<p id='23_20:001'><strong>1.</strong> In the year that Tartan came unto Ashdod, ( when Sargon the king of Assyria sent him,) and fought against Ashdod, and took it;</p>
+<p id='23_20:001'><strong>1.</strong> In the year that Tartan came unto Ashdod, (when Sargon the king of Assyria sent him,) and fought against Ashdod, and took it;</p>
 <p id='23_20:002'><strong>2.</strong> At the same time spake the Lord by Isaiah the son of Amoz, saying, Go and loose the sackcloth from off thy loins, and put off thy shoe from thy foot. And he did so, walking naked and barefoot.</p>
 <p id='23_20:003'><strong>3.</strong> And the Lord said, Like as my servant Isaiah hath walked naked and barefoot three years for a sign and wonder upon Egypt and upon Ethiopia;</p>
 <p id='23_20:004'><strong>4.</strong> So shall the king of Assyria lead away the Egyptians prisoners, and the Ethiopians captives, young and old, naked and barefoot, even with their buttocks uncovered, to the shame of Egypt.</p>
@@ -730,7 +731,7 @@
 <p id='23_36:002'><strong>2.</strong> And the king of Assyria sent Rabshakeh from Lachish to Jerusalem unto king Hezekiah with a great army. And he stood by the conduit of the upper pool in the highway of the fuller’s field.</p>
 <p id='23_36:003'><strong>3.</strong> Then came forth unto him Eliakim, Hilkiah’s son, which was over the house, and Shebna the scribe, and Joah, Asaph’s son, the recorder.</p>
 <p id='23_36:004'><strong>4.</strong> And Rabshakeh said unto them, Say ye now to Hezekiah, Thus saith the great king, the king of Assyria, What confidence is this wherein thou trustest?</p>
-<p id='23_36:005'><strong>5.</strong> I say, sayest thou, (but they are but vain words ) I have counsel and strength for war: now on whom dost thou trust, that thou rebellest against me?</p>
+<p id='23_36:005'><strong>5.</strong> I say, sayest thou, (but they are but vain words) I have counsel and strength for war: now on whom dost thou trust, that thou rebellest against me?</p>
 <p id='23_36:006'><strong>6.</strong> Lo, thou trustest in the staff of this broken reed, on Egypt; whereon if a man lean, it will go into his hand, and pierce it: so is Pharaoh king of Egypt to all that trust in him.</p>
 <p id='23_36:007'><strong>7.</strong> But if thou say to me, We trust in the Lord our God: is it not he, whose high places and whose altars Hezekiah hath taken away, and said to Judah and to Jerusalem, Ye shall worship before this altar?</p>
 <p id='23_36:008'><strong>8.</strong> Now therefore give pledges, I pray thee, to my master the king of Assyria, and I will give thee two thousand horses, if thou be able on thy part to set riders upon them.</p>
@@ -1395,7 +1396,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

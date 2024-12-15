@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '18';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Job - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./17_Esther.html'>Prev: Esther</a><br>
 <a href='./19_Psalms.html'>Next: Psalms</a>
@@ -736,7 +737,7 @@
 <p id='18_30:002'><strong>2.</strong> Yea, whereto might the strength of their hands profit me, in whom old age was perished?</p>
 <p id='18_30:003'><strong>3.</strong> For want and famine they were solitary; fleeing into the wilderness in former time desolate and waste.</p>
 <p id='18_30:004'><strong>4.</strong> Who cut up mallows by the bushes, and juniper roots for their meat.</p>
-<p id='18_30:005'><strong>5.</strong> They were driven forth from among men, ( they cried after them as after a thief;)</p>
+<p id='18_30:005'><strong>5.</strong> They were driven forth from among men, (they cried after them as after a thief;)</p>
 <p id='18_30:006'><strong>6.</strong> To dwell in the clifts of the valleys, in caves of the earth, and in the rocks.</p>
 <p id='18_30:007'><strong>7.</strong> Among the bushes they brayed; under the nettles they were gathered together.</p>
 <p id='18_30:008'><strong>8.</strong> They were children of fools, yea, children of base men: they were viler than the earth.</p>
@@ -781,7 +782,7 @@
 <p id='18_31:015'><strong>15.</strong> Did not he that made me in the womb make him? and did not one fashion us in the womb?</p>
 <p id='18_31:016'><strong>16.</strong> If I have withheld the poor from their desire, or have caused the eyes of the widow to fail;</p>
 <p id='18_31:017'><strong>17.</strong> Or have eaten my morsel myself alone, and the fatherless hath not eaten thereof;</p>
-<p id='18_31:018'><strong>18.</strong> ( For from my youth he was brought up with me, as with a father, and I have guided her from my mother’s womb;)</p>
+<p id='18_31:018'><strong>18.</strong> (For from my youth he was brought up with me, as with a father, and I have guided her from my mother’s womb;)</p>
 <p id='18_31:019'><strong>19.</strong> If I have seen any perish for want of clothing, or any poor without covering;</p>
 <p id='18_31:020'><strong>20.</strong> If his loins have not blessed me, and if he were not warmed with the fleece of my sheep;</p>
 <p id='18_31:021'><strong>21.</strong> If I have lifted up my hand against the fatherless, when I saw my help in the gate:</p>
@@ -820,7 +821,7 @@
 <p id='18_32:013'><strong>13.</strong> Lest ye should say, We have found out wisdom: God thrusteth him down, not man.</p>
 <p id='18_32:014'><strong>14.</strong> Now he hath not directed his words against me: neither will I answer him with your speeches.</p>
 <p id='18_32:015'><strong>15.</strong> They were amazed, they answered no more: they left off speaking.</p>
-<p id='18_32:016'><strong>16.</strong> When I had waited, ( for they spake not, but stood still, and answered no more;)</p>
+<p id='18_32:016'><strong>16.</strong> When I had waited, (for they spake not, but stood still, and answered no more;)</p>
 <p id='18_32:017'><strong>17.</strong> I said, I will answer also my part, I also will shew mine opinion.</p>
 <p id='18_32:018'><strong>18.</strong> For I am full of matter, the spirit within me constraineth me.</p>
 <p id='18_32:019'><strong>19.</strong> Behold, my belly is as wine which hath no vent; it is ready to burst like new bottles.</p>
@@ -1149,7 +1150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

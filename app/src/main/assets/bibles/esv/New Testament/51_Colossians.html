@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '51';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Colossians - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./50_Philippians.html'>Prev: Philippians</a><br>
 <a href='./52_I_Thessalonians.html'>Next: I Thessalonians</a>
@@ -66,7 +67,7 @@
 <p id='51_02:019'><strong>19.</strong> and not holding fast to the Head, from whom the whole body, nourished and knit together through its joints and ligaments, grows with a growth that is from God.</p>
 <p id='51_02:020'><strong>20.</strong> If with Christ you died to the elemental spirits of the world, why, as if you were still alive in the world, do you submit to regulations —</p>
 <p id='51_02:021'><strong>21.</strong> Do not handle, Do not taste, Do not touch</p>
-<p id='51_02:022'><strong>22.</strong> ( referring to things that all perish as they are used )—according to human precepts and teachings?</p>
+<p id='51_02:022'><strong>22.</strong> (referring to things that all perish as they are used)—according to human precepts and teachings?</p>
 <p id='51_02:023'><strong>23.</strong> These have indeed an appearance of wisdom in promoting self-made religion and asceticism and severity to the body, but they are of no value in stopping the indulgence of the flesh.</p>
 <h2 id='chapter_3'>Chapter 3</h2>
 <p id='51_03:001'><strong>1.</strong> If then you have been raised with Christ, seek the things that are above, where Christ is, seated at the right hand of God.</p>
@@ -104,7 +105,7 @@
 <p id='51_04:007'><strong>7.</strong> Tychicus will tell you all about my activities. He is a beloved brother and faithful minister and fellow servant in the Lord.</p>
 <p id='51_04:008'><strong>8.</strong> I have sent him to you for this very purpose, that you may know how we are and that he may encourage your hearts,</p>
 <p id='51_04:009'><strong>9.</strong> and with him Onesimus, our faithful and beloved brother, who is one of you. They will tell you of everything that has taken place here.</p>
-<p id='51_04:010'><strong>10.</strong> Aristarchus my fellow prisoner greets you, and Mark the cousin of Barnabas ( concerning whom you have received instructions — if he comes to you, welcome him ),</p>
+<p id='51_04:010'><strong>10.</strong> Aristarchus my fellow prisoner greets you, and Mark the cousin of Barnabas (concerning whom you have received instructions — if he comes to you, welcome him),</p>
 <p id='51_04:011'><strong>11.</strong> and Jesus who is called Justus. These are the only men of the circumcision among my fellow workers for the kingdom of God, and they have been a comfort to me.</p>
 <p id='51_04:012'><strong>12.</strong> Epaphras, who is one of you, a servant of Christ Jesus, greets you, always struggling on your behalf in his prayers, that you may stand mature and fully assured in all the will of God.</p>
 <p id='51_04:013'><strong>13.</strong> For I bear him witness that he has worked hard for you and for those in Laodicea and in Hierapolis.</p>
@@ -136,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

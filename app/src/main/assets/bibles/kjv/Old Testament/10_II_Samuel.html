@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '10';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> II Samuel - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./09_I_Samuel.html'>Prev: I Samuel</a><br>
 <a href='./11_I_Kings.html'>Next: I Kings</a>
@@ -32,7 +33,7 @@
 <p id='10_01:015'><strong>15.</strong> And David called one of the young men, and said, Go near, and fall upon him. And he smote him that he died.</p>
 <p id='10_01:016'><strong>16.</strong> And David said unto him, Thy blood be upon thy head; for thy mouth hath testified against thee, saying, I have slain the Lord’s anointed.</p>
 <p id='10_01:017'><strong>17.</strong> And David lamented with this lamentation over Saul and over Jonathan his son:</p>
-<p id='10_01:018'><strong>18.</strong> ( Also he bade them teach the children of Judah the use of the bow: behold, it is written in the book of Jasher.)</p>
+<p id='10_01:018'><strong>18.</strong> (Also he bade them teach the children of Judah the use of the bow: behold, it is written in the book of Jasher.)</p>
 <p id='10_01:019'><strong>19.</strong> The beauty of Israel is slain upon thy high places: how are the mighty fallen!</p>
 <p id='10_01:020'><strong>20.</strong> Tell it not in Gath, publish it not in the streets of Askelon; lest the daughters of the Philistines rejoice, lest the daughters of the uncircumcised triumph.</p>
 <p id='10_01:021'><strong>21.</strong> Ye mountains of Gilboa, let there be no dew, neither let there be rain, upon you, nor fields of offerings: for there the shield of the mighty is vilely cast away, the shield of Saul, as though he had not been anointed with oil.</p>
@@ -117,7 +118,7 @@
 <p id='10_03:039'><strong>39.</strong> And I am this day weak, though anointed king; and these men the sons of Zeruiah be too hard for me: the Lord shall reward the doer of evil according to his wickedness.</p>
 <h2 id='chapter_4'>Chapter 4</h2>
 <p id='10_04:001'><strong>1.</strong> And when Saul’s son heard that Abner was dead in Hebron, his hands were feeble, and all the Israelites were troubled.</p>
-<p id='10_04:002'><strong>2.</strong> And Saul’s son had two men that were captains of bands: the name of the one was Baanah, and the name of the other Rechab, the sons of Rimmon a Beerothite, of the children of Benjamin: ( for Beeroth also was reckoned to Benjamin:</p>
+<p id='10_04:002'><strong>2.</strong> And Saul’s son had two men that were captains of bands: the name of the one was Baanah, and the name of the other Rechab, the sons of Rimmon a Beerothite, of the children of Benjamin: (for Beeroth also was reckoned to Benjamin:</p>
 <p id='10_04:003'><strong>3.</strong> And the Beerothites fled to Gittaim, and were sojourners there until this day.)</p>
 <p id='10_04:004'><strong>4.</strong> And Jonathan, Saul’s son, had a son that was lame of his feet. He was five years old when the tidings came of Saul and Jonathan out of Jezreel, and his nurse took him up, and fled: and it came to pass, as she made haste to flee, that he fell, and became lame. And his name was Mephibosheth.</p>
 <p id='10_04:005'><strong>5.</strong> And the sons of Rimmon the Beerothite, Rechab and Baanah, went, and came about the heat of the day to the house of Ish–bosheth, who lay on a bed at noon.</p>
@@ -387,7 +388,7 @@
 <p id='10_14:023'><strong>23.</strong> So Joab arose and went to Geshur, and brought Absalom to Jerusalem.</p>
 <p id='10_14:024'><strong>24.</strong> And the king said, Let him turn to his own house, and let him not see my face. So Absalom returned to his own house, and saw not the king’s face.</p>
 <p id='10_14:025'><strong>25.</strong> But in all Israel there was none to be so much praised as Absalom for his beauty: from the sole of his foot even to the crown of his head there was no blemish in him.</p>
-<p id='10_14:026'><strong>26.</strong> And when he polled his head, ( for it was at every year’s end that he polled it: because the hair was heavy on him, therefore he polled it:) he weighed the hair of his head at two hundred shekels after the king’s weight.</p>
+<p id='10_14:026'><strong>26.</strong> And when he polled his head, (for it was at every year’s end that he polled it: because the hair was heavy on him, therefore he polled it:) he weighed the hair of his head at two hundred shekels after the king’s weight.</p>
 <p id='10_14:027'><strong>27.</strong> And unto Absalom there were born three sons, and one daughter, whose name was Tamar: she was a woman of a fair countenance.</p>
 <p id='10_14:028'><strong>28.</strong> So Absalom dwelt two full years in Jerusalem, and saw not the king’s face.</p>
 <p id='10_14:029'><strong>29.</strong> Therefore Absalom sent for Joab, to have sent him to the king; but he would not come to him: and when he sent again the second time, he would not come.</p>
@@ -756,7 +757,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

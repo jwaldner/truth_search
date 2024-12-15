@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '26';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Ezekiel - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./25_Lamentations.html'>Prev: Lamentations</a><br>
 <a href='./27_Daniel.html'>Next: Daniel</a>
@@ -350,7 +351,7 @@
 <p id='26_16:020'><strong>20.</strong> Moreover thou hast taken thy sons and thy daughters, whom thou hast borne unto me, and these hast thou sacrificed unto them to be devoured. Is this of thy whoredoms a small matter,</p>
 <p id='26_16:021'><strong>21.</strong> That thou hast slain my children, and delivered them to cause them to pass through the fire for them?</p>
 <p id='26_16:022'><strong>22.</strong> And in all thine abominations and thy whoredoms thou hast not remembered the days of thy youth, when thou wast naked and bare, and wast polluted in thy blood.</p>
-<p id='26_16:023'><strong>23.</strong> And it came to pass after all thy wickedness, ( woe, woe unto thee! saith the Lord God;)</p>
+<p id='26_16:023'><strong>23.</strong> And it came to pass after all thy wickedness, (woe, woe unto thee! saith the Lord God;)</p>
 <p id='26_16:024'><strong>24.</strong> That thou hast also built unto thee an eminent place, and hast made thee an high place in every street.</p>
 <p id='26_16:025'><strong>25.</strong> Thou hast built thy high place at every head of the way, and hast made thy beauty to be abhorred, and hast opened thy feet to every one that passed by, and multiplied thy whoredoms.</p>
 <p id='26_16:026'><strong>26.</strong> Thou hast also committed fornication with the Egyptians thy neighbours, great of flesh; and hast increased thy whoredoms, to provoke me to anger.</p>
@@ -895,7 +896,7 @@
 <p id='26_33:030'><strong>30.</strong> Also, thou son of man, the children of thy people still are talking against thee by the walls and in the doors of the houses, and speak one to another, every one to his brother, saying, Come, I pray you, and hear what is the word that cometh forth from the Lord.</p>
 <p id='26_33:031'><strong>31.</strong> And they come unto thee as the people cometh, and they sit before thee as my people, and they hear thy words, but they will not do them: for with their mouth they shew much love, but their heart goeth after their covetousness.</p>
 <p id='26_33:032'><strong>32.</strong> And, lo, thou art unto them as a very lovely song of one that hath a pleasant voice, and can play well on an instrument: for they hear thy words, but they do them not.</p>
-<p id='26_33:033'><strong>33.</strong> And when this cometh to pass, ( lo, it will come,) then shall they know that a prophet hath been among them.</p>
+<p id='26_33:033'><strong>33.</strong> And when this cometh to pass, (lo, it will come,) then shall they know that a prophet hath been among them.</p>
 <h2 id='chapter_34'>Chapter 34</h2>
 <p id='26_34:001'><strong>1.</strong> And the word of the Lord came unto me, saying,</p>
 <p id='26_34:002'><strong>2.</strong> Son of man, prophesy against the shepherds of Israel, prophesy, and say unto them, Thus saith the Lord God unto the shepherds; Woe be to the shepherds of Israel that do feed themselves! should not the shepherds feed the flocks?</p>
@@ -1358,7 +1359,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

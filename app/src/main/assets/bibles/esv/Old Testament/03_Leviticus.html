@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '03';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Leviticus - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./02_Exodus.html'>Prev: Exodus</a><br>
 <a href='./04_Numbers.html'>Next: Numbers</a>
@@ -77,7 +78,7 @@
 <p id='03_04:007'><strong>7.</strong> And the priest shall put some of the blood on the horns of the altar of fragrant incense before the Lord that is in the tent of meeting, and all the rest of the blood of the bull he shall pour out at the base of the altar of burnt offering that is at the entrance of the tent of meeting.</p>
 <p id='03_04:008'><strong>8.</strong> And all the fat of the bull of the sin offering he shall remove from it, the fat that covers the entrails and all the fat that is on the entrails</p>
 <p id='03_04:009'><strong>9.</strong> and the two kidneys with the fat that is on them at the loins and the long lobe of the liver that he shall remove with the kidneys</p>
-<p id='03_04:010'><strong>10.</strong> (just as these are taken from the ox of the sacrifice of the peace offerings ); and the priest shall burn them on the altar of burnt offering.</p>
+<p id='03_04:010'><strong>10.</strong> (just as these are taken from the ox of the sacrifice of the peace offerings); and the priest shall burn them on the altar of burnt offering.</p>
 <p id='03_04:011'><strong>11.</strong> But the skin of the bull and all its flesh, with its head, its legs, its entrails, and its dung —</p>
 <p id='03_04:012'><strong>12.</strong> all the rest of the bull —he shall carry outside the camp to a clean place, to the ash heap, and shall burn it up on a fire of wood. On the ash heap it shall be burned up.</p>
 <p id='03_04:013'><strong>13.</strong> If the whole congregation of Israel sins unintentionally and the thing is hidden from the eyes of the assembly, and they do any one of the things that by the Lord ’s commandments ought not to be done, and they realize their guilt,</p>
@@ -564,7 +565,7 @@
 <p id='03_18:024'><strong>24.</strong> Do not make yourselves unclean by any of these things, for by all these the nations I am driving out before you have become unclean,</p>
 <p id='03_18:025'><strong>25.</strong> and the land became unclean, so that I punished its iniquity, and the land vomited out its inhabitants.</p>
 <p id='03_18:026'><strong>26.</strong> But you shall keep my statutes and my rules and do none of these abominations, either the native or the stranger who sojourns among you</p>
-<p id='03_18:027'><strong>27.</strong> (for the people of the land, who were before you, did all of these abominations, so that the land became unclean ),</p>
+<p id='03_18:027'><strong>27.</strong> (for the people of the land, who were before you, did all of these abominations, so that the land became unclean),</p>
 <p id='03_18:028'><strong>28.</strong> lest the land vomit you out when you make it unclean, as it vomited out the nation that was before you.</p>
 <p id='03_18:029'><strong>29.</strong> For everyone who does any of these abominations, the persons who do them shall be cut off from among their people.</p>
 <p id='03_18:030'><strong>30.</strong> So keep my charge never to practice any of these abominable customs that were practiced before you, and never to make yourselves unclean by them: I am the Lord your God.</p>
@@ -637,7 +638,7 @@
 <h2 id='chapter_21'>Chapter 21</h2>
 <p id='03_21:001'><strong>1.</strong> And the Lord said to Moses, Speak to the priests, the sons of Aaron, and say to them, No one shall make himself unclean for the dead among his people,</p>
 <p id='03_21:002'><strong>2.</strong> except for his closest relatives, his mother, his father, his son, his daughter, his brother,</p>
-<p id='03_21:003'><strong>3.</strong> or his virgin sister (who is near to him because she has had no husband; for her he may make himself unclean ).</p>
+<p id='03_21:003'><strong>3.</strong> or his virgin sister (who is near to him because she has had no husband; for her he may make himself unclean).</p>
 <p id='03_21:004'><strong>4.</strong> He shall not make himself unclean as a husband among his people and so profane himself.</p>
 <p id='03_21:005'><strong>5.</strong> They shall not make bald patches on their heads, nor shave off the edges of their beards, nor make any cuts on their body.</p>
 <p id='03_21:006'><strong>6.</strong> They shall be holy to their God and not profane the name of their God. For they offer the Lord ’s food offerings, the bread of their God; therefore they shall be holy.</p>
@@ -923,7 +924,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '50';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Philippians - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./49_Ephesians.html'>Prev: Ephesians</a><br>
 <a href='./51_Colossians.html'>Next: Colossians</a>
@@ -94,7 +95,7 @@
 <p id='50_03:015'><strong>15.</strong> Let us therefore, as many as be perfect, be thus minded: and if in any thing ye be otherwise minded, God shall reveal even this unto you.</p>
 <p id='50_03:016'><strong>16.</strong> Nevertheless, whereto we have already attained, let us walk by the same rule, let us mind the same thing.</p>
 <p id='50_03:017'><strong>17.</strong> Brethren, be followers together of me, and mark them which walk so as ye have us for an ensample.</p>
-<p id='50_03:018'><strong>18.</strong> ( For many walk, of whom I have told you often, and now tell you even weeping, that they are the enemies of the cross of Christ:</p>
+<p id='50_03:018'><strong>18.</strong> (For many walk, of whom I have told you often, and now tell you even weeping, that they are the enemies of the cross of Christ:</p>
 <p id='50_03:019'><strong>19.</strong> Whose end is destruction, whose God is their belly, and whose glory is in their shame, who mind earthly things.)</p>
 <p id='50_03:020'><strong>20.</strong> For our conversation is in heaven; from whence also we look for the Saviour, the Lord Jesus Christ:</p>
 <p id='50_03:021'><strong>21.</strong> Who shall change our vile body, that it may be fashioned like unto his glorious body, according to the working whereby he is able even to subdue all things unto himself.</p>
@@ -145,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

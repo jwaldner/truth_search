@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '53';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> II Thessalonians - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./52_I_Thessalonians.html'>Prev: I Thessalonians</a><br>
 <a href='./54_I_Timothy.html'>Next: I Timothy</a>
@@ -24,7 +25,7 @@
 <p id='53_01:007'><strong>7.</strong> And to you who are troubled rest with us, when the Lord Jesus shall be revealed from heaven with his mighty angels,</p>
 <p id='53_01:008'><strong>8.</strong> In flaming fire taking vengeance on them that know not God, and that obey not the gospel of our Lord Jesus Christ:</p>
 <p id='53_01:009'><strong>9.</strong> Who shall be punished with everlasting destruction from the presence of the Lord, and from the glory of his power;</p>
-<p id='53_01:010'><strong>10.</strong> When he shall come to be glorified in his saints, and to be admired in all them that believe ( because our testimony among you was believed ) in that day.</p>
+<p id='53_01:010'><strong>10.</strong> When he shall come to be glorified in his saints, and to be admired in all them that believe (because our testimony among you was believed) in that day.</p>
 <p id='53_01:011'><strong>11.</strong> Wherefore also we pray always for you, that our God would count you worthy of this calling, and fulfil all the good pleasure of his goodness, and the work of faith with power:</p>
 <p id='53_01:012'><strong>12.</strong> That the name of our Lord Jesus Christ may be glorified in you, and ye in him, according to the grace of our God and the Lord Jesus Christ.</p>
 <h2 id='chapter_2'>Chapter 2</h2>
@@ -87,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

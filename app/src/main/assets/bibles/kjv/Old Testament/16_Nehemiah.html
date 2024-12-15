@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '16';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Nehemiah - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./15_Ezra.html'>Prev: Ezra</a><br>
 <a href='./17_Esther.html'>Next: Esther</a>
@@ -223,7 +224,7 @@
 <p id='16_08:002'><strong>2.</strong> And Ezra the priest brought the law before the congregation both of men and women, and all that could hear with understanding, upon the first day of the seventh month.</p>
 <p id='16_08:003'><strong>3.</strong> And he read therein before the street that was before the water gate from the morning until midday, before the men and the women, and those that could understand; and the ears of all the people were attentive unto the book of the law.</p>
 <p id='16_08:004'><strong>4.</strong> And Ezra the scribe stood upon a pulpit of wood, which they had made for the purpose; and beside him stood Mattithiah, and Shema, and Anaiah, and Urijah, and Hilkiah, and Maaseiah, on his right hand; and on his left hand, Pedaiah, and Mishael, and Malchiah, and Hashum, and Hashbadana, Zechariah, and Meshullam.</p>
-<p id='16_08:005'><strong>5.</strong> And Ezra opened the book in the sight of all the people; ( for he was above all the people;) and when he opened it, all the people stood up:</p>
+<p id='16_08:005'><strong>5.</strong> And Ezra opened the book in the sight of all the people; (for he was above all the people;) and when he opened it, all the people stood up:</p>
 <p id='16_08:006'><strong>6.</strong> And Ezra blessed the Lord, the great God. And all the people answered, Amen, Amen, with lifting up their hands: and they bowed their heads, and worshipped the Lord with their faces to the ground.</p>
 <p id='16_08:007'><strong>7.</strong> Also Jeshua, and Bani, and Sherebiah, Jamin, Akkub, Shabbethai, Hodijah, Maaseiah, Kelita, Azariah, Jozabad, Hanan, Pelaiah, and the Levites, caused the people to understand the law: and the people stood in their place.</p>
 <p id='16_08:008'><strong>8.</strong> So they read in the book in the law of God distinctly, and gave the sense, and caused them to understand the reading.</p>
@@ -266,7 +267,7 @@
 <p id='16_09:026'><strong>26.</strong> Nevertheless they were disobedient, and rebelled against thee, and cast thy law behind their backs, and slew thy prophets which testified against them to turn them to thee, and they wrought great provocations.</p>
 <p id='16_09:027'><strong>27.</strong> Therefore thou deliveredst them into the hand of their enemies, who vexed them: and in the time of their trouble, when they cried unto thee, thou heardest them from heaven; and according to thy manifold mercies thou gavest them saviours, who saved them out of the hand of their enemies.</p>
 <p id='16_09:028'><strong>28.</strong> But after they had rest, they did evil again before thee: therefore leftest thou them in the hand of their enemies, so that they had the dominion over them: yet when they returned, and cried unto thee, thou heardest them from heaven; and many times didst thou deliver them according to thy mercies;</p>
-<p id='16_09:029'><strong>29.</strong> And testifiedst against them, that thou mightest bring them again unto thy law: yet they dealt proudly, and hearkened not unto thy commandments, but sinned against thy judgments, ( which if a man do, he shall live in them;) and withdrew the shoulder, and hardened their neck, and would not hear.</p>
+<p id='16_09:029'><strong>29.</strong> And testifiedst against them, that thou mightest bring them again unto thy law: yet they dealt proudly, and hearkened not unto thy commandments, but sinned against thy judgments, (which if a man do, he shall live in them;) and withdrew the shoulder, and hardened their neck, and would not hear.</p>
 <p id='16_09:030'><strong>30.</strong> Yet many years didst thou forbear them, and testifiedst against them by thy spirit in thy prophets: yet would they not give ear: therefore gavest thou them into the hand of the people of the lands.</p>
 <p id='16_09:031'><strong>31.</strong> Nevertheless for thy great mercies’ sake thou didst not utterly consume them, nor forsake them; for thou art a gracious and merciful God.</p>
 <p id='16_09:032'><strong>32.</strong> Now therefore, our God, the great, the mighty, and the terrible God, who keepest covenant and mercy, let not all the trouble seem little before thee, that hath come upon us, on our kings, on our princes, and on our priests, and on our prophets, and on our fathers, and on all thy people, since the time of the kings of Assyria unto this day.</p>
@@ -456,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

@@ -7,6 +7,8 @@ import com.wfs.truthsearch.utils.AppCloser
 import fi.iki.elonen.NanoHTTPD
 import java.io.File
 import com.wfs.truthsearch.utils.PreferenceManager
+import com.wfs.truthsearch.utils.extractPayload
+import com.wfs.truthsearch.utils.validatePayload
 import java.io.IOException
 
 class LocalServer(private val cacheDir: File, private val context: Context) : NanoHTTPD(8080) {
@@ -14,7 +16,7 @@ class LocalServer(private val cacheDir: File, private val context: Context) : Na
     private val tag = "ServerStatus"
 
     override fun serve(session: IHTTPSession): Response {
-        Log.w(tag, "Serve: ${session.uri}")
+        Log.d(tag, "Serve: ${session.uri}")
 
         return try {
             when (session.uri) {
@@ -58,9 +60,9 @@ class LocalServer(private val cacheDir: File, private val context: Context) : Na
                         )
                     }
 
-                    Log.d(tag, "Received payload: $requestBody")
+                     Log.d(tag, "Received payload: $requestBody")
 
-                    if (!requestBody.contains("_")) {
+                    if (!validatePayload(requestBody)) {
                         Log.e(tag, "Invalid payload: $requestBody")
                         return newFixedLengthResponse(
                             Response.Status.BAD_REQUEST,
@@ -71,10 +73,14 @@ class LocalServer(private val cacheDir: File, private val context: Context) : Na
 
                     // Save the payload as a bookmark
                     Log.d(tag, requestBody)
-                    val verse = requestBody.substringAfter(":\"").substringBefore("\"")
 
-                    PreferenceManager.saveString(PreferenceManager.KEY_PLACE_HOLDER, verse)
-                    Log.d(tag, "saved: $verse")
+
+                    val (payload, version) = extractPayload(requestBody)
+                    val versionEntry = PreferenceManager.versionMap.entries.first { version.contains(it.key) }
+                    PreferenceManager.saveString(versionEntry.value, payload)
+
+                    Log.w(tag,  "saved: ${versionEntry.value}  $payload")
+                    Log.e(tag, "Saved: ${PreferenceManager.getString(versionEntry.value)}")
 
                     return newFixedLengthResponse(
                         Response.Status.OK,
@@ -110,7 +116,8 @@ class LocalServer(private val cacheDir: File, private val context: Context) : Na
 
                 "/close" -> {
                     Log.d(tag, "close browser")
-                    Log.d(tag, "clear ${PreferenceManager.KEY_PLACE_HOLDER}" )
+                    // this works
+                    //Log.d(tag, "clear ${PreferenceManager.KEY_PLACE_HOLDER}" )
                     // Serve the /close endpointPoint
                     newFixedLengthResponse(
                         Response.Status.OK, "text/html", """
@@ -131,18 +138,19 @@ class LocalServer(private val cacheDir: File, private val context: Context) : Na
                     // Serve static files from cache
                     val requestedPath = session.uri.trimStart('/')
                     val file = File(cacheDir, requestedPath)
-
+                    val versionEntry = PreferenceManager.versionMap.entries.first { requestedPath.contains(it.key) }
 
                     if (file.exists()) {
                         val fileLength = file.length()
                         val fileInputStream = file.inputStream()
-                        val placeHolder = getBookFromAssets(context, file.name)!!.id
+                        val placeHolder = getBookFromAssets(context, versionEntry.key, file.name)!!.id
                         // Save to preferences
                         PreferenceManager.saveString(
-                            PreferenceManager.KEY_PLACE_HOLDER,
+                            versionEntry.value,
                             placeHolder
                         )
-                        Log.d(tag, "saved ${PreferenceManager.KEY_PLACE_HOLDER}: ${placeHolder}")
+                        Log.d(tag, "saved ${versionEntry.value}: ${placeHolder}")
+
                         newFixedLengthResponse(
                             Response.Status.OK,
                             "text/html",

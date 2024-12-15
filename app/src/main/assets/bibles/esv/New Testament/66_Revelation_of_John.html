@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '66';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Revelation of John - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./65_Jude.html'>Prev: Jude</a><br>
 <h1>Revelation of John</h1>
@@ -43,7 +44,7 @@
 <p id='66_02:006'><strong>6.</strong> Yet this you have: you hate the works of the Nicolaitans, which I also hate.</p>
 <p id='66_02:007'><strong>7.</strong> He who has an ear, let him hear what the Spirit says to the churches. To the one who conquers I will grant to eat of the tree of life, which is in the paradise of God.</p>
 <p id='66_02:008'><strong>8.</strong> And to the angel of the church in Smyrna write: The words of the first and the last, who died and came to life.</p>
-<p id='66_02:009'><strong>9.</strong> I know your tribulation and your poverty ( but you are rich ) and the slander of those who say that they are Jews and are not, but are a synagogue of Satan.</p>
+<p id='66_02:009'><strong>9.</strong> I know your tribulation and your poverty (but you are rich) and the slander of those who say that they are Jews and are not, but are a synagogue of Satan.</p>
 <p id='66_02:010'><strong>10.</strong> Do not fear what you are about to suffer. Behold, the devil is about to throw some of you into prison, that you may be tested, and for ten days you will have tribulation. Be faithful unto death, and I will give you the crown of life.</p>
 <p id='66_02:011'><strong>11.</strong> He who has an ear, let him hear what the Spirit says to the churches. The one who conquers will not be hurt by the second death.</p>
 <p id='66_02:012'><strong>12.</strong> And to the angel of the church in Pergamum write: The words of him who has the sharp two-edged sword.</p>
@@ -301,7 +302,7 @@
 <p id='66_16:012'><strong>12.</strong> The sixth angel poured out his bowl on the great river Euphrates, and its water was dried up, to prepare the way for the kings from the east.</p>
 <p id='66_16:013'><strong>13.</strong> And I saw, coming out of the mouth of the dragon and out of the mouth of the beast and out of the mouth of the false prophet, three unclean spirits like frogs.</p>
 <p id='66_16:014'><strong>14.</strong> For they are demonic spirits, performing signs, who go abroad to the kings of the whole world, to assemble them for battle on the great day of God the Almighty.</p>
-<p id='66_16:015'><strong>15.</strong> ( Behold, I am coming like a thief! Blessed is the one who stays awake, keeping his garments on, that he may not go about naked and be seen exposed! )</p>
+<p id='66_16:015'><strong>15.</strong> (Behold, I am coming like a thief! Blessed is the one who stays awake, keeping his garments on, that he may not go about naked and be seen exposed!)</p>
 <p id='66_16:016'><strong>16.</strong> And they assembled them at the place that in Hebrew is called Armageddon.</p>
 <p id='66_16:017'><strong>17.</strong> The seventh angel poured out his bowl into the air, and a loud voice came out of the temple, from the throne, saying, It is done!</p>
 <p id='66_16:018'><strong>18.</strong> And there were flashes of lightning, rumblings, peals of thunder, and a great earthquake such as there had never been since man was on the earth, so great was that earthquake.</p>
@@ -462,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

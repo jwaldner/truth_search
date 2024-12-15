@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '61';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> II Peter - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./60_I_Peter.html'>Prev: I Peter</a><br>
 <a href='./62_I_John.html'>Next: I John</a>
@@ -44,7 +45,7 @@
 <p id='61_02:005'><strong>5.</strong> if he did not spare the ancient world, but preserved Noah, a herald of righteousness, with seven others, when he brought a flood upon the world of the ungodly;</p>
 <p id='61_02:006'><strong>6.</strong> if by turning the cities of Sodom and Gomorrah to ashes he condemned them to extinction, making them an example of what is going to happen to the ungodly;</p>
 <p id='61_02:007'><strong>7.</strong> and if he rescued righteous Lot, greatly distressed by the sensual conduct of the wicked</p>
-<p id='61_02:008'><strong>8.</strong> (for as that righteous man lived among them day after day, he was tormenting his righteous soul over their lawless deeds that he saw and heard );</p>
+<p id='61_02:008'><strong>8.</strong> (for as that righteous man lived among them day after day, he was tormenting his righteous soul over their lawless deeds that he saw and heard);</p>
 <p id='61_02:009'><strong>9.</strong> then the Lord knows how to rescue the godly from trials, and to keep the unrighteous under punishment until the day of judgment,</p>
 <p id='61_02:010'><strong>10.</strong> and especially those who indulge in the lust of defiling passion and despise authority. Bold and willful, they do not tremble as they blaspheme the glorious ones,</p>
 <p id='61_02:011'><strong>11.</strong> whereas angels, though greater in might and power, do not pronounce a blasphemous judgment against them before the Lord.</p>
@@ -101,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

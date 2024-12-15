@@ -8,8 +8,16 @@ object PreferenceManager {
     private const val PREF_NAME = "AppPrefs" // SharedPreferences file name
     private lateinit var preferences: SharedPreferences
 
+     val versionMap: Map<String, String>
+        get() = mapOf(
+            "esv" to KEY_PLACE_HOLDER_ESV,
+            "kjv" to KEY_PLACE_HOLDER_KJV,
+        )
+
+
     // Keys for preferences
-    const val KEY_PLACE_HOLDER = "place_holder"
+    const val KEY_PLACE_HOLDER_ESV = "place_holder_esv"
+    const val KEY_PLACE_HOLDER_KJV = "place_holder_kjv"
     const val KEY_DATA_VERSION = "data_version"
 
     // Initialize preferences

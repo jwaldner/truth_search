@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '31';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Obadiah - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./30_Amos.html'>Prev: Amos</a><br>
 <a href='./32_Jonah.html'>Next: Jonah</a>
@@ -19,7 +20,7 @@
 <p id='31_01:002'><strong>2.</strong> Behold, I have made thee small among the heathen: thou art greatly despised.</p>
 <p id='31_01:003'><strong>3.</strong> The pride of thine heart hath deceived thee, thou that dwellest in the clefts of the rock, whose habitation is high; that saith in his heart, Who shall bring me down to the ground?</p>
 <p id='31_01:004'><strong>4.</strong> Though thou exalt thyself as the eagle, and though thou set thy nest among the stars, thence will I bring thee down, saith the Lord.</p>
-<p id='31_01:005'><strong>5.</strong> If thieves came to thee, if robbers by night, ( how art thou cut off!) would they not have stolen till they had enough? if the grapegatherers came to thee, would they not leave some grapes?</p>
+<p id='31_01:005'><strong>5.</strong> If thieves came to thee, if robbers by night, (how art thou cut off!) would they not have stolen till they had enough? if the grapegatherers came to thee, would they not leave some grapes?</p>
 <p id='31_01:006'><strong>6.</strong> How are the things of Esau searched out! how are his hidden things sought up!</p>
 <p id='31_01:007'><strong>7.</strong> All the men of thy confederacy have brought thee even to the border: the men that were at peace with thee have deceived thee, and prevailed against thee; they that eat thy bread have laid a wound under thee: there is none understanding in him.</p>
 <p id='31_01:008'><strong>8.</strong> Shall I not in that day, saith the Lord, even destroy the wise men out of Edom, and understanding out of the mount of Esau?</p>
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

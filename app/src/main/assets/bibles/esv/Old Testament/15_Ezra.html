@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '15';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Ezra - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./14_II_Chronicles.html'>Prev: II Chronicles</a><br>
 <a href='./16_Nehemiah.html'>Next: Nehemiah</a>
@@ -87,7 +88,7 @@
 <p id='15_02:058'><strong>58.</strong> All the temple servants and the sons of Solomon’s servants were 392.</p>
 <p id='15_02:059'><strong>59.</strong> The following were those who came up from Tel-melah, Tel-harsha, Cherub, Addan, and Immer, though they could not prove their fathers ’ houses or their descent, whether they belonged to Israel:</p>
 <p id='15_02:060'><strong>60.</strong> the sons of Delaiah, the sons of Tobiah, and the sons of Nekoda, 652.</p>
-<p id='15_02:061'><strong>61.</strong> Also, of the sons of the priests: the sons of Habaiah, the sons of Hakkoz, and the sons of Barzillai ( who had taken a wife from the daughters of Barzillai the Gileadite, and was called by their name ).</p>
+<p id='15_02:061'><strong>61.</strong> Also, of the sons of the priests: the sons of Habaiah, the sons of Hakkoz, and the sons of Barzillai (who had taken a wife from the daughters of Barzillai the Gileadite, and was called by their name).</p>
 <p id='15_02:062'><strong>62.</strong> These sought their registration among those enrolled in the genealogies, but they were not found there, and so they were excluded from the priesthood as unclean.</p>
 <p id='15_02:063'><strong>63.</strong> The governor told them that they were not to partake of the most holy food, until there should be a priest to consult Urim and Thummim.</p>
 <p id='15_02:064'><strong>64.</strong> The whole assembly together was 42,360,</p>
@@ -122,7 +123,7 @@
 <p id='15_04:008'><strong>8.</strong> Rehum the commander and Shimshai the scribe wrote a letter against Jerusalem to Artaxerxes the king as follows:</p>
 <p id='15_04:009'><strong>9.</strong> Rehum the commander, Shimshai the scribe, and the rest of their associates, the judges, the governors, the officials, the Persians, the men of Erech, the Babylonians, the men of Susa, that is, the Elamites,</p>
 <p id='15_04:010'><strong>10.</strong> and the rest of the nations whom the great and noble Osnappar deported and settled in the cities of Samaria and in the rest of the province Beyond the River.</p>
-<p id='15_04:011'><strong>11.</strong> ( This is a copy of the letter that they sent.) To Artaxerxes the king: Your servants, the men of the province Beyond the River, send greeting. And now</p>
+<p id='15_04:011'><strong>11.</strong> (This is a copy of the letter that they sent.) To Artaxerxes the king: Your servants, the men of the province Beyond the River, send greeting. And now</p>
 <p id='15_04:012'><strong>12.</strong> be it known to the king that the Jews who came up from you to us have gone to Jerusalem. They are rebuilding that rebellious and wicked city. They are finishing the walls and repairing the foundations.</p>
 <p id='15_04:013'><strong>13.</strong> Now be it known to the king that if this city is rebuilt and the walls finished, they will not pay tribute, custom, or toll, and the royal revenue will be impaired.</p>
 <p id='15_04:014'><strong>14.</strong> Now because we eat the salt of the palace and it is not fitting for us to witness the king’s dishonor, therefore we send and inform the king,</p>
@@ -282,7 +283,7 @@
 <p id='15_10:020'><strong>20.</strong> Of the sons of Immer: Hanani and Zebadiah.</p>
 <p id='15_10:021'><strong>21.</strong> Of the sons of Harim: Maaseiah, Elijah, Shemaiah, Jehiel, and Uzziah.</p>
 <p id='15_10:022'><strong>22.</strong> Of the sons of Pashhur: Elioenai, Maaseiah, Ishmael, Nethanel, Jozabad, and Elasah.</p>
-<p id='15_10:023'><strong>23.</strong> Of the Levites: Jozabad, Shimei, Kelaiah (that is, Kelita ), Pethahiah, Judah, and Eliezer.</p>
+<p id='15_10:023'><strong>23.</strong> Of the Levites: Jozabad, Shimei, Kelaiah (that is, Kelita), Pethahiah, Judah, and Eliezer.</p>
 <p id='15_10:024'><strong>24.</strong> Of the singers: Eliashib. Of the gatekeepers: Shallum, Telem, and Uri.</p>
 <p id='15_10:025'><strong>25.</strong> And of Israel: of the sons of Parosh: Ramiah, Izziah, Malchijah, Mijamin, Eleazar, Hashabiah, and Benaiah.</p>
 <p id='15_10:026'><strong>26.</strong> Of the sons of Elam: Mattaniah, Zechariah, Jehiel, Abdi, Jeremoth, and Elijah.</p>
@@ -327,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

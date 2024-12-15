@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '10';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> II Samuel - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./09_I_Samuel.html'>Prev: I Samuel</a><br>
 <a href='./11_I_Kings.html'>Next: I Kings</a>
@@ -117,8 +118,8 @@
 <p id='10_03:039'><strong>39.</strong> And I was gentle today, though anointed king. These men, the sons of Zeruiah, are more severe than I. The Lord repay the evildoer according to his wickedness!</p>
 <h2 id='chapter_4'>Chapter 4</h2>
 <p id='10_04:001'><strong>1.</strong> When Ish-bosheth, Saul’s son, heard that Abner had died at Hebron, his courage failed, and all Israel was dismayed.</p>
-<p id='10_04:002'><strong>2.</strong> Now Saul’s son had two men who were captains of raiding bands; the name of the one was Baanah, and the name of the other Rechab, sons of Rimmon a man of Benjamin from Beeroth ( for Beeroth also is counted part of Benjamin;</p>
-<p id='10_04:003'><strong>3.</strong> the Beerothites fled to Gittaim and have been sojourners there to this day ).</p>
+<p id='10_04:002'><strong>2.</strong> Now Saul’s son had two men who were captains of raiding bands; the name of the one was Baanah, and the name of the other Rechab, sons of Rimmon a man of Benjamin from Beeroth (for Beeroth also is counted part of Benjamin;</p>
+<p id='10_04:003'><strong>3.</strong> the Beerothites fled to Gittaim and have been sojourners there to this day).</p>
 <p id='10_04:004'><strong>4.</strong> Jonathan, the son of Saul, had a son who was crippled in his feet. He was five years old when the news about Saul and Jonathan came from Jezreel, and his nurse took him up and fled, and as she fled in her haste, he fell and became lame. And his name was Mephibosheth.</p>
 <p id='10_04:005'><strong>5.</strong> Now the sons of Rimmon the Beerothite, Rechab and Baanah, set out, and about the heat of the day they came to the house of Ish-bosheth as he was taking his noonday rest.</p>
 <p id='10_04:006'><strong>6.</strong> And they came into the midst of the house as if to get wheat, and they stabbed him in the stomach. Then Rechab and Baanah his brother escaped.</p>
@@ -265,7 +266,7 @@
 <p id='10_11:001'><strong>1.</strong> , In the spring of the year, the time when kings go out to battle, David sent Joab, and his servants with him, and all Israel. And they ravaged the Ammonites and besieged Rabbah. But David remained at Jerusalem.</p>
 <p id='10_11:002'><strong>2.</strong> It happened, late one afternoon, when David arose from his couch and was walking on the roof of the king’s house, that he saw from the roof a woman bathing; and the woman was very beautiful.</p>
 <p id='10_11:003'><strong>3.</strong> And David sent and inquired about the woman. And one said, Is not this Bathsheba, the daughter of Eliam, the wife of Uriah the Hittite?</p>
-<p id='10_11:004'><strong>4.</strong> So David sent messengers and took her, and she came to him, and he lay with her. ( Now she had been purifying herself from her uncleanness.) Then she returned to her house.</p>
+<p id='10_11:004'><strong>4.</strong> So David sent messengers and took her, and she came to him, and he lay with her. (Now she had been purifying herself from her uncleanness.) Then she returned to her house.</p>
 <p id='10_11:005'><strong>5.</strong> And the woman conceived, and she sent and told David, I am pregnant.</p>
 <p id='10_11:006'><strong>6.</strong> So David sent word to Joab, Send me Uriah the Hittite. And Joab sent Uriah to David.</p>
 <p id='10_11:007'><strong>7.</strong> When Uriah came to him, David asked how Joab was doing and how the people were doing and how the war was going.</p>
@@ -500,7 +501,7 @@
 <p id='10_18:010'><strong>10.</strong> And a certain man saw it and told Joab, Behold, I saw Absalom hanging in an oak.</p>
 <p id='10_18:011'><strong>11.</strong> Joab said to the man who told him, What, you saw him! Why then did you not strike him there to the ground? I would have been glad to give you ten pieces of silver and a belt.</p>
 <p id='10_18:012'><strong>12.</strong> But the man said to Joab, Even if I felt in my hand the weight of a thousand pieces of silver, I would not reach out my hand against the king’s son, for in our hearing the king commanded you and Abishai and Ittai, For my sake protect the young man Absalom.</p>
-<p id='10_18:013'><strong>13.</strong> On the other hand, if I had dealt treacherously against his life (and there is nothing hidden from the king ), then you yourself would have stood aloof.</p>
+<p id='10_18:013'><strong>13.</strong> On the other hand, if I had dealt treacherously against his life (and there is nothing hidden from the king), then you yourself would have stood aloof.</p>
 <p id='10_18:014'><strong>14.</strong> Joab said, I will not waste time like this with you. And he took three javelins in his hand and thrust them into the heart of Absalom while he was still alive in the oak.</p>
 <p id='10_18:015'><strong>15.</strong> And ten young men, Joab’s armor-bearers, surrounded Absalom and struck him and killed him.</p>
 <p id='10_18:016'><strong>16.</strong> Then Joab blew the trumpet, and the troops came back from pursuing Israel, for Joab restrained them.</p>
@@ -756,7 +757,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

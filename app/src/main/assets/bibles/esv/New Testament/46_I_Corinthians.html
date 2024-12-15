@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '46';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> I Corinthians - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./45_Romans.html'>Prev: Romans</a><br>
 <a href='./47_II_Corinthians.html'>Next: II Corinthians</a>
@@ -154,9 +155,9 @@
 <p id='46_07:007'><strong>7.</strong> I wish that all were as I myself am. But each has his own gift from God, one of one kind and one of another.</p>
 <p id='46_07:008'><strong>8.</strong> To the unmarried and the widows I say that it is good for them to remain single as I am.</p>
 <p id='46_07:009'><strong>9.</strong> But if they cannot exercise self-control, they should marry. For it is better to marry than to burn with passion.</p>
-<p id='46_07:010'><strong>10.</strong> To the married I give this charge ( not I, but the Lord ): the wife should not separate from her husband</p>
-<p id='46_07:011'><strong>11.</strong> ( but if she does, she should remain unmarried or else be reconciled to her husband ), and the husband should not divorce his wife.</p>
-<p id='46_07:012'><strong>12.</strong> To the rest I say ( I, not the Lord ) that if any brother has a wife who is an unbeliever, and she consents to live with him, he should not divorce her.</p>
+<p id='46_07:010'><strong>10.</strong> To the married I give this charge (not I, but the Lord): the wife should not separate from her husband</p>
+<p id='46_07:011'><strong>11.</strong> (but if she does, she should remain unmarried or else be reconciled to her husband), and the husband should not divorce his wife.</p>
+<p id='46_07:012'><strong>12.</strong> To the rest I say (I, not the Lord) that if any brother has a wife who is an unbeliever, and she consents to live with him, he should not divorce her.</p>
 <p id='46_07:013'><strong>13.</strong> If any woman has a husband who is an unbeliever, and he consents to live with her, she should not divorce him.</p>
 <p id='46_07:014'><strong>14.</strong> For the unbelieving husband is made holy because of his wife, and the unbelieving wife is made holy because of her husband. Otherwise your children would be unclean, but as it is, they are holy.</p>
 <p id='46_07:015'><strong>15.</strong> But if the unbelieving partner separates, let it be so. In such cases the brother or sister is not enslaved. God has called you to peace.</p>
@@ -165,7 +166,7 @@
 <p id='46_07:018'><strong>18.</strong> Was anyone at the time of his call already circumcised? Let him not seek to remove the marks of circumcision. Was anyone at the time of his call uncircumcised? Let him not seek circumcision.</p>
 <p id='46_07:019'><strong>19.</strong> For neither circumcision counts for anything nor uncircumcision, but keeping the commandments of God.</p>
 <p id='46_07:020'><strong>20.</strong> Each one should remain in the condition in which he was called.</p>
-<p id='46_07:021'><strong>21.</strong> Were you a bondservant when called? Do not be concerned about it. ( But if you can gain your freedom, avail yourself of the opportunity.)</p>
+<p id='46_07:021'><strong>21.</strong> Were you a bondservant when called? Do not be concerned about it. (But if you can gain your freedom, avail yourself of the opportunity.)</p>
 <p id='46_07:022'><strong>22.</strong> For he who was called in the Lord as a bondservant is a freedman of the Lord. Likewise he who was free when called is a bondservant of Christ.</p>
 <p id='46_07:023'><strong>23.</strong> You were bought with a price; do not become bondservants of men.</p>
 <p id='46_07:024'><strong>24.</strong> So, brothers, in whatever condition each was called, there let him remain with God.</p>
@@ -219,8 +220,8 @@
 <p id='46_09:017'><strong>17.</strong> For if I do this of my own will, I have a reward, but if not of my own will, I am still entrusted with a stewardship.</p>
 <p id='46_09:018'><strong>18.</strong> What then is my reward? That in my preaching I may present the gospel free of charge, so as not to make full use of my right in the gospel.</p>
 <p id='46_09:019'><strong>19.</strong> For though I am free from all, I have made myself a servant to all, that I win more of them.</p>
-<p id='46_09:020'><strong>20.</strong> To the Jews I became as a Jew, in order to win Jews. To those under the law I became as one under the law (though not being myself under the law ) that I might win those under the law.</p>
-<p id='46_09:021'><strong>21.</strong> To those outside the law I became as one outside the law ( not being outside the law of God but under the law of Christ ) that I might win those outside the law.</p>
+<p id='46_09:020'><strong>20.</strong> To the Jews I became as a Jew, in order to win Jews. To those under the law I became as one under the law (though not being myself under the law) that I might win those under the law.</p>
+<p id='46_09:021'><strong>21.</strong> To those outside the law I became as one outside the law (not being outside the law of God but under the law of Christ) that I might win those outside the law.</p>
 <p id='46_09:022'><strong>22.</strong> To the weak I became weak, that I might win the weak. I have become all things to all people, that by all means I might save some.</p>
 <p id='46_09:023'><strong>23.</strong> I do it all for the sake of the gospel, that I may share with them in its blessings.</p>
 <p id='46_09:024'><strong>24.</strong> Do you not know that in a race all the runners run, but only one receives the prize? So run that you may obtain it.</p>
@@ -490,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

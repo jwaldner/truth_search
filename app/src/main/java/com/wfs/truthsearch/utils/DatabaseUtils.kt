@@ -10,7 +10,7 @@ import com.wfs.truthsearch.data.FullVerse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-private const val TAG = "DatabaseUtils"
+private const val TAG = "DBUtils"
 
 // Parse JSON into a list of SearchIndex objects for the search index
 fun parseSearchIndexJson(json: String): List<SearchIndex> {

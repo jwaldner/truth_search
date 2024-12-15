@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '47';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> II Corinthians - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./46_I_Corinthians.html'>Prev: I Corinthians</a><br>
 <a href='./48_Galatians.html'>Next: Galatians</a>
@@ -130,7 +131,7 @@
 <p id='47_06:010'><strong>10.</strong> as sorrowful, yet always rejoicing; as poor, yet making many rich; as having nothing, yet possessing everything.</p>
 <p id='47_06:011'><strong>11.</strong> We have spoken freely to you, Corinthians; our heart is wide open.</p>
 <p id='47_06:012'><strong>12.</strong> You are not restricted by us, but you are restricted in your own affections.</p>
-<p id='47_06:013'><strong>13.</strong> In return (I speak as to children ) widen your hearts also.</p>
+<p id='47_06:013'><strong>13.</strong> In return (I speak as to children) widen your hearts also.</p>
 <p id='47_06:014'><strong>14.</strong> Do not be unequally yoked with unbelievers. For what partnership has righteousness with lawlessness? Or what fellowship has light with darkness?</p>
 <p id='47_06:015'><strong>15.</strong> What accord has Christ with Belial? Or what portion does a believer share with an unbeliever?</p>
 <p id='47_06:016'><strong>16.</strong> What agreement has the temple of God with idols? For we are the temple of the living God; as God said, I will make my dwelling among them and walk among them, and I will be their God, and they shall be my people.</p>
@@ -307,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

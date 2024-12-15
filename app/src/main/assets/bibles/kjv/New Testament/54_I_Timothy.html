@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '54';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> I Timothy - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./53_II_Thessalonians.html'>Prev: II Thessalonians</a><br>
 <a href='./55_II_Timothy.html'>Next: II Timothy</a>
@@ -42,10 +43,10 @@
 <p id='54_02:004'><strong>4.</strong> Who will have all men to be saved, and to come unto the knowledge of the truth.</p>
 <p id='54_02:005'><strong>5.</strong> For there is one God, and one mediator between God and men, the man Christ Jesus;</p>
 <p id='54_02:006'><strong>6.</strong> Who gave himself a ransom for all, to be testified in due time.</p>
-<p id='54_02:007'><strong>7.</strong> Whereunto I am ordained a preacher, and an apostle, ( I speak the truth in Christ, and lie not;) a teacher of the Gentiles in faith and verity.</p>
+<p id='54_02:007'><strong>7.</strong> Whereunto I am ordained a preacher, and an apostle, (I speak the truth in Christ, and lie not;) a teacher of the Gentiles in faith and verity.</p>
 <p id='54_02:008'><strong>8.</strong> I will therefore that men pray every where, lifting up holy hands, without wrath and doubting.</p>
 <p id='54_02:009'><strong>9.</strong> In like manner also, that women adorn themselves in modest apparel, with shamefacedness and sobriety; not with broided hair, or gold, or pearls, or costly array;</p>
-<p id='54_02:010'><strong>10.</strong> But ( which becometh women professing godliness ) with good works.</p>
+<p id='54_02:010'><strong>10.</strong> But (which becometh women professing godliness) with good works.</p>
 <p id='54_02:011'><strong>11.</strong> Let the woman learn in silence with all subjection.</p>
 <p id='54_02:012'><strong>12.</strong> But I suffer not a woman to teach, nor to usurp authority over the man, but to be in silence.</p>
 <p id='54_02:013'><strong>13.</strong> For Adam was first formed, then Eve.</p>
@@ -56,7 +57,7 @@
 <p id='54_03:002'><strong>2.</strong> A bishop then must be blameless, the husband of one wife, vigilant, sober, of good behaviour, given to hospitality, apt to teach;</p>
 <p id='54_03:003'><strong>3.</strong> Not given to wine, no striker, not greedy of filthy lucre; but patient, not a brawler, not covetous;</p>
 <p id='54_03:004'><strong>4.</strong> One that ruleth well his own house, having his children in subjection with all gravity;</p>
-<p id='54_03:005'><strong>5.</strong> ( For if a man know not how to rule his own house, how shall he take care of the church of God?)</p>
+<p id='54_03:005'><strong>5.</strong> (For if a man know not how to rule his own house, how shall he take care of the church of God?)</p>
 <p id='54_03:006'><strong>6.</strong> Not a novice, lest being lifted up with pride he fall into the condemnation of the devil.</p>
 <p id='54_03:007'><strong>7.</strong> Moreover he must have a good report of them which are without; lest he fall into reproach and the snare of the devil.</p>
 <p id='54_03:008'><strong>8.</strong> Likewise must the deacons be grave, not doubletongued, not given to much wine, not greedy of filthy lucre;</p>
@@ -156,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

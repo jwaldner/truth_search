@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '03';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Leviticus - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./02_Exodus.html'>Prev: Exodus</a><br>
 <a href='./04_Numbers.html'>Next: Numbers</a>
@@ -564,7 +565,7 @@
 <p id='03_18:024'><strong>24.</strong> Defile not ye yourselves in any of these things: for in all these the nations are defiled which I cast out before you:</p>
 <p id='03_18:025'><strong>25.</strong> And the land is defiled: therefore I do visit the iniquity thereof upon it, and the land itself vomiteth out her inhabitants.</p>
 <p id='03_18:026'><strong>26.</strong> Ye shall therefore keep my statutes and my judgments, and shall not commit any of these abominations; neither any of your own nation, nor any stranger that sojourneth among you:</p>
-<p id='03_18:027'><strong>27.</strong> ( For all these abominations have the men of the land done, which were before you, and the land is defiled;)</p>
+<p id='03_18:027'><strong>27.</strong> (For all these abominations have the men of the land done, which were before you, and the land is defiled;)</p>
 <p id='03_18:028'><strong>28.</strong> That the land spue not you out also, when ye defile it, as it spued out the nations that were before you.</p>
 <p id='03_18:029'><strong>29.</strong> For whosoever shall commit any of these abominations, even the souls that commit them shall be cut off from among their people.</p>
 <p id='03_18:030'><strong>30.</strong> Therefore shall ye keep mine ordinance, that ye commit not any one of these abominable customs, which were committed before you, and that ye defile not yourselves therein: I am the Lord your God.</p>
@@ -749,7 +750,7 @@
 <p id='03_24:008'><strong>8.</strong> Every sabbath he shall set it in order before the Lord continually, being taken from the children of Israel by an everlasting covenant.</p>
 <p id='03_24:009'><strong>9.</strong> And it shall be Aaron’s and his sons’; and they shall eat it in the holy place: for it is most holy unto him of the offerings of the Lord made by fire by a perpetual statute.</p>
 <p id='03_24:010'><strong>10.</strong> And the son of an Israelitish woman, whose father was an Egyptian, went out among the children of Israel: and this son of the Israelitish woman and a man of Israel strove together in the camp;</p>
-<p id='03_24:011'><strong>11.</strong> And the Israelitish woman’s son blasphemed the name of the, and cursed. And they brought him unto Moses: ( and his mother’s name was Shelomith, the daughter of Dibri, of the tribe of Dan:)</p>
+<p id='03_24:011'><strong>11.</strong> And the Israelitish woman’s son blasphemed the name of the, and cursed. And they brought him unto Moses: (and his mother’s name was Shelomith, the daughter of Dibri, of the tribe of Dan:)</p>
 <p id='03_24:012'><strong>12.</strong> And they put him in ward, that the mind of the Lord might be shewed them.</p>
 <p id='03_24:013'><strong>13.</strong> And the Lord spake unto Moses, saying,</p>
 <p id='03_24:014'><strong>14.</strong> Bring forth him that hath cursed without the camp; and let all that heard him lay their hands upon his head, and let all the congregation stone him.</p>
@@ -923,7 +924,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

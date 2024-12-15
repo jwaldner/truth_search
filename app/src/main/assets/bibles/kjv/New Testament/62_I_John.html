@@ -10,13 +10,14 @@
 </head>
 <body>
 <script>const bookId = '62';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> I John - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./61_II_Peter.html'>Prev: II Peter</a><br>
 <a href='./63_II_John.html'>Next: II John</a>
 <h1>I John</h1>
 <h2 id='chapter_1'>Chapter 1</h2>
 <p id='62_01:001'><strong>1.</strong> That which was from the beginning, which we have heard, which we have seen with our eyes, which we have looked upon, and our hands have handled, of the Word of life;</p>
-<p id='62_01:002'><strong>2.</strong> ( For the life was manifested, and we have seen it, and bear witness, and shew unto you that eternal life, which was with the Father, and was manifested unto us;)</p>
+<p id='62_01:002'><strong>2.</strong> (For the life was manifested, and we have seen it, and bear witness, and shew unto you that eternal life, which was with the Father, and was manifested unto us;)</p>
 <p id='62_01:003'><strong>3.</strong> That which we have seen and heard declare we unto you, that ye also may have fellowship with us: and truly our fellowship is with the Father, and with his Son Jesus Christ.</p>
 <p id='62_01:004'><strong>4.</strong> And these things write we unto you, that your joy may be full.</p>
 <p id='62_01:005'><strong>5.</strong> This then is the message which we have heard of him, and declare unto you, that God is light, and in him is no darkness at all.</p>
@@ -147,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '54';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> I Timothy - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./53_II_Thessalonians.html'>Prev: II Thessalonians</a><br>
 <a href='./55_II_Timothy.html'>Next: II Timothy</a>
@@ -42,7 +43,7 @@
 <p id='54_02:004'><strong>4.</strong> who desires all people to be saved and to come to the knowledge of the truth.</p>
 <p id='54_02:005'><strong>5.</strong> For there is one God, and there is one mediator between God and men, the man Christ Jesus,</p>
 <p id='54_02:006'><strong>6.</strong> who gave himself as a ransom for all, which is the testimony given at the proper time.</p>
-<p id='54_02:007'><strong>7.</strong> For this I was appointed a preacher and an apostle ( I am telling the truth, I am not lying ), a teacher of the Gentiles in faith and truth.</p>
+<p id='54_02:007'><strong>7.</strong> For this I was appointed a preacher and an apostle (I am telling the truth, I am not lying), a teacher of the Gentiles in faith and truth.</p>
 <p id='54_02:008'><strong>8.</strong> I desire then that in every place the men should pray, lifting holy hands without anger or quarreling;</p>
 <p id='54_02:009'><strong>9.</strong> likewise also that women should adorn themselves in respectable apparel, with modesty and self-control, not with braided hair and gold or pearls or costly attire,</p>
 <p id='54_02:010'><strong>10.</strong> but with what is proper for women who profess godliness — with good works.</p>
@@ -156,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

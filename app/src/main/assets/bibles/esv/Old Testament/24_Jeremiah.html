@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '24';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Jeremiah - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./23_Isaiah.html'>Prev: Isaiah</a><br>
 <a href='./25_Lamentations.html'>Next: Lamentations</a>
@@ -627,7 +628,7 @@
 <p id='24_24:009'><strong>9.</strong> I will make them a horror to all the kingdoms of the earth, to be a reproach, a byword, a taunt, and a curse in all the places where I shall drive them.</p>
 <p id='24_24:010'><strong>10.</strong> And I will send sword, famine, and pestilence upon them, until they shall be utterly destroyed from the land that I gave to them and their fathers.</p>
 <h2 id='chapter_25'>Chapter 25</h2>
-<p id='24_25:001'><strong>1.</strong> The word that came to Jeremiah concerning all the people of Judah, in the fourth year of Jehoiakim the son of Josiah, king of Judah (that was the first year of Nebuchadnezzar king of Babylon ),</p>
+<p id='24_25:001'><strong>1.</strong> The word that came to Jeremiah concerning all the people of Judah, in the fourth year of Jehoiakim the son of Josiah, king of Judah (that was the first year of Nebuchadnezzar king of Babylon),</p>
 <p id='24_25:002'><strong>2.</strong> which Jeremiah the prophet spoke to all the people of Judah and all the inhabitants of Jerusalem:</p>
 <p id='24_25:003'><strong>3.</strong> For twenty-three years, from the thirteenth year of Josiah the son of Amon, king of Judah, to this day, the word of the Lord has come to me, and I have spoken persistently to you, but you have not listened.</p>
 <p id='24_25:004'><strong>4.</strong> You have neither listened nor inclined your ears to hear, although the Lord persistently sent to you all his servants the prophets,</p>
@@ -646,7 +647,7 @@
 <p id='24_25:017'><strong>17.</strong> So I took the cup from the Lord ’s hand, and made all the nations to whom the Lord sent me drink it:</p>
 <p id='24_25:018'><strong>18.</strong> Jerusalem and the cities of Judah, its kings and officials, to make them a desolation and a waste, a hissing and a curse, as at this day;</p>
 <p id='24_25:019'><strong>19.</strong> Pharaoh king of Egypt, his servants, his officials, all his people,</p>
-<p id='24_25:020'><strong>20.</strong> and all the mixed tribes among them; all the kings of the land of Uz and all the kings of the land of the Philistines ( Ashkelon, Gaza, Ekron, and the remnant of Ashdod );</p>
+<p id='24_25:020'><strong>20.</strong> and all the mixed tribes among them; all the kings of the land of Uz and all the kings of the land of the Philistines (Ashkelon, Gaza, Ekron, and the remnant of Ashdod);</p>
 <p id='24_25:021'><strong>21.</strong> Edom, Moab, and the sons of Ammon;</p>
 <p id='24_25:022'><strong>22.</strong> all the kings of Tyre, all the kings of Sidon, and the kings of the coastland across the sea;</p>
 <p id='24_25:023'><strong>23.</strong> Dedan, Tema, Buz, and all who cut the corners of their hair;</p>
@@ -1453,7 +1454,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

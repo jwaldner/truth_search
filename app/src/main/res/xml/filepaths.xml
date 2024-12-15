@@ -1,0 +1,6 @@
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Allow access to all files in cacheDir -->
+    <cache-path
+        name="cache"
+        path="." />
+</paths>

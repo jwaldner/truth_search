@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '17';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Esther - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./16_Nehemiah.html'>Prev: Nehemiah</a><br>
 <a href='./18_Job.html'>Next: Job</a>
@@ -21,7 +22,7 @@
 <p id='17_01:004'><strong>4.</strong> When he shewed the riches of his glorious kingdom and the honour of his excellent majesty many days, even an hundred and fourscore days.</p>
 <p id='17_01:005'><strong>5.</strong> And when these days were expired, the king made a feast unto all the people that were present in Shushan the palace, both unto great and small, seven days, in the court of the garden of the king’s palace;</p>
 <p id='17_01:006'><strong>6.</strong> Where were white, green, and blue, hangings, fastened with cords of fine linen and purple to silver rings and pillars of marble: the beds were of gold and silver, upon a pavement of red, and blue, and white, and black, marble.</p>
-<p id='17_01:007'><strong>7.</strong> And they gave them drink in vessels of gold, ( the vessels being diverse one from another,) and royal wine in abundance, according to the state of the king.</p>
+<p id='17_01:007'><strong>7.</strong> And they gave them drink in vessels of gold, (the vessels being diverse one from another,) and royal wine in abundance, according to the state of the king.</p>
 <p id='17_01:008'><strong>8.</strong> And the drinking was according to the law; none did compel: for so the king had appointed to all the officers of his house, that they should do according to every man’s pleasure.</p>
 <p id='17_01:009'><strong>9.</strong> Also Vashti the queen made a feast for the women in the royal house which belonged to king Ahasuerus.</p>
 <p id='17_01:010'><strong>10.</strong> On the seventh day, when the heart of the king was merry with wine, he commanded Mehuman, Biztha, Harbona, Bigtha, and Abagtha, Zethar, and Carcas, the seven chamberlains that served in the presence of Ahasuerus the king,</p>
@@ -34,7 +35,7 @@
 <p id='17_01:017'><strong>17.</strong> For this deed of the queen shall come abroad unto all women, so that they shall despise their husbands in their eyes, when it shall be reported, The king Ahasuerus commanded Vashti the queen to be brought in before him, but she came not.</p>
 <p id='17_01:018'><strong>18.</strong> Likewise shall the ladies of Persia and Media say this day unto all the king’s princes, which have heard of the deed of the queen. Thus shall there arise too much contempt and wrath.</p>
 <p id='17_01:019'><strong>19.</strong> If it please the king, let there go a royal commandment from him, and let it be written among the laws of the Persians and the Medes, that it be not altered, That Vashti come no more before king Ahasuerus; and let the king give her royal estate unto another that is better than she.</p>
-<p id='17_01:020'><strong>20.</strong> And when the king’s decree which he shall make shall be published throughout all his empire, ( for it is great,) all the wives shall give to their husbands honour, both to great and small.</p>
+<p id='17_01:020'><strong>20.</strong> And when the king’s decree which he shall make shall be published throughout all his empire, (for it is great,) all the wives shall give to their husbands honour, both to great and small.</p>
 <p id='17_01:021'><strong>21.</strong> And the saying pleased the king and the princes; and the king did according to the word of Memucan:</p>
 <p id='17_01:022'><strong>22.</strong> For he sent letters into all the king’s provinces, into every province according to the writing thereof, and to every people after their language, that every man should bear rule in his own house, and that it should be published according to the language of every people.</p>
 <h2 id='chapter_2'>Chapter 2</h2>
@@ -49,7 +50,7 @@
 <p id='17_02:009'><strong>9.</strong> And the maiden pleased him, and she obtained kindness of him; and he speedily gave her her things for purification, with such things as belonged to her, and seven maidens, which were meet to be given her, out of the king’s house: and he preferred her and her maids unto the best place of the house of the women.</p>
 <p id='17_02:010'><strong>10.</strong> Esther had not shewed her people nor her kindred: for Mordecai had charged her that she should not shew it.</p>
 <p id='17_02:011'><strong>11.</strong> And Mordecai walked every day before the court of the women’s house, to know how Esther did, and what should become of her.</p>
-<p id='17_02:012'><strong>12.</strong> Now when every maid’s turn was come to go in to king Ahasuerus, after that she had been twelve months, according to the manner of the women, ( for so were the days of their purifications accomplished, to wit, six months with oil of myrrh, and six months with sweet odours, and with other things for the purifying of the women;)</p>
+<p id='17_02:012'><strong>12.</strong> Now when every maid’s turn was come to go in to king Ahasuerus, after that she had been twelve months, according to the manner of the women, (for so were the days of their purifications accomplished, to wit, six months with oil of myrrh, and six months with sweet odours, and with other things for the purifying of the women;)</p>
 <p id='17_02:013'><strong>13.</strong> Then thus came every maiden unto the king; whatsoever she desired was given her to go with her out of the house of the women unto the king’s house.</p>
 <p id='17_02:014'><strong>14.</strong> In the evening she went, and on the morrow she returned into the second house of the women, to the custody of Shaashgaz, the king’s chamberlain, which kept the concubines: she came in unto the king no more, except the king delighted in her, and that she were called by name.</p>
 <p id='17_02:015'><strong>15.</strong> Now when the turn of Esther, the daughter of Abihail the uncle of Mordecai, who had taken her for his daughter, was come to go in unto the king, she required nothing but what Hegai the king’s chamberlain, the keeper of the women, appointed. And Esther obtained favour in the sight of all them that looked upon her.</p>
@@ -214,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

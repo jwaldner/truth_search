@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '09';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> I Samuel - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./08_Ruth.html'>Prev: Ruth</a><br>
 <a href='./10_II_Samuel.html'>Next: II Samuel</a>
@@ -210,7 +211,7 @@
 <p id='09_09:006'><strong>6.</strong> But he said to him, Behold, there is a man of God in this city, and he is a man who is held in honor; all that he says comes true. So now let us go there. Perhaps he can tell us the way we should go.</p>
 <p id='09_09:007'><strong>7.</strong> Then Saul said to his servant, But if we go, what can we bring the man? For the bread in our sacks is gone, and there is no present to bring to the man of God. What do we have?</p>
 <p id='09_09:008'><strong>8.</strong> The servant answered Saul again, Here, I have with me a quarter of a shekel of silver, and I will give it to the man of God to tell us our way.</p>
-<p id='09_09:009'><strong>9.</strong> ( Formerly in Israel, when a man went to inquire of God, he said, Come, let us go to the seer, for today’s prophet was formerly called a seer.)</p>
+<p id='09_09:009'><strong>9.</strong> (Formerly in Israel, when a man went to inquire of God, he said, Come, let us go to the seer, for today’s prophet was formerly called a seer.)</p>
 <p id='09_09:010'><strong>10.</strong> And Saul said to his servant, Well said; come, let us go. So they went to the city where the man of God was.</p>
 <p id='09_09:011'><strong>11.</strong> As they went up the hill to the city, they met young women coming out to draw water and said to them, Is the seer here?</p>
 <p id='09_09:012'><strong>12.</strong> They answered, He is; behold, he is just ahead of you. Hurry. He has come just now to the city, because the people have a sacrifice today on the high place.</p>
@@ -305,7 +306,7 @@
 <p id='09_13:003'><strong>3.</strong> Jonathan defeated the garrison of the Philistines that was at Geba, and the Philistines heard of it. And Saul blew the trumpet throughout all the land, saying, Let the Hebrews hear.</p>
 <p id='09_13:004'><strong>4.</strong> And all Israel heard it said that Saul had defeated the garrison of the Philistines, and also that Israel had become a stench to the Philistines. And the people were called out to join Saul at Gilgal.</p>
 <p id='09_13:005'><strong>5.</strong> And the Philistines mustered to fight with Israel, thirty thousand chariots and six thousand horsemen and troops like the sand on the seashore in multitude. They came up and encamped in Michmash, to the east of Beth-aven.</p>
-<p id='09_13:006'><strong>6.</strong> When the men of Israel saw that they were in trouble ( for the people were hard pressed ), the people hid themselves in caves and in holes and in rocks and in tombs and in cisterns,</p>
+<p id='09_13:006'><strong>6.</strong> When the men of Israel saw that they were in trouble (for the people were hard pressed), the people hid themselves in caves and in holes and in rocks and in tombs and in cisterns,</p>
 <p id='09_13:007'><strong>7.</strong> and some Hebrews crossed the fords of the Jordan to the land of Gad and Gilead. Saul was still at Gilgal, and all the people followed him trembling.</p>
 <p id='09_13:008'><strong>8.</strong> He waited seven days, the time appointed by Samuel. But Samuel did not come to Gilgal, and the people were scattering from him.</p>
 <p id='09_13:009'><strong>9.</strong> So Saul said, Bring the burnt offering here to me, and the peace offerings. And he offered the burnt offering.</p>
@@ -878,7 +879,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '27';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Daniel - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./26_Ezekiel.html'>Prev: Ezekiel</a><br>
 <a href='./28_Hosea.html'>Next: Hosea</a>
@@ -305,7 +306,7 @@
 <p id='27_10:001'><strong>1.</strong> In the third year of Cyrus king of Persia a word was revealed to Daniel, who was named Belteshazzar. And the word was true, and it was a great conflict. And he understood the word and had understanding of the vision.</p>
 <p id='27_10:002'><strong>2.</strong> In those days I, Daniel, was mourning for three weeks.</p>
 <p id='27_10:003'><strong>3.</strong> I ate no delicacies, no meat or wine entered my mouth, nor did I anoint myself at all, for the full three weeks.</p>
-<p id='27_10:004'><strong>4.</strong> On the twenty-fourth day of the first month, as I was on the bank of the great river ( that is, the Tigris )</p>
+<p id='27_10:004'><strong>4.</strong> On the twenty-fourth day of the first month, as I was on the bank of the great river (that is, the Tigris)</p>
 <p id='27_10:005'><strong>5.</strong> I lifted up my eyes and looked, and behold, a man clothed in linen, with a belt of gold from Uphaz around his waist.</p>
 <p id='27_10:006'><strong>6.</strong> His body was like beryl, his face like the appearance of lightning, his eyes like flaming torches, his arms and legs like the gleam of burnished bronze, and the sound of his words like the sound of a multitude.</p>
 <p id='27_10:007'><strong>7.</strong> And I, Daniel, alone saw the vision, for the men who were with me did not see the vision, but a great trembling fell upon them, and they fled to hide themselves.</p>
@@ -406,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

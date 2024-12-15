@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '49';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Ephesians - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./48_Galatians.html'>Prev: Galatians</a><br>
 <a href='./50_Philippians.html'>Next: Philippians</a>
@@ -92,7 +93,7 @@
 <p id='49_04:006'><strong>6.</strong> one God and Father of all, who is over all and through all and in all.</p>
 <p id='49_04:007'><strong>7.</strong> But grace was given to each one of us according to the measure of Christ’s gift.</p>
 <p id='49_04:008'><strong>8.</strong> Therefore it says, When he ascended on high he led a host of captives, and he gave gifts to men.</p>
-<p id='49_04:009'><strong>9.</strong> ( In saying, He ascended, what does it mean but that he had also descended into the lower regions, the earth?</p>
+<p id='49_04:009'><strong>9.</strong> (In saying, He ascended, what does it mean but that he had also descended into the lower regions, the earth?</p>
 <p id='49_04:010'><strong>10.</strong> He who descended is the one who also ascended far above all the heavens, that he fill all things.)</p>
 <p id='49_04:011'><strong>11.</strong> And he gave the apostles, the prophets, the evangelists, the shepherds and teachers,</p>
 <p id='49_04:012'><strong>12.</strong> to equip the saints for the work of ministry, for building up the body of Christ,</p>
@@ -121,11 +122,11 @@
 <p id='49_05:002'><strong>2.</strong> And walk in love, as Christ loved us and gave himself up for us, a fragrant offering and sacrifice to God.</p>
 <p id='49_05:003'><strong>3.</strong> But sexual immorality and all impurity or covetousness must not even be named among you, as is proper among saints.</p>
 <p id='49_05:004'><strong>4.</strong> Let there be no filthiness nor foolish talk nor crude joking, which are out of place, but instead let there be thanksgiving.</p>
-<p id='49_05:005'><strong>5.</strong> For you may be sure of this, that everyone who is sexually immoral or impure, or who is covetous ( that is, an idolater ), has no inheritance in the kingdom of Christ and God.</p>
+<p id='49_05:005'><strong>5.</strong> For you may be sure of this, that everyone who is sexually immoral or impure, or who is covetous (that is, an idolater), has no inheritance in the kingdom of Christ and God.</p>
 <p id='49_05:006'><strong>6.</strong> Let no one deceive you with empty words, for because of these things the wrath of God comes upon the sons of disobedience.</p>
 <p id='49_05:007'><strong>7.</strong> Therefore do not become partners with them;</p>
 <p id='49_05:008'><strong>8.</strong> for at one time you were darkness, but now you are light in the Lord. Walk as children of light</p>
-<p id='49_05:009'><strong>9.</strong> ( for the fruit of light is found in all that is good and right and true ),</p>
+<p id='49_05:009'><strong>9.</strong> (for the fruit of light is found in all that is good and right and true),</p>
 <p id='49_05:010'><strong>10.</strong> and try to discern what is pleasing to the Lord.</p>
 <p id='49_05:011'><strong>11.</strong> Take no part in the unfruitful works of darkness, but instead expose them.</p>
 <p id='49_05:012'><strong>12.</strong> For it is shameful even to speak of the things that they do in secret.</p>
@@ -152,7 +153,7 @@
 <p id='49_05:033'><strong>33.</strong> However, let each one of you love his wife as himself, and let the wife see that she respects her husband.</p>
 <h2 id='chapter_6'>Chapter 6</h2>
 <p id='49_06:001'><strong>1.</strong> Children, obey your parents in the Lord, for this is right.</p>
-<p id='49_06:002'><strong>2.</strong> Honor your father and mother ( this is the first commandment with a promise ),</p>
+<p id='49_06:002'><strong>2.</strong> Honor your father and mother (this is the first commandment with a promise),</p>
 <p id='49_06:003'><strong>3.</strong> that it may go well with you and that you may live long in the land.</p>
 <p id='49_06:004'><strong>4.</strong> Fathers, do not provoke your children to anger, but bring them up in the discipline and instruction of the Lord.</p>
 <p id='49_06:005'><strong>5.</strong> Bondservants, obey your earthly masters with fear and trembling, with a sincere heart, as you would Christ,</p>
@@ -198,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

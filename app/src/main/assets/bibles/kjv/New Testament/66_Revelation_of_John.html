@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '66';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Revelation of John - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./65_Jude.html'>Prev: Jude</a><br>
 <h1>Revelation of John</h1>
@@ -43,7 +44,7 @@
 <p id='66_02:006'><strong>6.</strong> But this thou hast, that thou hatest the deeds of the Nicolaitans, which I also hate.</p>
 <p id='66_02:007'><strong>7.</strong> He that hath an ear, let him hear what the Spirit saith unto the churches; To him that overcometh will I give to eat of the tree of life, which is in the midst of the paradise of God.</p>
 <p id='66_02:008'><strong>8.</strong> And unto the angel of the church in Smyrna write; These things saith the first and the last, which was dead, and is alive;</p>
-<p id='66_02:009'><strong>9.</strong> I know thy works, and tribulation, and poverty, ( but thou art rich ) and I know the blasphemy of them which say they are Jews, and are not, but are the synagogue of Satan.</p>
+<p id='66_02:009'><strong>9.</strong> I know thy works, and tribulation, and poverty, (but thou art rich) and I know the blasphemy of them which say they are Jews, and are not, but are the synagogue of Satan.</p>
 <p id='66_02:010'><strong>10.</strong> Fear none of those things which thou shalt suffer: behold, the devil shall cast some of you into prison, that ye may be tried; and ye shall have tribulation ten days: be thou faithful unto death, and I will give thee a crown of life.</p>
 <p id='66_02:011'><strong>11.</strong> He that hath an ear, let him hear what the Spirit saith unto the churches; He that overcometh shall not be hurt of the second death.</p>
 <p id='66_02:012'><strong>12.</strong> And to the angel of the church in Pergamos write; These things saith he which hath the sharp sword with two edges;</p>
@@ -461,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '06';</script>
+<script>const version = 'kjv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Joshua - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./05_Deuteronomy.html'>Prev: Deuteronomy</a><br>
 <a href='./07_Judges.html'>Next: Judges</a>
@@ -73,7 +74,7 @@
 <p id='06_03:012'><strong>12.</strong> Now therefore take you twelve men out of the tribes of Israel, out of every tribe a man.</p>
 <p id='06_03:013'><strong>13.</strong> And it shall come to pass, as soon as the soles of the feet of the priests that bear the ark of the Lord, the Lord of all the earth, shall rest in the waters of Jordan, that the waters of Jordan shall be cut off from the waters that come down from above; and they shall stand upon an heap.</p>
 <p id='06_03:014'><strong>14.</strong> And it came to pass, when the people removed from their tents, to pass over Jordan, and the priests bearing the ark of the covenant before the people;</p>
-<p id='06_03:015'><strong>15.</strong> And as they that bare the ark were come unto Jordan, and the feet of the priests that bare the ark were dipped in the brim of the water, ( for Jordan overfloweth all his banks all the time of harvest,)</p>
+<p id='06_03:015'><strong>15.</strong> And as they that bare the ark were come unto Jordan, and the feet of the priests that bare the ark were dipped in the brim of the water, (for Jordan overfloweth all his banks all the time of harvest,)</p>
 <p id='06_03:016'><strong>16.</strong> That the waters which came down from above stood and rose up upon an heap very far from the city Adam, that is beside Zaretan: and those that came down toward the sea of the plain, even the salt sea, failed, and were cut off: and the people passed over right against Jericho.</p>
 <p id='06_03:017'><strong>17.</strong> And the priests that bare the ark of the covenant of the Lord stood firm on dry ground in the midst of Jordan, and all the Israelites passed over on dry ground, until all the people were passed clean over Jordan.</p>
 <h2 id='chapter_4'>Chapter 4</h2>
@@ -178,7 +179,7 @@
 <p id='06_08:003'><strong>3.</strong> So Joshua arose, and all the people of war, to go up against Ai: and Joshua chose out thirty thousand mighty men of valour, and sent them away by night.</p>
 <p id='06_08:004'><strong>4.</strong> And he commanded them, saying, Behold, ye shall lie in wait against the city, even behind the city: go not very far from the city, but be ye all ready:</p>
 <p id='06_08:005'><strong>5.</strong> And I, and all the people that are with me, will approach unto the city: and it shall come to pass, when they come out against us, as at the first, that we will flee before them,</p>
-<p id='06_08:006'><strong>6.</strong> ( For they will come out after us) till we have drawn them from the city; for they will say, They flee before us, as at the first: therefore we will flee before them.</p>
+<p id='06_08:006'><strong>6.</strong> (For they will come out after us) till we have drawn them from the city; for they will say, They flee before us, as at the first: therefore we will flee before them.</p>
 <p id='06_08:007'><strong>7.</strong> Then ye shall rise up from the ambush, and seize upon the city: for the Lord your God will deliver it into your hand.</p>
 <p id='06_08:008'><strong>8.</strong> And it shall be, when ye have taken the city, that ye shall set the city on fire: according to the commandment of the Lord shall ye do. See, I have commanded you.</p>
 <p id='06_08:009'><strong>9.</strong> Joshua therefore sent them forth: and they went to lie in ambush, and abode between Beth–el and Ai, on the west side of Ai: but Joshua lodged that night among the people.</p>
@@ -632,7 +633,7 @@
 <p id='06_22:019'><strong>19.</strong> Notwithstanding, if the land of your possession be unclean, then pass ye over unto the land of the possession of the Lord, wherein the Lord’s tabernacle dwelleth, and take possession among us: but rebel not against the Lord, nor rebel against us, in building you an altar beside the altar of the Lord our God.</p>
 <p id='06_22:020'><strong>20.</strong> Did not Achan the son of Zerah commit a trespass in the accursed thing, and wrath fell on all the congregation of Israel? and that man perished not alone in his iniquity.</p>
 <p id='06_22:021'><strong>21.</strong> Then the children of Reuben and the children of Gad and the half tribe of Manasseh answered, and said unto the heads of the thousands of Israel,</p>
-<p id='06_22:022'><strong>22.</strong> The Lord God of gods, the Lord God of gods, he knoweth, and Israel he shall know; if it be in rebellion, or if in transgression against the Lord, ( save us not this day,)</p>
+<p id='06_22:022'><strong>22.</strong> The Lord God of gods, the Lord God of gods, he knoweth, and Israel he shall know; if it be in rebellion, or if in transgression against the Lord, (save us not this day,)</p>
 <p id='06_22:023'><strong>23.</strong> That we have built us an altar to turn from following the Lord, or if to offer thereon burnt offering or meat offering, or if to offer peace offerings thereon, let the Lord himself require it;</p>
 <p id='06_22:024'><strong>24.</strong> And if we have not rather done it for fear of this thing, saying, In time to come your children might speak unto our children, saying, What have ye to do with the Lord God of Israel?</p>
 <p id='06_22:025'><strong>25.</strong> For the Lord hath made Jordan a border between us and you, ye children of Reuben and children of Gad; ye have no part in the Lord: so shall your children make our children cease from fearing the Lord.</p>
@@ -719,7 +720,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;

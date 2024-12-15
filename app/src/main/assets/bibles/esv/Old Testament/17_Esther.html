@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>const bookId = '17';</script>
+<script>const version = 'esv';</script>
 <div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Esther - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
 <a href='./16_Nehemiah.html'>Prev: Nehemiah</a><br>
 <a href='./18_Job.html'>Next: Job</a>
@@ -28,7 +29,7 @@
 <p id='17_01:011'><strong>11.</strong> to bring Queen Vashti before the king with her royal crown, in order to show the peoples and the princes her beauty, for she was lovely to look at.</p>
 <p id='17_01:012'><strong>12.</strong> But Queen Vashti refused to come at the king’s command delivered by the eunuchs. At this the king became enraged, and his anger burned within him.</p>
 <p id='17_01:013'><strong>13.</strong> Then the king said to the wise men who knew the times (for this was the king’s procedure toward all who were versed in law and judgment,</p>
-<p id='17_01:014'><strong>14.</strong> the men next to him being Carshena, Shethar, Admatha, Tarshish, Meres, Marsena, and Memucan, the seven princes of Persia and Media, who saw the king’s face, and sat first in the kingdom ):</p>
+<p id='17_01:014'><strong>14.</strong> the men next to him being Carshena, Shethar, Admatha, Tarshish, Meres, Marsena, and Memucan, the seven princes of Persia and Media, who saw the king’s face, and sat first in the kingdom):</p>
 <p id='17_01:015'><strong>15.</strong> According to the law, what is to be done to Queen Vashti, because she has not performed the command of King Ahasuerus delivered by the eunuchs?</p>
 <p id='17_01:016'><strong>16.</strong> Then Memucan said in the presence of the king and the officials, Not only against the king has Queen Vashti done wrong, but also against all the officials and all the peoples who are in all the provinces of King Ahasuerus.</p>
 <p id='17_01:017'><strong>17.</strong> For the queen’s behavior will be made known to all women, causing them to look at their husbands with contempt, since they will say, King Ahasuerus commanded Queen Vashti to be brought before him, and she did not come.</p>
@@ -68,7 +69,7 @@
 <p id='17_03:004'><strong>4.</strong> And when they spoke to him day after day and he would not listen to them, they told Haman, in order to see whether Mordecai’s words would stand, for he had told them that he was a Jew.</p>
 <p id='17_03:005'><strong>5.</strong> And when Haman saw that Mordecai did not bow down or pay homage to him, Haman was filled with fury.</p>
 <p id='17_03:006'><strong>6.</strong> But he disdained to lay hands on Mordecai alone. So, as they had made known to him the people of Mordecai, Haman sought to destroy all the Jews, the people of Mordecai, throughout the whole kingdom of Ahasuerus.</p>
-<p id='17_03:007'><strong>7.</strong> In the first month, which is the month of Nisan, in the twelfth year of King Ahasuerus, they cast Pur (that is, they cast lots ) before Haman day after day; and they cast it month after month till the twelfth month, which is the month of Adar.</p>
+<p id='17_03:007'><strong>7.</strong> In the first month, which is the month of Nisan, in the twelfth year of King Ahasuerus, they cast Pur (that is, they cast lots) before Haman day after day; and they cast it month after month till the twelfth month, which is the month of Adar.</p>
 <p id='17_03:008'><strong>8.</strong> Then Haman said to King Ahasuerus, There is a certain people scattered abroad and dispersed among the peoples in all the provinces of your kingdom. Their laws are different from those of every other people, and they do not keep the king’s laws, so that it is not to the king’s profit to tolerate them.</p>
 <p id='17_03:009'><strong>9.</strong> If it please the king, let it be decreed that they be destroyed, and I will pay 10,000 talents of silver into the hands of those who have charge of the king’s business, that they may put it into the king’s treasuries.</p>
 <p id='17_03:010'><strong>10.</strong> So the king took his signet ring from his hand and gave it to Haman the Agagite, the son of Hammedatha, the enemy of the Jews.</p>
@@ -178,7 +179,7 @@
 <p id='17_09:021'><strong>21.</strong> obliging them to keep the fourteenth day of the month Adar and also the fifteenth day of the same, year by year,</p>
 <p id='17_09:022'><strong>22.</strong> as the days on which the Jews got relief from their enemies, and as the month that had been turned for them from sorrow into gladness and from mourning into a holiday; that they should make them days of feasting and gladness, days for sending gifts of food to one another and gifts to the poor.</p>
 <p id='17_09:023'><strong>23.</strong> So the Jews accepted what they had started to do, and what Mordecai had written to them.</p>
-<p id='17_09:024'><strong>24.</strong> For Haman the Agagite, the son of Hammedatha, the enemy of all the Jews, had plotted against the Jews to destroy them, and had cast Pur (that is, cast lots ), to crush and to destroy them.</p>
+<p id='17_09:024'><strong>24.</strong> For Haman the Agagite, the son of Hammedatha, the enemy of all the Jews, had plotted against the Jews to destroy them, and had cast Pur (that is, cast lots), to crush and to destroy them.</p>
 <p id='17_09:025'><strong>25.</strong> But when it came before the king, he gave orders in writing that his evil plan that he had devised against the Jews should return on his own head, and that he and his sons should be hanged on the gallows.</p>
 <p id='17_09:026'><strong>26.</strong> Therefore they called these days Purim, after the term Pur. Therefore, because of all that was written in this letter, and of what they had faced in this matter, and of what had happened to them,</p>
 <p id='17_09:027'><strong>27.</strong> the Jews firmly obligated themselves and their offspring and all who joined them, that without fail they would keep these two days according to what was written and at the time appointed every year,</p>
@@ -214,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/mark', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload })
+        body: JSON.stringify({ payload: payload, version: version })
       });
     }
     const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;
