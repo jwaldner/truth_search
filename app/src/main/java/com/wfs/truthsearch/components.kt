@@ -13,11 +13,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -121,4 +124,73 @@ fun TestamentDropdown(
             }
         }
     }
+}
+
+@Composable
+fun SearchDialogExample() {
+    // State to control the visibility of the dialog
+    var isDialogOpen by remember { mutableStateOf(false) }
+    var searchQuery by remember { mutableStateOf("") }
+    var searchResults by remember { mutableStateOf(listOf<Pair<String, String>>()) } // Verse references and texts
+
+    // Action button
+    Button(onClick = { isDialogOpen = true }) {
+        Text("Open Search Dialog")
+    }
+
+    // Dialog
+    if (isDialogOpen) {
+        AlertDialog(
+            onDismissRequest = { isDialogOpen = false },
+            title = { Text(text = "Search Bible") },
+            text = {
+                Column {
+                    // Search input field
+                    TextField(
+                        value = searchQuery,
+                        onValueChange = { searchQuery = it },
+                        label = { Text("Enter search query") },
+                        singleLine = true
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    // Search button
+                    Button(
+                        onClick = {
+                            // Simulate a search action (replace with actual search logic)
+                            searchResults = performSearch(searchQuery)
+                        }
+                    ) {
+                        Text("Search")
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    // LazyColumn to display results
+                    LazyColumn {
+                        items(searchResults) { result ->
+                            Text(text = "${result.first}: ${result.second}")
+                            Spacer(modifier = Modifier.height(4.dp))
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { isDialogOpen = false }) {
+                    Text("Close")
+                }
+            }
+        )
+    }
+}
+
+
+// Simulated search function
+fun performSearch(query: String): List<Pair<String, String>> {
+    // Replace with real search logic
+    if (query.isBlank()) return emptyList()
+    return listOf(
+        "John 3:16" to "For God so loved the world...",
+        "Psalm 23:1" to "The Lord is my shepherd; I shall not want."
+    ).filter { it.second.contains(query, ignoreCase = true) }
 }

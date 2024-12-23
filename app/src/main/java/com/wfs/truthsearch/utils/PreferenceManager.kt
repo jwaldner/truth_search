@@ -19,6 +19,8 @@ object PreferenceManager {
     const val KEY_PLACE_HOLDER_ESV = "place_holder_esv"
     const val KEY_PLACE_HOLDER_KJV = "place_holder_kjv"
     const val KEY_DATA_VERSION = "data_version"
+    const val KEY_PREFS_SEARCH_RESULTS_STYLE = "key_prefs_search_results_style"
+
 
     // Initialize preferences
     fun init(context: Context) {
@@ -62,5 +64,27 @@ object PreferenceManager {
     fun clearAll() {
         preferences.edit().clear().apply()
         Log.d(PREF_NAME, "Cleared all preferences")
+    }
+
+    fun getPlaceholderESV(verseId: String): String? {
+        fun containsAllDelimiters(input: String, delimiters: List<String>): Boolean {
+            return delimiters.all { delimiter -> input.contains(delimiter) }
+        }
+
+        return if (containsAllDelimiters(verseId, listOf("_", "_", ":"))) getString(KEY_PLACE_HOLDER_ESV + "_${verseId.substringBefore("_")}", "${verseId.substringBefore("_")}_01:001")
+        else "01_01:001"
+    }
+
+    fun setPlaceholderESV(verseId: String) {
+        saveString(KEY_PLACE_HOLDER_ESV + "_${verseId.substringBefore("_")}", verseId)
+    }
+
+
+    fun getVerseResultStyle(): String? {
+        return getString(KEY_PREFS_SEARCH_RESULTS_STYLE, "Warm")
+    }
+
+    fun setVerseResultStyle(style: String) {
+        saveString(KEY_PREFS_SEARCH_RESULTS_STYLE, style)
     }
 }

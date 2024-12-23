@@ -2,7 +2,6 @@ package com.wfs.truthsearch
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -21,11 +20,11 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.wfs.truthsearch.data.BibleDatabase
-import com.wfs.truthsearch.data.FullVerseDao
 import com.wfs.truthsearch.databinding.ActivityMainBinding
 import com.wfs.truthsearch.models.BookVerseData
 import com.wfs.truthsearch.models.getBookFromAssetsMyVerse
 import com.wfs.truthsearch.models.resolveBookById
+import com.wfs.truthsearch.ui.search.SearchFragment
 import com.wfs.truthsearch.utils.AppCloser
 import com.wfs.truthsearch.utils.PreferenceManager
 import com.wfs.truthsearch.utils.populateDatabase
@@ -51,6 +50,10 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null)
                 .setAnchorView(R.id.fab).show()
+
+            val dialog = SearchFragment()
+            dialog.show(supportFragmentManager, "ComposeDialog")
+
         }
 
         val navHostFragment =
@@ -86,11 +89,16 @@ class MainActivity : AppCompatActivity() {
 
         val database = BibleDatabase.getInstance(this@MainActivity)
         val fullVerseDao = database.fullVerseDao()
-
+        val searchIndexDao = database.searchIndexDao()
 
         lifecycleScope.launch {
             val count = fullVerseDao.getFullVerseCount()
-            Log.d(tag, "FullVerse row count: $count")
+            if (count == 0) Log.e(tag, "FullVerse row count: $count")
+            else  Log.d(tag, "FullVerse row count: $count")
+
+            val count2 = searchIndexDao.getSearchIndexCount()
+            if (count2 == 0) Log.e(tag, "SearchIndex row count: $count2")
+            else  Log.d(tag, "SearchIndex row count: $count2")
         }
 
         AppCloser.setCloseAppCallback {
@@ -111,9 +119,9 @@ class MainActivity : AppCompatActivity() {
         // Observe the browser launch event
 
         // Observe the browser launch event
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             sharedViewModel.launchBrowserEvent.collect { (version, verseId, id) ->
-                Log.d(tag, "${id}")
+                Log.d(tag, "view model: ${verseId} ${id} ")
                 launchBrowser(version, verseId)
             }
         }
@@ -129,7 +137,7 @@ class MainActivity : AppCompatActivity() {
             // Use the resolved book (e.g., launch an intent, update the UI, etc.)
             val bookData = getBookFromAssetsMyVerse(this, version,  savedVerseId)
             Log.d(tag, "verse: ${savedVerseId}, section: ${bookData?.testament}, file: ${bookData?.filename}")
-            bookData?.let { buildBrowserIntent(this, it) }
+            bookData?.let { buildBrowserIntent(this, it, savedVerseId) }
         } else {
             Log.w(tag,"Book not found for ID: $savedVerseId")
         }
@@ -200,13 +208,14 @@ class MainActivity : AppCompatActivity() {
         return if (fragment != null) "$baseUrl#$fragment" else baseUrl
     }
 
+
     private fun handleIntent() {
         if (intent.resolveActivity(this.packageManager) == null) {
             Toast.makeText(this, "No browser or app found to open HTML files.", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun buildBrowserIntent(context: Context, bookVerseData: BookVerseData) {
+    private fun buildBrowserIntent(context: Context, bookVerseData: BookVerseData, verseId: String) {
 
         // Genesis 28:04
         //val url = "http://127.0.0.1:8080/bibles/esv/$selectedItem/$filename#01_28:004"
@@ -216,10 +225,10 @@ class MainActivity : AppCompatActivity() {
 
         val versionEntry = PreferenceManager.versionMap.entries.first { bookVerseData.version.contains(it.key) }
 
-        val verse = PreferenceManager.getString(versionEntry.value,"01_01:001")
+       // val verse = PreferenceManager.getString(versionEntry.value,"01_01:001")
 
         val url =
-            encodeUrl("http://127.0.0.1:8080/${bookVerseData.testament}/${bookVerseData.filename}#${verse}")
+            encodeUrl("http://127.0.0.1:8080/${bookVerseData.testament}/${bookVerseData.filename}#${verseId}")
 
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

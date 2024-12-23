@@ -14,18 +14,17 @@ import java.io.IOException
 class LocalServer(private val cacheDir: File, private val context: Context) : NanoHTTPD(8080) {
 
     private val tag = "ServerStatus"
-
     override fun serve(session: IHTTPSession): Response {
         Log.d(tag, "Serve: ${session.uri}")
 
         return try {
-            when (session.uri) {
-                "/" -> {
+            when {
+                session.uri == "/" -> {
                     // Handle the root path for pings
                     newFixedLengthResponse(Response.Status.OK, "text/plain", "Ping OK")
                 }
 
-                "/mark" -> {
+                session.uri == "/mark" -> {
                     val contentLength = session.headers["content-length"]?.toIntOrNull() ?: 0
 
                     if (contentLength <= 0) {
@@ -38,7 +37,6 @@ class LocalServer(private val cacheDir: File, private val context: Context) : Na
                     }
 
                     val requestBody = try {
-                        // Read only the specified number of bytes from the input stream
                         val buffer = ByteArray(contentLength)
                         session.inputStream.read(buffer, 0, contentLength)
                         String(buffer, Charsets.UTF_8)
@@ -60,7 +58,7 @@ class LocalServer(private val cacheDir: File, private val context: Context) : Na
                         )
                     }
 
-                     Log.d(tag, "Received payload: $requestBody")
+                    Log.d(tag, "Received payload: $requestBody")
 
                     if (!validatePayload(requestBody)) {
                         Log.e(tag, "Invalid payload: $requestBody")
@@ -72,90 +70,87 @@ class LocalServer(private val cacheDir: File, private val context: Context) : Na
                     }
 
                     // Save the payload as a bookmark
-                    Log.d(tag, requestBody)
-
-
                     val (payload, version) = extractPayload(requestBody)
                     val versionEntry = PreferenceManager.versionMap.entries.first { version.contains(it.key) }
                     PreferenceManager.saveString(versionEntry.value, payload)
 
-                    Log.w(tag,  "saved: ${versionEntry.value}  $payload")
+                    Log.w(tag, "saved: ${versionEntry.value} $payload")
                     Log.e(tag, "Saved: ${PreferenceManager.getString(versionEntry.value)}")
 
-                    return newFixedLengthResponse(
+                    newFixedLengthResponse(
                         Response.Status.OK,
                         "text/plain",
                         "Payload received successfully"
                     )
                 }
 
-                "/exit" -> {
-                    fun handleCloseRequest() {
-                        // Trigger the app close signal
-                        Log.w(tag, "handle App Close triggered by browser: ${session.uri}")
-                        AppCloser.closeApp()
-                    }
-
-                    // Serve the /exit endpoint
-                    Log.w(tag, "serve the exit endpoint: ${session.uri}")
-                    handleCloseRequest()
+                session.uri == "/exit" -> {
+                    AppCloser.closeApp()
                     newFixedLengthResponse(
                         Response.Status.OK, "text/html", """
-                        <html>
-                        <body>
-                            <script>
-                                // Redirect to the app using the custom scheme
-                                window.location.href = "app://com.wfs.truthsearch";
-                            </script>
-                            <p>If the app doesn’t open, <a href="app://com.wfs.truthsearch">click here to return to the app.</a></p>
-                        </body>
-                        </html>
-                    """.trimIndent()
+                    <html>
+                    <body>
+                        <script>
+                            window.location.href = "app://com.wfs.truthsearch";
+                        </script>
+                        <p>If the app doesn’t open, <a href="app://com.wfs.truthsearch">click here to return to the app.</a></p>
+                    </body>
+                    </html>
+                """.trimIndent()
                     )
                 }
 
-                "/close" -> {
+                session.uri == "/close" -> {
                     Log.d(tag, "close browser")
-                    // this works
-                    //Log.d(tag, "clear ${PreferenceManager.KEY_PLACE_HOLDER}" )
-                    // Serve the /close endpointPoint
                     newFixedLengthResponse(
                         Response.Status.OK, "text/html", """
-                        <html>
-                        <body>
-                            <script>
-                                // Redirect to the app using the custom scheme
-                                window.location.href = "app://com.wfs.truthsearch";
-                            </script>
-                            <p>If the app doesn’t open, <a href="app://com.wfs.truthsearch">click here to return to the app.</a></p>
-                        </body>
-                        </html>
-                    """.trimIndent()
+                    <html>
+                    <body>
+                        <script>
+                            window.location.href = "app://com.wfs.truthsearch";
+                        </script>
+                        <p>If the app doesn’t open, <a href="app://com.wfs.truthsearch">click here to return to the app.</a></p>
+                    </body>
+                    </html>
+                """.trimIndent()
                     )
                 }
-                
+
+                session.uri.endsWith(".css") -> {
+                    // Handle CSS files
+                    val requestedPath = session.uri.trimStart('/')
+                    val file = File(cacheDir, requestedPath)
+                    if (file.exists()) {
+                        Log.d(tag, "Serving CSS: ${file.name}")
+                        val fileInputStream = file.inputStream()
+                        newFixedLengthResponse(
+                            Response.Status.OK,
+                            "text/css", // Set correct MIME type for CSS
+                            fileInputStream,
+                            file.length()
+                        )
+                    } else {
+                        Log.e(tag, "CSS File not found: $requestedPath")
+                        newFixedLengthResponse(
+                            Response.Status.NOT_FOUND,
+                            "text/plain",
+                            "CSS File not found"
+                        )
+                    }
+                }
+
                 else -> {
                     // Serve static files from cache
                     val requestedPath = session.uri.trimStart('/')
                     val file = File(cacheDir, requestedPath)
-                    val versionEntry = PreferenceManager.versionMap.entries.first { requestedPath.contains(it.key) }
-
                     if (file.exists()) {
-                        val fileLength = file.length()
+                        Log.d(tag, "Serving: ${file.name}")
                         val fileInputStream = file.inputStream()
-                        val placeHolder = getBookFromAssets(context, versionEntry.key, file.name)!!.id
-                        // Save to preferences
-                        PreferenceManager.saveString(
-                            versionEntry.value,
-                            placeHolder
-                        )
-                        Log.d(tag, "saved ${versionEntry.value}: ${placeHolder}")
-
                         newFixedLengthResponse(
                             Response.Status.OK,
                             "text/html",
                             fileInputStream,
-                            fileLength
+                            file.length()
                         )
                     } else {
                         Log.e(tag, "File not found: $requestedPath")
@@ -175,9 +170,7 @@ class LocalServer(private val cacheDir: File, private val context: Context) : Na
                 "Internal Server Error"
             )
         }
-
     }
-
 
 
 }

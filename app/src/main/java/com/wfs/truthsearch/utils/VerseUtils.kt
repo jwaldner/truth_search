@@ -1,7 +1,6 @@
 package com.wfs.truthsearch.utils
 
 object VerseUtils {
-    // Map for book ID to abbreviation (Complete list of 66 books)
     private val bookAbbreviations = mapOf(
         "01" to "Gen", "02" to "Exo", "03" to "Lev", "04" to "Num", "05" to "Deu",
         "06" to "Jos", "07" to "Jud", "08" to "Ruth", "09" to "1Sam", "10" to "2Sam",
@@ -19,11 +18,6 @@ object VerseUtils {
         "65" to "Jud", "66" to "Rev"
     )
 
-    /**
-     * Converts a verse ID to a friendly format.
-     * @param verseId The verse ID in the format `01_01:001`.
-     * @return The friendly verse ID in the format `BookAbbreviation Chapter:Verse`.
-     */
     fun formatFriendlyVerseId(verseId: String): String {
         val parts = verseId.split("_", ":")
         if (parts.size < 3) return verseId // Return as-is if invalid format
@@ -35,5 +29,14 @@ object VerseUtils {
         val bookAbbreviation = bookAbbreviations[bookId] ?: "Unknown"
 
         return "$bookAbbreviation $chapter:$verse"
+    }
+
+    /**
+     * Converts a list of verse IDs to their friendly formats.
+     * @param verseIds List of verse IDs in the format `01_01:001`.
+     * @return List of friendly verse IDs in the format `BookAbbreviation Chapter:Verse`.
+     */
+    fun formatFriendlyVerseIds(verseIds: List<String>): List<String> {
+        return verseIds.map { formatFriendlyVerseId(it) }
     }
 }

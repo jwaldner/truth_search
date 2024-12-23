@@ -2,16 +2,21 @@
 <html lang='en'>
 <head>
 <meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>Ephesians</title>
-<link rel='stylesheet' href='../style.css'>
+<link rel='stylesheet' href='../../style.css'>
 <style>
-#sticky-title { position: sticky; top: 0; background-color: white; z-index: 1000; padding: 10px; border-bottom: 2px solid #ccc; font-size: 1.5em; text-align: center; }
+body, p { margin: 0; padding: 0; line-height: 1.2; }
+#sticky-title { position: sticky; top: 0; background-color: white; z-index:ible files1000; padding: 10px; border-bottom: 2px solid #ccc; font-size: 1.5em; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+button { width: 40px; height: 40px; font-size: 20px; border: none; background-color: #007BFF; color: white; border-radius: 5px; }
+input { width: 60px; text-align: center; font-size: 20px; border: 1px solid #ccc; border-radius: 5px; -moz-appearance: textfield; }
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 </style>
 </head>
 <body>
 <script>const bookId = '49';</script>
 <script>const version = 'kjv';</script>
-<div id='sticky-title'> <a href="/close" style="color: blue; text-decoration: none;">&#8617;</a> Ephesians - Chapter 1 <a href="/exit" style="color: red; text-decoration: none;">x</a> </div>
+<div id='sticky-title'><a href='/close' style='color: blue; text-decoration: none;'>&#8617;</a><span id='sticky-title-book'>Ephesians</span><button id='prevChapter'>-</button><input id='chapterInput' type='number' value='1' min='1' max='6'><button id='nextChapter'>+</button><span style='flex-grow: 1;'>&nbsp;</span><a href='/exit' style='color: red; text-decoration: none;'>x</a></div>
 <a href='./48_Galatians.html'>Prev: Galatians</a><br>
 <a href='./50_Philippians.html'>Next: Philippians</a>
 <h1>Ephesians</h1>
@@ -176,47 +181,95 @@
 <p id='49_06:022'><strong>22.</strong> Whom I have sent unto you for the same purpose, that ye might know our affairs, and that he might comfort your hearts.</p>
 <p id='49_06:023'><strong>23.</strong> Peace be to the brethren, and love with faith, from God the Father and the Lord Jesus Christ.</p>
 <p id='49_06:024'><strong>24.</strong> Grace be with all them that love our Lord Jesus Christ in sincerity. Amen. Written from Rome unto the Ephesians by Tychicus.</p>
-<a href='./48_Galatians.html'>Prev: Galatians</a><br>
-<a href='./50_Philippians.html'>Next: Philippians</a>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const stickyTitle = document.getElementById('sticky-title');
-  const chapters = document.querySelectorAll('h2');
-  let lastSentChapter = ''; // Track last sent chapter
-  window.addEventListener('scroll', () => {
-    let currentChapter = 'Chapter 1';
+    const stickyTitle = document.getElementById('sticky-title');
+    const chapters = document.querySelectorAll('h2');
+    const chapterInput = document.getElementById('chapterInput');
+    const prevChapterButton = document.getElementById('prevChapter');
+    const nextChapterButton = document.getElementById('nextChapter');
+    const totalChapters = chapters.length;
     let currentChapterNum = 1;
-    chapters.forEach((chapter, index) => {
-      const rect = chapter.getBoundingClientRect();
-      if (rect.top <= window.innerHeight / 2) {
-        currentChapter = chapter.textContent;
-        currentChapterNum = index + 1; // Chapters are 1-indexed
-      }
+    let lastSentChapter = '';
+    window.addEventListener('scroll', () => {
+        chapters.forEach((chapter, index) => {
+            const rect = chapter.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom > 0) {
+                currentChapterNum = index + 1;
+            }
+        });
+        if (parseInt(chapterInput.value) !== currentChapterNum) {
+            chapterInput.value = currentChapterNum;
+        }
+        const payload = `${bookId}_${currentChapterNum.toString().padStart(2, '0')}:001`;
+        if (lastSentChapter !== payload) {
+            lastSentChapter = payload;
+            fetch('/mark', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ payload: payload, version: version })
+            });
+        }
     });
-    const payload = `${bookId}_${currentChapterNum.toString().padStart(2, '0')}:001`;
-    if (lastSentChapter !== payload) { // Check if the payload has changed
-      lastSentChapter = payload;
-      fetch('/mark', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: payload, version: version })
-      });
-    }
-    const closeLink = '<a href=\"/close\" style=\"color: blue; text-decoration: none; font-weight: bold;\">&#8617;</a>';    const exitLink = '<a href=\"/exit\" style=\"color: red; text-decoration: none;\">x</a>';    stickyTitle.innerHTML = closeLink + ' ' + document.title.split(' - ')[0] + ' - ' + currentChapter + ' ' + exitLink;
-    document.title = document.title.split(' - ')[0] + ' - ' + currentChapter;
-  });
-  const targetId = window.location.hash.substring(1); // Extract the fragment ID
-  if (targetId) {
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      targetElement.style.backgroundColor = '#ffff99'; // Apply highlight color
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Scroll to the verse
-      setTimeout(() => {
-        targetElement.style.transition = 'background-color 1s';
-        targetElement.style.backgroundColor = 'transparent'; // Fade out highlight
-      }, 3000); // Highlight fades after 3 seconds
-    }
-  }
+    const scrollToChapter = (chapterNum) => {
+        const targetChapter = chapters[chapterNum - 1];
+        if (targetChapter) {
+            const headerOffset = 90;
+            const elementPosition = targetChapter.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+    };
+    prevChapterButton.addEventListener('click', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value > 1) {
+            value--;
+            currentChapterNum = value;
+            chapterInput.value = value;
+            scrollToChapter(value);
+        }
+    });
+    nextChapterButton.addEventListener('click', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value < totalChapters) {
+            value++;
+            currentChapterNum = value;
+            chapterInput.value = value;
+            scrollToChapter(value);
+        }
+    });
+    chapterInput.addEventListener('change', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value >= 1 && value <= totalChapters) {
+            currentChapterNum = value;
+            scrollToChapter(value);
+        } else {
+            chapterInput.value = currentChapterNum;
+        }
+    });
+    chapterInput.addEventListener('click', (event) => {
+        event.target.select();
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+        const targetId = window.location.hash.substring(1); // Extract the fragment ID
+        if (targetId) {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                // Prevent default browser hash scroll behavior
+                setTimeout(() => {
+                    const headerOffset = 90; // Adjust for sticky header
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = elementPosition - headerOffset;
+                    window.scrollTo({ top: offsetPosition }); // Immediate scroll
+                    targetElement.style.backgroundColor = '#ffff99'; // Apply highlight color
+                    targetElement.style.transition = 'background-color 1s';
+                    setTimeout(() => {
+                        targetElement.style.backgroundColor = 'transparent'; // Fade out highlight
+                    }, 3000); // Highlight fades after 3 seconds
+                }, 50); // Short delay to ensure hash handling completes
+            }
+        }
+    });
 });
 </script>
 </body>

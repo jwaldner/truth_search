@@ -70,6 +70,7 @@ dependencies {
             // Annotation processor for Room
     implementation(libs.androidx.room.runtime) // Room runtime
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.runtime.livedata)
     kapt("androidx.room:room-compiler:2.6.1")
 
     // JSON Parsing

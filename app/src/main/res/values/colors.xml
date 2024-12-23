@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-</resources>
+    <!-- Accent Colors -->
+    <color name="yellow_200">#FFF59D</color>
+    <color name="orange_200">#FFAB91</color>
+
+    <!-- Neutral Colors -->
+    <color name="gray_200">#B0BEC5</color>
+    <color name="gray_300">#B0BEC5</color>
+    <color name="gray_700">#37474F</color>
+    </resources>
+
+
