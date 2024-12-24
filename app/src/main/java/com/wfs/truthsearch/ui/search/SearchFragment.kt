@@ -1,6 +1,6 @@
 package com.wfs.truthsearch.ui.search
 
-import SharpieVerses
+import SharpieContent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,29 +10,24 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
@@ -44,6 +39,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.wfs.truthsearch.SharedViewModel
+import com.wfs.truthsearch.ui.theme.AppTheme
 import com.wfs.truthsearch.utils.PreferenceManager
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -76,34 +72,35 @@ class SearchFragment : DialogFragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
+                AppTheme {
                 val verseResultStyle = PreferenceManager.getVerseResultStyle()
 
                 when (verseResultStyle) {
                     "Warm" -> {
 
-                        SearchWithClickableVerses(
+                        TextContent(
                             viewModel = searchViewModel,
                             onVerseClick = { launchBrowser(it) })
-
                     }
+
                     "Justified" -> {
-                        SearchFragmentUI(
+                        JustifiedContent(
                             viewModel = searchViewModel,
                             onVerseClick = { launchBrowser(it) })
                     }
                     "Sharpie" -> {
-                        SharpieVerses(
+                        SharpieContent(
                             viewModel = searchViewModel,
                             onVerseClick = { launchBrowser(it) })
                     }
                     else -> {
-                        SearchWithClickableVerses(
+                        TextContent(
                             viewModel = searchViewModel,
                             onVerseClick = { launchBrowser(it) })
                     }
                 }
             }
-        }
+        }}
     }
 }
 
@@ -112,7 +109,7 @@ class SearchFragment : DialogFragment() {
  */
 
 @Composable
-fun SearchFragmentUI(
+fun JustifiedContent(
     viewModel: SearchViewModel,
     onVerseClick: (String) -> Unit
 ) {
@@ -174,8 +171,8 @@ fun SearchFragmentUI(
                                 // Friendly verse (blue and clickable)
                                 Text(
                                     text = "$friendlyVerse: ",
-                                    color = MaterialTheme.colorScheme.primary,
-                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colors.primary,
+                                    style = MaterialTheme.typography.body2,
                                     modifier = Modifier.clickable {
                                         Log.d(tag, "Clicked verse ID: $verseId") // Log the verseId
                                         onVerseClick(verseId)
@@ -184,7 +181,7 @@ fun SearchFragmentUI(
                                 // Verse text (natural wrapping, not clickable)
                                 Text(
                                     text = text,
-                                    style = MaterialTheme.typography.bodyLarge
+                                    style = MaterialTheme.typography.body1
                                 )
                             }
                         }
@@ -218,3 +215,36 @@ fun SearchFragmentUI(
         )
     }
 }
+
+@Composable
+fun JustifiedContent(
+    searchResults: List<Triple<String, String, String>>, // List of results as triples
+    onVerseClick: (String) -> Unit
+) {
+    LazyColumn {
+        items(searchResults) { result ->
+            val (verseId, friendlyVerse, text) = result
+
+            Row(
+                modifier = Modifier.padding(8.dp)
+            ) {
+                // Friendly verse (blue and clickable)
+                Text(
+                    text = "$friendlyVerse: ",
+                    color = MaterialTheme.colors.primary,
+                    style = MaterialTheme.typography.body2,
+                    modifier = Modifier.clickable {
+                        Log.d("VerseSearchJustified", "Clicked verse ID: $verseId")
+                        onVerseClick(verseId)
+                    }
+                )
+                // Verse text (natural wrapping, not clickable)
+                Text(
+                    text = text,
+                    style = MaterialTheme.typography.body1
+                )
+            }
+        }
+    }
+}
+

@@ -1,5 +1,3 @@
-package com.wfs.truthsearch.ui.search
-
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,50 +8,57 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import com.wfs.truthsearch.R
+import com.wfs.truthsearch.ui.search.SearchViewModel
 
 @Composable
-fun SearchResultsUI(
+fun SharpieContent(
     viewModel: SearchViewModel,
-    onVerseClick: (String) -> Unit,
-    composable: Composable
+    onVerseClick: (String) -> Unit
 ) {
-    val tag = "SearchWithClickableVerses"
+    val tag = "SharpieVerses"
     var isDialogVisible by rememberSaveable { mutableStateOf(true) }
     val searchQuery by viewModel.searchQuery.collectAsState()
     val searchResults by viewModel.searchResults.collectAsState()
     val context = LocalContext.current
 
+    // Define the Permanent Marker FontFamily
+    val permanentMarker = FontFamily(
+        Font(R.font.permanent_marker, FontWeight.Normal)
+    )
 
     if (isDialogVisible) {
         AlertDialog(
             onDismissRequest = { isDialogVisible = false },
-            title = { Text("Search Dialog") },
+            title = { Text("Sharpie Verses") },
             text = {
                 Column {
                     val focusManager = LocalFocusManager.current
                     val keyboardController = LocalSoftwareKeyboardController.current
-
                     // Input for search query
                     OutlinedTextField(
                         value = searchQuery,
@@ -69,8 +74,6 @@ fun SearchResultsUI(
                             imeAction = ImeAction.Search
                         ),
                         keyboardActions = KeyboardActions(
-
-
                             onSearch = {
                                 if (searchQuery.isNotBlank()) {
                                     viewModel.performSearch(context, searchQuery)
@@ -89,27 +92,38 @@ fun SearchResultsUI(
 
                             // Build AnnotatedString for clickable verses
                             val annotatedLinkString = buildAnnotatedString {
+                                // Style for the verse reference
                                 pushStringAnnotation(
                                     tag = "verse",
                                     annotation = verseId
                                 )
                                 withStyle(
-                                    style = MaterialTheme.typography.bodyMedium.copy(
-                                        color = MaterialTheme.colorScheme.primary
+                                    style = TextStyle(
+                                        fontFamily = permanentMarker,
+                                        fontSize = 24.sp,
+                                        color = MaterialTheme.colors.primary
                                     ).toSpanStyle()
                                 ) {
-                                    append("$friendlyVerse: ")
+                                    append("$friendlyVerse ")
                                 }
                                 pop()
-                                append(text)
+
+                                // Style for the verse text
+                                withStyle(
+                                    style = TextStyle(
+                                        fontFamily = permanentMarker,
+                                        fontSize = 20.sp,
+                                        color = MaterialTheme.colors.onBackground
+                                    ).toSpanStyle()
+                                ) {
+                                    append(text)
+                                }
                             }
 
                             ClickableText(
                                 text = annotatedLinkString,
                                 modifier = Modifier.padding(8.dp),
-                                style = MaterialTheme.typography.bodyLarge.copy(
-                                    color = MaterialTheme.colorScheme.onBackground
-                                ),
+                                style = MaterialTheme.typography.body1,
                                 onClick = { offset ->
                                     annotatedLinkString.getStringAnnotations(
                                         tag = "verse",
@@ -150,5 +164,69 @@ fun SearchResultsUI(
                 }
             }
         )
+    }
+}
+
+
+@Composable
+fun SharpieContent(
+    searchResults: List<Triple<String, String, String>>, // List of search results as triples
+    onVerseClick: (String) -> Unit
+) {
+    // Define the Permanent Marker FontFamily
+    val permanentMarker = FontFamily(
+        Font(R.font.permanent_marker, FontWeight.Normal)
+    )
+
+    LazyColumn {
+        items(searchResults) { result ->
+            val (verseId, friendlyVerse, text) = result
+
+            // Build AnnotatedString for clickable verses
+            val annotatedLinkString = buildAnnotatedString {
+                // Style for the verse reference
+                pushStringAnnotation(
+                    tag = "verse",
+                    annotation = verseId
+                )
+                withStyle(
+                    style = TextStyle(
+                        fontFamily = permanentMarker,
+                        fontSize = 24.sp,
+                        color = MaterialTheme.colors.primary
+                    ).toSpanStyle()
+                ) {
+                    append("$friendlyVerse ")
+                }
+                pop()
+
+                // Style for the verse text
+                withStyle(
+                    style = TextStyle(
+                        fontFamily = permanentMarker,
+                        fontSize = 20.sp,
+                        color = MaterialTheme.colors.onBackground
+                    ).toSpanStyle()
+                ) {
+                    append(text)
+                }
+            }
+
+            ClickableText(
+                text = annotatedLinkString,
+                modifier = Modifier.padding(8.dp),
+                style = MaterialTheme.typography.body1,
+                onClick = { offset ->
+                    annotatedLinkString.getStringAnnotations(
+                        tag = "verse",
+                        start = offset,
+                        end = offset
+                    ).firstOrNull()?.let { annotation ->
+                        Log.d("VerseSearchSharpie", "Clicked verse ID: ${annotation.item}")
+                        onVerseClick(annotation.item)
+                    }
+                }
+            )
+        }
     }
 }

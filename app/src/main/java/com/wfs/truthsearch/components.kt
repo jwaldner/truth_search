@@ -1,6 +1,3 @@
-
-// import com.wfs.truthsearch.ui.theme.TruthSearchBrowserTheme
-
 // Jetpack Compose imports
 import android.content.Intent
 import android.net.Uri
@@ -13,14 +10,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.Button
+import androidx.compose.material.DropdownMenu
+import androidx.compose.material.DropdownMenuItem
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
+import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,7 +28,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.wfs.truthsearch.models.BookData
 import com.wfs.truthsearch.models.getBooksFromAssets
-
 
 @Composable
 fun TestamentDropdown(
@@ -75,9 +71,10 @@ fun TestamentDropdown(
                         // Delay reload of books to ensure UI clears first
                         booksMap = getBooksFromAssets(context, version, testament) // Load map of display names to filenames
                         books = booksMap.keys.toList() // Extract display names
-                    },
-                    text = { Text(text = testament) }
-                )
+                    }
+                ) {
+                    Text(text = testament)
+                }
             }
         }
 
@@ -87,7 +84,7 @@ fun TestamentDropdown(
         if (books.isNotEmpty()) {
             Text(
                 text = "Books in $selectedItem",
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             LazyColumn(
@@ -106,8 +103,6 @@ fun TestamentDropdown(
                                 books = emptyList() // Clear the book list after selection
                                 val filename = booksMap[book]?.filename
 
-                                // Genesis 28:04
-                                //val url = "http://127.0.0.1:8080/bibles/esv/$selectedItem/$filename#01_28:004"
                                 val url = "http://127.0.0.1:8080/bibles/${version}/$selectedItem/$filename"
                                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
                                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -183,7 +178,6 @@ fun SearchDialogExample() {
         )
     }
 }
-
 
 // Simulated search function
 fun performSearch(query: String): List<Pair<String, String>> {

@@ -1,48 +1,35 @@
 package com.wfs.truthsearch.ui.settings
 
-import android.os.Build
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-// import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.fragment.app.Fragment
-
+import SharpieContent
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.RadioButtonDefaults
-import androidx.compose.material3.Surface
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.sp
-import androidx.core.content.ContentProviderCompat
+import androidx.compose.ui.unit.dp
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.wfs.truthsearch.R
+import com.wfs.truthsearch.ui.search.JustifiedContent
+import com.wfs.truthsearch.ui.search.TextContent
+import com.wfs.truthsearch.ui.theme.AppTheme
+import com.wfs.truthsearch.utils.PreferenceManager
 
 class SettingsFragment : Fragment() {
 
@@ -50,7 +37,6 @@ class SettingsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         val prefManager = com.wfs.truthsearch.utils.PreferenceManager
         val factory = SettingsViewModelFactory(prefManager)
@@ -64,38 +50,162 @@ class SettingsFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                SettingsScreen(viewModel = settingsViewModel)
+                AppTheme {
+                    SettingsScreen(viewModel = settingsViewModel)
+                }
             }
         }
     }
 }
 
-//
-// h6 → headlineSmall
-// h5 → it
-// h4 → headlineLarge
-// body1 → bodyLarge
-// body2 → bodyMedium
-// Smaller custom body styles → bodySmall
+
+@Composable
+fun isNightMode(): Boolean {
+    val context = LocalContext.current
+    return (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+}
+
+@Composable
+fun ThemePreferenceSetting(viewModel: SettingsViewModel) {
+    val currentMode by viewModel.lightDarkModePref.observeAsState(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+
+    val options = listOf(
+        "Light" to AppCompatDelegate.MODE_NIGHT_NO,
+        "Dark" to AppCompatDelegate.MODE_NIGHT_YES,
+        "System Default" to AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+    )
+
+    Column {
+        Text(text = "Theme Preference", style = MaterialTheme.typography.h6)
+
+        options.forEach { (label, mode) ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
+                RadioButton(
+                    selected = currentMode == mode,
+                    onClick = { viewModel.updateLightDarkModePref(mode) } // Notify ViewModel of the change
+                )
+                Text(
+                    text = label,
+                    style = MaterialTheme.typography.body1,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun ListSettingsScreen(viewModel: SettingsViewModel) {
+    Surface(
+        modifier = Modifier.fillMaxSize(), // Fullscreen container
+        color = MaterialTheme.colors.background // Respect theme colors
+    ) {
+        Box(
+            modifier = Modifier.fillMaxSize() // Ensure constraints for scrolling
+        ) {
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState()) // Enable scrolling
+                    .padding(16.dp)
+            ) {
+                // Title
+                Text(
+                    text = "User Interface",
+                    style = MaterialTheme.typography.h6,
+                    color = MaterialTheme.colors.onBackground
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Display the current mode
+                Text(
+                    text = if (isNightMode()) "Mode: Night" else "Mode: Day",
+                    style = MaterialTheme.typography.body2,
+                    color = MaterialTheme.colors.onBackground
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Options Section
+                val options = listOf("Sharpie", "Warm", "Justified")
+                options.forEach { option ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp)
+                    ) {
+                        RadioButton(
+                            selected = (viewModel.verseResultStyle.value == option),
+                            onClick = { viewModel.updateVerseResultStyle(option) },
+                            colors = RadioButtonDefaults.colors(
+                                selectedColor = MaterialTheme.colors.primary,
+                                unselectedColor = MaterialTheme.colors.onSurface
+                            )
+                        )
+                        Text(
+                            text = option,
+                            style = MaterialTheme.typography.body2,
+                            color = MaterialTheme.colors.onSurface,
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Dummy content to test scrolling
+                repeat(20) {
+                    Text(
+                        text = "Item $it",
+                        style = MaterialTheme.typography.body1,
+                        color = MaterialTheme.colors.onBackground,
+                        modifier = Modifier.padding(vertical = 4.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+        }
+    }
+}
 
 @Composable
 fun SettingsScreen(viewModel: SettingsViewModel) {
-    val verseResultStyle by viewModel.verseResultStyle.observeAsState("Warm") // Observe LiveData from ViewModel
+    val verseResultStyle by viewModel.verseResultStyle.observeAsState("Warm") // Observe LiveData
+
+    val context = LocalContext.current
+    val isNightMode = isNightMode() // Check current mode
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        color = MaterialTheme.colors.background // Use background from MaterialTheme
+
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
+            // Title
             Text(
                 text = "User Interface",
-                style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onBackground
+                style = MaterialTheme.typography.h6,
+                color = MaterialTheme.colors.onBackground
             )
 
-            val options = listOf("Sharpie", "Warm", "Justified")
+            // Display the current mode
+            Text(
+                text = if (isNightMode) "Mode: Night" else "Mode: Day",
+                style = MaterialTheme.typography.body2,
+                color = MaterialTheme.colors.onBackground
+            )
 
-            // Option buttons
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Options Section
+            val options = listOf("Sharpie", "Warm", "Justified")
             options.forEach { option ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -105,18 +215,16 @@ fun SettingsScreen(viewModel: SettingsViewModel) {
                 ) {
                     RadioButton(
                         selected = (verseResultStyle == option),
-                        onClick = {
-                            viewModel.updateVerseResultStyle(option) // Update ViewModel on selection
-                        },
+                        onClick = { viewModel.updateVerseResultStyle(option) },
                         colors = RadioButtonDefaults.colors(
-                            selectedColor = MaterialTheme.colorScheme.primary,
-                            unselectedColor = MaterialTheme.colorScheme.onBackground
+                            selectedColor = MaterialTheme.colors.primary,
+                            unselectedColor = MaterialTheme.colors.onSurface
                         )
                     )
                     Text(
                         text = option,
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.onBackground,
+                        style = MaterialTheme.typography.body2,
+                        color = MaterialTheme.colors.onSurface,
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
@@ -127,89 +235,58 @@ fun SettingsScreen(viewModel: SettingsViewModel) {
             // Preview Section
             Text(
                 text = "Preview",
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onBackground
+                style = MaterialTheme.typography.subtitle1,
+                color = MaterialTheme.colors.onBackground
             )
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Dynamic Verse Preview
+            // Dynamic Preview Content Based on Selection
             val friendlyVerse = "John 3:16"
             val verseText = "For God so loved the world that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life."
+            val data = listOf(Triple("43_03:016", friendlyVerse, verseText))
 
             when (verseResultStyle) {
                 "Justified" -> {
-                    Row(
-                        modifier = Modifier.padding(8.dp)
-                    ) {
-                        // Friendly verse (blue and clickable)
-                        Text(
-                            text = "$friendlyVerse: ",
-                            color = MaterialTheme.colorScheme.primary, // Blue color
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier.clickable {
-                                Log.d("SettingsScreen", "Clicked verse ID: $friendlyVerse")
-                            }
-                        )
-                        // Verse text (black and not clickable)
-                        Text(
-                            text = verseText,
-                            style = MaterialTheme.typography.bodyLarge.copy(
-                                color = MaterialTheme.colorScheme.onBackground // Black color
-                            )
-                        )
-                    }
+                    JustifiedContent(
+                        searchResults = data,
+                        onVerseClick = { verseId ->
+                            Log.d("SettingsScreen", "Clicked verse ID: $verseId")
+                            Toast.makeText(context, "We are justified by faith!", Toast.LENGTH_SHORT).show()
+                        }
+                    )
                 }
                 "Sharpie" -> {
-                    Column(
-                        modifier = Modifier.padding(8.dp)
-                    ) {
-                        // Friendly verse (blue and clickable)
-                        Text(
-                            text = "$friendlyVerse: ",
-                            color = MaterialTheme.colorScheme.primary, // Blue color
-                            style = TextStyle(
-                                fontFamily = FontFamily(Font(R.font.permanent_marker)),
-                                fontSize = 20.sp // Smaller font size for better fit
-                            ),
-                            modifier = Modifier.clickable {
-                                Log.d("SettingsScreen", "Clicked verse ID: $friendlyVerse")
-                            }
-                        )
-                        // Verse text (black and not clickable)
-                        Text(
-                            text = verseText,
-                            style = TextStyle(
-                                fontFamily = FontFamily(Font(R.font.permanent_marker)),
-                                fontSize = 16.sp, // Smaller font size for better fit
-                                color = MaterialTheme.colorScheme.onBackground
-                            )
-                        )
-                    }
+                    SharpieContent(
+                        searchResults = data,
+                        onVerseClick = { verseId ->
+                            Log.d("SettingsScreen", "Clicked verse ID: $verseId")
+                            Toast.makeText(
+                                context,
+                                "For the word of God is living and active, sharper than any two-edged sword.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
                 }
                 "Warm" -> {
-                    Column(
-                        modifier = Modifier.padding(8.dp)
-                    ) {
-                        // Friendly verse (blue and clickable)
-                        Text(
-                            text = "$friendlyVerse: ",
-                            color = MaterialTheme.colorScheme.primary, // Blue color
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier.clickable {
-                                Log.d("SettingsScreen", "Clicked verse ID: $friendlyVerse")
-                            }
-                        )
-                        // Verse text (black and not clickable)
-                        Text(
-                            text = verseText,
-                            style = MaterialTheme.typography.bodyLarge.copy(
-                                color = MaterialTheme.colorScheme.tertiary // Warm color
-                            )
-                        )
-                    }
+                    TextContent(
+                        searchResults = data,
+                        onVerseClick = { verseId ->
+                            Log.d("SettingsScreen", "Clicked verse ID: $verseId")
+                            Toast.makeText(
+                                context,
+                                "Go in peace, be warmed and filled!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
                 }
             }
         }
     }
+
+    Spacer(modifier = Modifier.height(16.dp))
+
+
 }

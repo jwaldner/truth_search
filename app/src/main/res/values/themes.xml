@@ -11,15 +11,20 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- Surface and background color. -->
+        <item name="colorSurface">@color/white</item> <!-- This is for light mode -->
+        <item name="android:windowBackground">?attr/colorSurface</item> <!-- Adapts Day/Night -->
     </style>
 
-    <style name="Theme.TruthSearch.NoActionBar">
+    <!-- No ActionBar variant of the theme -->
+    <style name="Theme.TruthSearch.NoActionBar" parent="Theme.TruthSearch">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.TruthSearch.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!-- AppBar overlay theme -->
+    <style name="Theme.TruthSearch.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
-    <style name="Theme.TruthSearch.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!-- Popup overlay theme -->
+    <style name="Theme.TruthSearch.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 </resources>

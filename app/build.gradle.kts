@@ -46,6 +46,11 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    // Jetpack Compose Material library
+    implementation(libs.androidx.material)
+    // Core Compose UI (optional but useful for layouts like Box, Column, Row)
+    implementation(libs.ui)
+
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
@@ -59,7 +64,7 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+   //implementation(libs.androidx.material3)
 
     // Compose-specific dependencies
     implementation(libs.androidx.foundation) // For LazyColumn and other foundational components

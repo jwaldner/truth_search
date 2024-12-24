@@ -8,7 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Scaffold
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.wfs.truthsearch.SharedViewModel
+import com.wfs.truthsearch.ui.theme.AppTheme
 import com.wfs.truthsearch.utils.PreferenceManager
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -34,6 +36,8 @@ class KjvFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
+
+                AppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(
                         modifier = Modifier
@@ -58,7 +62,7 @@ class KjvFragment : Fragment() {
                             }
                         )
                     }
-                }
+                }}
             }
         }
     }

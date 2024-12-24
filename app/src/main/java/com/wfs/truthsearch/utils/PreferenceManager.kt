@@ -20,7 +20,7 @@ object PreferenceManager {
     const val KEY_PLACE_HOLDER_KJV = "place_holder_kjv"
     const val KEY_DATA_VERSION = "data_version"
     const val KEY_PREFS_SEARCH_RESULTS_STYLE = "key_prefs_search_results_style"
-
+    private const val KEY_PREFS_LIGHT_DARK_MODE = "key_prefs_light_dark_mode"
 
     // Initialize preferences
     fun init(context: Context) {
@@ -79,7 +79,6 @@ object PreferenceManager {
         saveString(KEY_PLACE_HOLDER_ESV + "_${verseId.substringBefore("_")}", verseId)
     }
 
-
     fun getVerseResultStyle(): String? {
         return getString(KEY_PREFS_SEARCH_RESULTS_STYLE, "Warm")
     }
@@ -87,4 +86,13 @@ object PreferenceManager {
     fun setVerseResultStyle(style: String) {
         saveString(KEY_PREFS_SEARCH_RESULTS_STYLE, style)
     }
+
+    fun getLightDarkModePref(): Int? {
+        return getInt(KEY_PREFS_LIGHT_DARK_MODE, 1)
+    }
+
+    fun setLightDarkModePref(pref: Int) {
+        saveInt(KEY_PREFS_LIGHT_DARK_MODE, pref)
+    }
+
 }
