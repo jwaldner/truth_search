@@ -1,42 +1,90 @@
 package com.wfs.truthsearch.ui.kjv
 
+import TestamentDropdown
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.wfs.truthsearch.databinding.FragmentKjvBinding
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import com.wfs.truthsearch.SharedViewModel
+import com.wfs.truthsearch.ui.theme.AppTheme
+import com.wfs.truthsearch.utils.PreferenceManager
+import kotlinx.coroutines.launch
+import kotlin.random.Random
+
 
 class KjvFragment : Fragment() {
 
-    private var _binding: FragmentKjvBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val tag ="kjvFrag"
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val slideshowViewModel =
-            ViewModelProvider(this).get(KjvViewModel::class.java)
+        return ComposeView(requireContext()).apply {
+            setContent {
 
-        _binding = FragmentKjvBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+                AppTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
+                    ) {
 
-        val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+                        val bibleVersion = "kjv"
+                        TestamentDropdown(
+                            modifier = Modifier.fillMaxWidth(),
+                            version = bibleVersion,
+                            onSelectionChange = { selectedTestament ->
+                                Log.d("TestamentSelection", "Selected Testament: $selectedTestament")
+                            },
+                            onBookClick = { selectedBook ->
+                                Log.d("kjvFrag", "Selected Book: $selectedBook")
+                                Toast.makeText(
+                                    context,
+                                    "Selected Book: $selectedBook",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        )
+                    }
+                }}
+            }
         }
-        return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val versionEntry = PreferenceManager.versionMap.entries.first { "kjv".contains(it.key) }
+        val verse = PreferenceManager.getString(versionEntry.value,"01_01:001")
+        Log.w(tag, "fetch ${versionEntry} ${verse}")
+        if (verse != null) {
+            sharedViewModel.setVerseId(verse)
+        }
+
+        // Set the Bible version and verse ID
+        sharedViewModel.setBibleVersion("kjv")
+        // Assign a new ID
+        sharedViewModel.setId(Random.nextInt())
+
+        // Emit the launch browser event
+        lifecycleScope.launch {
+            sharedViewModel.emitLaunchBrowserEvent()
+        }
     }
 }

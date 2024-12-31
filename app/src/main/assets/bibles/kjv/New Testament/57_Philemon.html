@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Philemon</title>
+<link rel='stylesheet' href='../../style.css'>
+<style>
+body, p { margin: 0; padding: 0; line-height: 1.2; }
+#sticky-title { position: sticky; top: 0; background-color: white; z-index:ible files1000; padding: 10px; border-bottom: 2px solid #ccc; font-size: 1.5em; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+button { width: 40px; height: 40px; font-size: 20px; border: none; background-color: #007BFF; color: white; border-radius: 5px; }
+input { width: 60px; text-align: center; font-size: 20px; border: 1px solid #ccc; border-radius: 5px; -moz-appearance: textfield; }
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+</style>
+</head>
+<body>
+<script>const bookId = '57';</script>
+<script>const version = 'kjv';</script>
+<div id='sticky-title'><a href='/close' style='color: blue; text-decoration: none;'>&#8617;</a><span id='sticky-title-book'>Philemon</span><button id='prevChapter'>-</button><input id='chapterInput' type='number' value='1' min='1' max='1'><button id='nextChapter'>+</button><span style='flex-grow: 1;'>&nbsp;</span><a href='/exit' style='color: red; text-decoration: none;'>x</a></div>
+<a href='./56_Titus.html'>Prev: Titus</a><br>
+<a href='./58_Hebrews.html'>Next: Hebrews</a>
+<h1>Philemon</h1>
+<h2 id='chapter_1'>Chapter 1</h2>
+<p id='57_01:001'><strong>1.</strong> Paul, a prisoner of Jesus Christ, and Timothy our brother, unto Philemon our dearly beloved, and fellowlabourer,</p>
+<p id='57_01:002'><strong>2.</strong> And to our beloved Apphia, and Archippus our fellowsoldier, and to the church in thy house:</p>
+<p id='57_01:003'><strong>3.</strong> Grace to you, and peace, from God our Father and the Lord Jesus Christ.</p>
+<p id='57_01:004'><strong>4.</strong> I thank my God, making mention of thee always in my prayers,</p>
+<p id='57_01:005'><strong>5.</strong> Hearing of thy love and faith, which thou hast toward the Lord Jesus, and toward all saints;</p>
+<p id='57_01:006'><strong>6.</strong> That the communication of thy faith may become effectual by the acknowledging of every good thing which is in you in Christ Jesus.</p>
+<p id='57_01:007'><strong>7.</strong> For we have great joy and consolation in thy love, because the bowels of the saints are refreshed by thee, brother.</p>
+<p id='57_01:008'><strong>8.</strong> Wherefore, though I might be much bold in Christ to enjoin thee that which is convenient,</p>
+<p id='57_01:009'><strong>9.</strong> Yet for love’s sake I rather beseech thee, being such an one as Paul the aged, and now also a prisoner of Jesus Christ.</p>
+<p id='57_01:010'><strong>10.</strong> I beseech thee for my son Onesimus, whom I have begotten in my bonds:</p>
+<p id='57_01:011'><strong>11.</strong> Which in time past was to thee unprofitable, but now profitable to thee and to me:</p>
+<p id='57_01:012'><strong>12.</strong> Whom I have sent again: thou therefore receive him, that is, mine own bowels:</p>
+<p id='57_01:013'><strong>13.</strong> Whom I would have retained with me, that in thy stead he might have ministered unto me in the bonds of the gospel:</p>
+<p id='57_01:014'><strong>14.</strong> But without thy mind would I do nothing; that thy benefit should not be as it were of necessity, but willingly.</p>
+<p id='57_01:015'><strong>15.</strong> For perhaps he therefore departed for a season, that thou shouldest receive him for ever;</p>
+<p id='57_01:016'><strong>16.</strong> Not now as a servant, but above a servant, a brother beloved, specially to me, but how much more unto thee, both in the flesh, and in the Lord?</p>
+<p id='57_01:017'><strong>17.</strong> If thou count me therefore a partner, receive him as myself.</p>
+<p id='57_01:018'><strong>18.</strong> If he hath wronged thee, or oweth thee ought, put that on mine account;</p>
+<p id='57_01:019'><strong>19.</strong> I Paul have written it with mine own hand, I will repay it: albeit I do not say to thee how thou owest unto me even thine own self besides.</p>
+<p id='57_01:020'><strong>20.</strong> Yea, brother, let me have joy of thee in the Lord: refresh my bowels in the Lord.</p>
+<p id='57_01:021'><strong>21.</strong> Having confidence in thy obedience I wrote unto thee, knowing that thou wilt also do more than I say.</p>
+<p id='57_01:022'><strong>22.</strong> But withal prepare me also a lodging: for I trust that through your prayers I shall be given unto you.</p>
+<p id='57_01:023'><strong>23.</strong> There salute thee Epaphras, my fellowprisoner in Christ Jesus;</p>
+<p id='57_01:024'><strong>24.</strong> Marcus, Aristarchus, Demas, Lucas, my fellowlabourers.</p>
+<p id='57_01:025'><strong>25.</strong> The grace of our Lord Jesus Christ be with your spirit. Amen. Written from Rome to Philemon, by Onesimus a servant.</p>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const stickyTitle = document.getElementById('sticky-title');
+    const chapters = document.querySelectorAll('h2');
+    const chapterInput = document.getElementById('chapterInput');
+    const prevChapterButton = document.getElementById('prevChapter');
+    const nextChapterButton = document.getElementById('nextChapter');
+    const totalChapters = chapters.length;
+    let currentChapterNum = 1;
+    let lastSentChapter = '';
+    window.addEventListener('scroll', () => {
+        chapters.forEach((chapter, index) => {
+            const rect = chapter.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom > 0) {
+                currentChapterNum = index + 1;
+            }
+        });
+        if (parseInt(chapterInput.value) !== currentChapterNum) {
+            chapterInput.value = currentChapterNum;
+        }
+        const payload = `${bookId}_${currentChapterNum.toString().padStart(2, '0')}:001`;
+        if (lastSentChapter !== payload) {
+            lastSentChapter = payload;
+            fetch('/mark', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ payload: payload, version: version })
+            });
+        }
+    });
+    const scrollToChapter = (chapterNum) => {
+        const targetChapter = chapters[chapterNum - 1];
+        if (targetChapter) {
+            const headerOffset = 90;
+            const elementPosition = targetChapter.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+    };
+    prevChapterButton.addEventListener('click', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value > 1) {
+            value--;
+            currentChapterNum = value;
+            chapterInput.value = value;
+            scrollToChapter(value);
+        }
+    });
+    nextChapterButton.addEventListener('click', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value < totalChapters) {
+            value++;
+            currentChapterNum = value;
+            chapterInput.value = value;
+            scrollToChapter(value);
+        }
+    });
+    chapterInput.addEventListener('change', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value >= 1 && value <= totalChapters) {
+            currentChapterNum = value;
+            scrollToChapter(value);
+        } else {
+            chapterInput.value = currentChapterNum;
+        }
+    });
+    chapterInput.addEventListener('click', (event) => {
+        event.target.select();
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+        const targetId = window.location.hash.substring(1); // Extract the fragment ID
+        if (targetId) {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                // Prevent default browser hash scroll behavior
+                setTimeout(() => {
+                    const headerOffset = 90; // Adjust for sticky header
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = elementPosition - headerOffset;
+                    window.scrollTo({ top: offsetPosition }); // Immediate scroll
+                    targetElement.style.backgroundColor = '#ffff99'; // Apply highlight color
+                    targetElement.style.transition = 'background-color 1s';
+                    setTimeout(() => {
+                        targetElement.style.backgroundColor = 'transparent'; // Fade out highlight
+                    }, 3000); // Highlight fades after 3 seconds
+                }, 50); // Short delay to ensure hash handling completes
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>

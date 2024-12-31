@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>II John</title>
+<link rel='stylesheet' href='../../style.css'>
+<style>
+body, p { margin: 0; padding: 0; line-height: 1.2; }
+#sticky-title { position: sticky; top: 0; background-color: white; z-index:ible files1000; padding: 10px; border-bottom: 2px solid #ccc; font-size: 1.5em; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+button { width: 40px; height: 40px; font-size: 20px; border: none; background-color: #007BFF; color: white; border-radius: 5px; }
+input { width: 60px; text-align: center; font-size: 20px; border: 1px solid #ccc; border-radius: 5px; -moz-appearance: textfield; }
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+</style>
+</head>
+<body>
+<script>const bookId = '63';</script>
+<script>const version = 'esv';</script>
+<div id='sticky-title'><a href='/close' style='color: blue; text-decoration: none;'>&#8617;</a><span id='sticky-title-book'>II John</span><button id='prevChapter'>-</button><input id='chapterInput' type='number' value='1' min='1' max='1'><button id='nextChapter'>+</button><span style='flex-grow: 1;'>&nbsp;</span><a href='/exit' style='color: red; text-decoration: none;'>x</a></div>
+<a href='./62_I_John.html'>Prev: I John</a><br>
+<a href='./64_III_John.html'>Next: III John</a>
+<h1>II John</h1>
+<h2 id='chapter_1'>Chapter 1</h2>
+<p id='63_01:001'><strong>1.</strong> The elder to the elect lady and her children, whom I love in truth, and not only I, but also all who know the truth,</p>
+<p id='63_01:002'><strong>2.</strong> because of the truth that abides in us and will be with us forever:</p>
+<p id='63_01:003'><strong>3.</strong> Grace, mercy, and peace will be with us, from God the Father and from Jesus Christ the Father’s Son, in truth and love.</p>
+<p id='63_01:004'><strong>4.</strong> I rejoiced greatly to find some of your children walking in the truth, just as we were commanded by the Father.</p>
+<p id='63_01:005'><strong>5.</strong> And now I ask you, dear lady — not as though I were writing you a new commandment, but the one we have had from the beginning — that we love one another.</p>
+<p id='63_01:006'><strong>6.</strong> And this is love, that we walk according to his commandments; this is the commandment, just as you have heard from the beginning, so that you should walk in it.</p>
+<p id='63_01:007'><strong>7.</strong> For many deceivers have gone out into the world, those who do not confess the coming of Jesus Christ in the flesh. Such a one is the deceiver and the antichrist.</p>
+<p id='63_01:008'><strong>8.</strong> Watch yourselves, so that you may not lose what we have worked for, but may win a full reward.</p>
+<p id='63_01:009'><strong>9.</strong> Everyone who goes on ahead and does not abide in the teaching of Christ, does not have God. Whoever abides in the teaching has both the Father and the Son.</p>
+<p id='63_01:010'><strong>10.</strong> If anyone comes to you and does not bring this teaching, do not receive him into your house or give him any greeting,</p>
+<p id='63_01:011'><strong>11.</strong> for whoever greets him takes part in his wicked works.</p>
+<p id='63_01:012'><strong>12.</strong> Though I have much to write to you, I would rather not use paper and ink. Instead I hope to come to you and talk face to face, so that our joy may be complete.</p>
+<p id='63_01:013'><strong>13.</strong> The children of your elect sister greet you.</p>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const stickyTitle = document.getElementById('sticky-title');
+    const chapters = document.querySelectorAll('h2');
+    const chapterInput = document.getElementById('chapterInput');
+    const prevChapterButton = document.getElementById('prevChapter');
+    const nextChapterButton = document.getElementById('nextChapter');
+    const totalChapters = chapters.length;
+    let currentChapterNum = 1;
+    let lastSentChapter = '';
+    window.addEventListener('scroll', () => {
+        chapters.forEach((chapter, index) => {
+            const rect = chapter.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom > 0) {
+                currentChapterNum = index + 1;
+            }
+        });
+        if (parseInt(chapterInput.value) !== currentChapterNum) {
+            chapterInput.value = currentChapterNum;
+        }
+        const payload = `${bookId}_${currentChapterNum.toString().padStart(2, '0')}:001`;
+        if (lastSentChapter !== payload) {
+            lastSentChapter = payload;
+            fetch('/mark', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ payload: payload, version: version })
+            });
+        }
+    });
+    const scrollToChapter = (chapterNum) => {
+        const targetChapter = chapters[chapterNum - 1];
+        if (targetChapter) {
+            const headerOffset = 90;
+            const elementPosition = targetChapter.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+    };
+    prevChapterButton.addEventListener('click', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value > 1) {
+            value--;
+            currentChapterNum = value;
+            chapterInput.value = value;
+            scrollToChapter(value);
+        }
+    });
+    nextChapterButton.addEventListener('click', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value < totalChapters) {
+            value++;
+            currentChapterNum = value;
+            chapterInput.value = value;
+            scrollToChapter(value);
+        }
+    });
+    chapterInput.addEventListener('change', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value >= 1 && value <= totalChapters) {
+            currentChapterNum = value;
+            scrollToChapter(value);
+        } else {
+            chapterInput.value = currentChapterNum;
+        }
+    });
+    chapterInput.addEventListener('click', (event) => {
+        event.target.select();
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+        const targetId = window.location.hash.substring(1); // Extract the fragment ID
+        if (targetId) {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                // Prevent default browser hash scroll behavior
+                setTimeout(() => {
+                    const headerOffset = 90; // Adjust for sticky header
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = elementPosition - headerOffset;
+                    window.scrollTo({ top: offsetPosition }); // Immediate scroll
+                    targetElement.style.backgroundColor = '#ffff99'; // Apply highlight color
+                    targetElement.style.transition = 'background-color 1s';
+                    setTimeout(() => {
+                        targetElement.style.backgroundColor = 'transparent'; // Fade out highlight
+                    }, 3000); // Highlight fades after 3 seconds
+                }, 50); // Short delay to ensure hash handling completes
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>

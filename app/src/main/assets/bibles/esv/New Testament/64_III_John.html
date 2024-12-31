@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>III John</title>
+<link rel='stylesheet' href='../../style.css'>
+<style>
+body, p { margin: 0; padding: 0; line-height: 1.2; }
+#sticky-title { position: sticky; top: 0; background-color: white; z-index:ible files1000; padding: 10px; border-bottom: 2px solid #ccc; font-size: 1.5em; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+button { width: 40px; height: 40px; font-size: 20px; border: none; background-color: #007BFF; color: white; border-radius: 5px; }
+input { width: 60px; text-align: center; font-size: 20px; border: 1px solid #ccc; border-radius: 5px; -moz-appearance: textfield; }
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+</style>
+</head>
+<body>
+<script>const bookId = '64';</script>
+<script>const version = 'esv';</script>
+<div id='sticky-title'><a href='/close' style='color: blue; text-decoration: none;'>&#8617;</a><span id='sticky-title-book'>III John</span><button id='prevChapter'>-</button><input id='chapterInput' type='number' value='1' min='1' max='1'><button id='nextChapter'>+</button><span style='flex-grow: 1;'>&nbsp;</span><a href='/exit' style='color: red; text-decoration: none;'>x</a></div>
+<a href='./63_II_John.html'>Prev: II John</a><br>
+<a href='./65_Jude.html'>Next: Jude</a>
+<h1>III John</h1>
+<h2 id='chapter_1'>Chapter 1</h2>
+<p id='64_01:001'><strong>1.</strong> The elder to the beloved Gaius, whom I love in truth.</p>
+<p id='64_01:002'><strong>2.</strong> Beloved, I pray that all may go well with you and that you may be in good health, as it goes well with your soul.</p>
+<p id='64_01:003'><strong>3.</strong> For I rejoiced greatly when the brothers came and testified to your truth, as indeed you are walking in the truth.</p>
+<p id='64_01:004'><strong>4.</strong> I have no greater joy than to hear that my children are walking in the truth.</p>
+<p id='64_01:005'><strong>5.</strong> Beloved, it is a faithful thing you do in all your efforts for these brothers, strangers as they are,</p>
+<p id='64_01:006'><strong>6.</strong> who testified to your love before the church. You will do well to send them on their journey in a manner worthy of God.</p>
+<p id='64_01:007'><strong>7.</strong> For they have gone out for the sake of the name, accepting nothing from the Gentiles.</p>
+<p id='64_01:008'><strong>8.</strong> Therefore we ought to support people like these, that we may be fellow workers for the truth.</p>
+<p id='64_01:009'><strong>9.</strong> I have written something to the church, but Diotrephes, who likes to put himself first, does not acknowledge our authority.</p>
+<p id='64_01:010'><strong>10.</strong> So if I come, I will bring up what he is doing, talking wicked nonsense against us. And not content with that, he refuses to welcome the brothers, and also stops those who want to and puts them out of the church.</p>
+<p id='64_01:011'><strong>11.</strong> Beloved, do not imitate evil but imitate good. Whoever does good is from God; whoever does evil has not seen God.</p>
+<p id='64_01:012'><strong>12.</strong> Demetrius has received a good testimony from everyone, and from the truth itself. We also add our testimony, and you know that our testimony is true.</p>
+<p id='64_01:013'><strong>13.</strong> I had much to write to you, but I would rather not write with pen and ink.</p>
+<p id='64_01:014'><strong>14.</strong> I hope to see you soon, and we will talk face to face.</p>
+<p id='64_01:015'><strong>15.</strong> Peace be to you. The friends greet you. Greet the friends, each by name.</p>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const stickyTitle = document.getElementById('sticky-title');
+    const chapters = document.querySelectorAll('h2');
+    const chapterInput = document.getElementById('chapterInput');
+    const prevChapterButton = document.getElementById('prevChapter');
+    const nextChapterButton = document.getElementById('nextChapter');
+    const totalChapters = chapters.length;
+    let currentChapterNum = 1;
+    let lastSentChapter = '';
+    window.addEventListener('scroll', () => {
+        chapters.forEach((chapter, index) => {
+            const rect = chapter.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom > 0) {
+                currentChapterNum = index + 1;
+            }
+        });
+        if (parseInt(chapterInput.value) !== currentChapterNum) {
+            chapterInput.value = currentChapterNum;
+        }
+        const payload = `${bookId}_${currentChapterNum.toString().padStart(2, '0')}:001`;
+        if (lastSentChapter !== payload) {
+            lastSentChapter = payload;
+            fetch('/mark', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ payload: payload, version: version })
+            });
+        }
+    });
+    const scrollToChapter = (chapterNum) => {
+        const targetChapter = chapters[chapterNum - 1];
+        if (targetChapter) {
+            const headerOffset = 90;
+            const elementPosition = targetChapter.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+    };
+    prevChapterButton.addEventListener('click', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value > 1) {
+            value--;
+            currentChapterNum = value;
+            chapterInput.value = value;
+            scrollToChapter(value);
+        }
+    });
+    nextChapterButton.addEventListener('click', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value < totalChapters) {
+            value++;
+            currentChapterNum = value;
+            chapterInput.value = value;
+            scrollToChapter(value);
+        }
+    });
+    chapterInput.addEventListener('change', () => {
+        let value = parseInt(chapterInput.value) || 1;
+        if (value >= 1 && value <= totalChapters) {
+            currentChapterNum = value;
+            scrollToChapter(value);
+        } else {
+            chapterInput.value = currentChapterNum;
+        }
+    });
+    chapterInput.addEventListener('click', (event) => {
+        event.target.select();
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+        const targetId = window.location.hash.substring(1); // Extract the fragment ID
+        if (targetId) {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                // Prevent default browser hash scroll behavior
+                setTimeout(() => {
+                    const headerOffset = 90; // Adjust for sticky header
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = elementPosition - headerOffset;
+                    window.scrollTo({ top: offsetPosition }); // Immediate scroll
+                    targetElement.style.backgroundColor = '#ffff99'; // Apply highlight color
+                    targetElement.style.transition = 'background-color 1s';
+                    setTimeout(() => {
+                        targetElement.style.backgroundColor = 'transparent'; // Fade out highlight
+                    }, 3000); // Highlight fades after 3 seconds
+                }, 50); // Short delay to ensure hash handling completes
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>

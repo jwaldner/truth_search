@@ -14,18 +14,15 @@
     <fragment
         android:id="@+id/nav_reflow"
         android:name="com.wfs.truthsearch.ui.esv.EsvFragment"
-        android:label="@string/menu_reflow"
-        tools:layout="@layout/fragment_esv" />
+        android:label="@string/menu_reflow" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.wfs.truthsearch.ui.kjv.KjvFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_kjv" />
+        android:label="@string/menu_slideshow" />
 
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.wfs.truthsearch.ui.settings.SettingsFragment"
-        android:label="@string/menu_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:label="@string/menu_settings" />
 </navigation>

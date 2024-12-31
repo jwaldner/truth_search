@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    id("kotlin-kapt") // Required for Room's annotation processor
 }
 
 android {
@@ -35,6 +37,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 }
 
@@ -43,6 +46,11 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    // Jetpack Compose Material library
+    implementation(libs.androidx.material)
+    // Core Compose UI (optional but useful for layouts like Box, Column, Row)
+    implementation(libs.ui)
+
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
@@ -50,15 +58,35 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+    // Core Compose dependencies (using Compose BOM for version alignment)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+   //implementation(libs.androidx.material3)
+
+    // Compose-specific dependencies
+    implementation(libs.androidx.foundation) // For LazyColumn and other foundational components
+    implementation(libs.androidx.runtime) // State management
+    implementation(libs.androidx.lifecycle.runtime.compose) // Compose + ViewModel integration
+
+
+            // Annotation processor for Room
+    implementation(libs.androidx.room.runtime) // Room runtime
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.material3.android)
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    // JSON Parsing
+    implementation(libs.gson)
+
+    // NanoHTTPD for server
+    implementation(libs.nanohttpd)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    
 }
-
-
-
-
-
-
-
