@@ -1,33 +1,33 @@
 package com.wfs.truthsearch.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.colorResource
 import com.wfs.truthsearch.R
 
 @Composable
 fun AppTheme(content: @Composable () -> Unit) {
-    val colors = if (isSystemInDarkTheme()) {
-        darkColors(
+    val colorScheme = if (isSystemInDarkTheme()) {
+        darkColorScheme(
             background = colorResource(id = R.color.black), // Background for Night mode
-            surface = colorResource(id = R.color.black), // Surface matches Night mode background
-            onBackground = colorResource(id = android.R.color.primary_text_dark), // Text on background
-            onSurface = colorResource(id = android.R.color.primary_text_dark) // Text on surfaces
+            surface = colorResource(id = R.color.black), // Surface for Night mode
+            onBackground = colorResource(id = R.color.colorOnBackground), // Text on background
+            onSurface = colorResource(id = R.color.colorOnSurface) // Text on surfaces
         )
     } else {
-        lightColors(
+        lightColorScheme(
             background = colorResource(id = R.color.white), // Background for Day mode
-            surface = colorResource(id = R.color.white), // Surface matches Day mode background
-            onBackground = colorResource(id = android.R.color.primary_text_light), // Text on background
-            onSurface = colorResource(id = android.R.color.primary_text_light) // Text on surfaces
+            surface = colorResource(id = R.color.white), // Surface for Day mode
+            onBackground = colorResource(id = R.color.colorOnBackground), // Text on background
+            onSurface = colorResource(id = R.color.colorOnSurface) // Text on surfaces
         )
     }
 
     MaterialTheme(
-        colors = colors,
-        typography = Typography, // Use the default typography or customize
-        shapes = Shapes, // Use the default shapes or customize
+        colorScheme = colorScheme,
+        typography =  MaterialTheme.typography, // Use the default typography or customize
+        shapes = MaterialTheme.shapes, // Use the default shapes or customize
         content = content
     )
 }

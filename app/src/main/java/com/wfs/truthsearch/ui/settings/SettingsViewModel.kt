@@ -8,6 +8,12 @@ import com.wfs.truthsearch.utils.PreferenceManager
 
 class SettingsViewModel(private val prefManager: PreferenceManager) : ViewModel() {
 
+
+    init {
+        // Apply the saved preference on startup
+        PreferenceManager.getLightDarkModePref()?.let { AppCompatDelegate.setDefaultNightMode(it) }
+    }
+
     // Backing property to observe the current verse result style
     private val _verseResultStyle = MutableLiveData<String>().apply {
         value = prefManager.getVerseResultStyle() ?: "Warm" // Default to "Warm"

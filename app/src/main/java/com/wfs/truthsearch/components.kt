@@ -10,14 +10,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
-import androidx.compose.material.TextField
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -63,6 +63,7 @@ fun TestamentDropdown(
         ) {
             listOf("Old Testament", "New Testament").forEach { testament ->
                 DropdownMenuItem(
+                    text = { Text(text = testament) }, // Display the text for each menu item
                     onClick = {
                         expanded = false // Close dropdown
                         books = emptyList() // Clear books immediately
@@ -72,9 +73,7 @@ fun TestamentDropdown(
                         booksMap = getBooksFromAssets(context, version, testament) // Load map of display names to filenames
                         books = booksMap.keys.toList() // Extract display names
                     }
-                ) {
-                    Text(text = testament)
-                }
+                )
             }
         }
 
@@ -84,7 +83,7 @@ fun TestamentDropdown(
         if (books.isNotEmpty()) {
             Text(
                 text = "Books in $selectedItem",
-                style = MaterialTheme.typography.body1,
+                style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             LazyColumn(

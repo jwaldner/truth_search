@@ -8,11 +8,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -101,7 +101,7 @@ fun SharpieContent(
                                     style = TextStyle(
                                         fontFamily = permanentMarker,
                                         fontSize = 24.sp,
-                                        color = MaterialTheme.colors.primary
+                                        color = MaterialTheme.colorScheme.primary
                                     ).toSpanStyle()
                                 ) {
                                     append("$friendlyVerse ")
@@ -113,7 +113,7 @@ fun SharpieContent(
                                     style = TextStyle(
                                         fontFamily = permanentMarker,
                                         fontSize = 20.sp,
-                                        color = MaterialTheme.colors.onBackground
+                                        color = MaterialTheme.colorScheme.onBackground
                                     ).toSpanStyle()
                                 ) {
                                     append(text)
@@ -123,7 +123,7 @@ fun SharpieContent(
                             ClickableText(
                                 text = annotatedLinkString,
                                 modifier = Modifier.padding(8.dp),
-                                style = MaterialTheme.typography.body1,
+                                style = MaterialTheme.typography.bodyLarge,
                                 onClick = { offset ->
                                     annotatedLinkString.getStringAnnotations(
                                         tag = "verse",
@@ -166,11 +166,9 @@ fun SharpieContent(
         )
     }
 }
-
-
 @Composable
 fun SharpieContent(
-    searchResults: List<Triple<String, String, String>>, // List of search results as triples
+    result: Triple<String, String, String>, // Single verse result
     onVerseClick: (String) -> Unit
 ) {
     // Define the Permanent Marker FontFamily
@@ -178,55 +176,51 @@ fun SharpieContent(
         Font(R.font.permanent_marker, FontWeight.Normal)
     )
 
-    LazyColumn {
-        items(searchResults) { result ->
-            val (verseId, friendlyVerse, text) = result
+    val (verseId, friendlyVerse, text) = result
 
-            // Build AnnotatedString for clickable verses
-            val annotatedLinkString = buildAnnotatedString {
-                // Style for the verse reference
-                pushStringAnnotation(
-                    tag = "verse",
-                    annotation = verseId
-                )
-                withStyle(
-                    style = TextStyle(
-                        fontFamily = permanentMarker,
-                        fontSize = 24.sp,
-                        color = MaterialTheme.colors.primary
-                    ).toSpanStyle()
-                ) {
-                    append("$friendlyVerse ")
-                }
-                pop()
+    // Build AnnotatedString for clickable verses
+    val annotatedLinkString = buildAnnotatedString {
+        // Style for the verse reference
+        pushStringAnnotation(
+            tag = "verse",
+            annotation = verseId
+        )
+        withStyle(
+            style = TextStyle(
+                fontFamily = permanentMarker,
+                fontSize = 24.sp,
+                color = MaterialTheme.colorScheme.primary
+            ).toSpanStyle()
+        ) {
+            append("$friendlyVerse ")
+        }
+        pop()
 
-                // Style for the verse text
-                withStyle(
-                    style = TextStyle(
-                        fontFamily = permanentMarker,
-                        fontSize = 20.sp,
-                        color = MaterialTheme.colors.onBackground
-                    ).toSpanStyle()
-                ) {
-                    append(text)
-                }
-            }
-
-            ClickableText(
-                text = annotatedLinkString,
-                modifier = Modifier.padding(8.dp),
-                style = MaterialTheme.typography.body1,
-                onClick = { offset ->
-                    annotatedLinkString.getStringAnnotations(
-                        tag = "verse",
-                        start = offset,
-                        end = offset
-                    ).firstOrNull()?.let { annotation ->
-                        Log.d("VerseSearchSharpie", "Clicked verse ID: ${annotation.item}")
-                        onVerseClick(annotation.item)
-                    }
-                }
-            )
+        // Style for the verse text
+        withStyle(
+            style = TextStyle(
+                fontFamily = permanentMarker,
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            ).toSpanStyle()
+        ) {
+            append(text)
         }
     }
+
+    ClickableText(
+        text = annotatedLinkString,
+        modifier = Modifier.padding(8.dp),
+        style = MaterialTheme.typography.bodyLarge,
+        onClick = { offset ->
+            annotatedLinkString.getStringAnnotations(
+                tag = "verse",
+                start = offset,
+                end = offset
+            ).firstOrNull()?.let { annotation ->
+                Log.d("VerseSearchSharpie", "Clicked verse ID: ${annotation.item}")
+                onVerseClick(annotation.item)
+            }
+        }
+    )
 }

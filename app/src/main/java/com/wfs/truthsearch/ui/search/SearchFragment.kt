@@ -16,11 +16,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -70,7 +70,11 @@ class SearchFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+
+
         return ComposeView(requireContext()).apply {
+
             setContent {
                 AppTheme {
                 val verseResultStyle = PreferenceManager.getVerseResultStyle()
@@ -107,6 +111,7 @@ class SearchFragment : DialogFragment() {
 /**
  * Composable UI for the SearchFragment
  */
+
 
 @Composable
 fun JustifiedContent(
@@ -171,8 +176,8 @@ fun JustifiedContent(
                                 // Friendly verse (blue and clickable)
                                 Text(
                                     text = "$friendlyVerse: ",
-                                    color = MaterialTheme.colors.primary,
-                                    style = MaterialTheme.typography.body2,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    style = MaterialTheme.typography.bodyMedium,
                                     modifier = Modifier.clickable {
                                         Log.d(tag, "Clicked verse ID: $verseId") // Log the verseId
                                         onVerseClick(verseId)
@@ -181,7 +186,7 @@ fun JustifiedContent(
                                 // Verse text (natural wrapping, not clickable)
                                 Text(
                                     text = text,
-                                    style = MaterialTheme.typography.body1
+                                    style = MaterialTheme.typography.bodyLarge
                                 )
                             }
                         }
@@ -215,36 +220,30 @@ fun JustifiedContent(
         )
     }
 }
-
 @Composable
 fun JustifiedContent(
-    searchResults: List<Triple<String, String, String>>, // List of results as triples
+    result: Triple<String, String, String>, // Single result as a triple
     onVerseClick: (String) -> Unit
 ) {
-    LazyColumn {
-        items(searchResults) { result ->
-            val (verseId, friendlyVerse, text) = result
+    val (verseId, friendlyVerse, text) = result
 
-            Row(
-                modifier = Modifier.padding(8.dp)
-            ) {
-                // Friendly verse (blue and clickable)
-                Text(
-                    text = "$friendlyVerse: ",
-                    color = MaterialTheme.colors.primary,
-                    style = MaterialTheme.typography.body2,
-                    modifier = Modifier.clickable {
-                        Log.d("VerseSearchJustified", "Clicked verse ID: $verseId")
-                        onVerseClick(verseId)
-                    }
-                )
-                // Verse text (natural wrapping, not clickable)
-                Text(
-                    text = text,
-                    style = MaterialTheme.typography.body1
-                )
+    Row(
+        modifier = Modifier.padding(8.dp)
+    ) {
+        // Friendly verse (blue and clickable)
+        Text(
+            text = "$friendlyVerse: ",
+            color = MaterialTheme.colorScheme.primary,
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.clickable {
+                Log.d("VerseSearchJustified", "Clicked verse ID: $verseId")
+                onVerseClick(verseId)
             }
-        }
+        )
+        // Verse text (natural wrapping, not clickable)
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
 }
-
