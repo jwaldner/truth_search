@@ -55,3 +55,4 @@ desktop.ini
 # Android specific folders
 .cxx/
 .externalNativeBuild/
+/app/src/main/assets/bibles/
