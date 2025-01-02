@@ -123,7 +123,6 @@ fun VersePreview(
     }
 }
 
-
 @Composable
 fun SettingsScreen(viewModel: SettingsViewModel) {
     val context = LocalContext.current
@@ -148,7 +147,7 @@ fun SettingsScreen(viewModel: SettingsViewModel) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Verse Preference Section
-            val ssl by viewModel.sslPref.observeAsState(false)
+            val ssl by viewModel.sslPref.observeAsState(PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SSL))
             val sslOptions = listOf(true, false)
 
             Column {
@@ -197,7 +196,7 @@ fun SettingsScreen(viewModel: SettingsViewModel) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Theme Preference Section
-            val currentMode by viewModel.lightDarkModePref.observeAsState()
+            val currentMode by viewModel.lightDarkModePref.observeAsState( PreferenceManager.getLightDarkModePref())
             val themeOptions = listOf(
                 "Light" to AppCompatDelegate.MODE_NIGHT_NO,
                 "Dark" to AppCompatDelegate.MODE_NIGHT_YES,

@@ -18,6 +18,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import com.wfs.truthsearch.data.BibleDatabase
 import com.wfs.truthsearch.databinding.ActivityMainBinding
@@ -42,6 +43,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        PreferenceManager.init(this)
+        PreferenceManager.getLightDarkModePref()?.let { AppCompatDelegate.setDefaultNightMode(it) }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.appBarMain.toolbar)
@@ -81,8 +86,6 @@ class MainActivity : AppCompatActivity() {
             setupActionBarWithNavController(navController, appBarConfiguration)
             it.setupWithNavController(navController)
         }
-
-        PreferenceManager.init(this)
 
         CoroutineScope(Dispatchers.Main).launch {
             populateDatabase(this@MainActivity)
