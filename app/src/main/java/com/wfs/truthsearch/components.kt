@@ -28,6 +28,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.wfs.truthsearch.models.BookData
 import com.wfs.truthsearch.models.getBooksFromAssets
+import com.wfs.truthsearch.utils.PreferenceManager
 
 @Composable
 fun TestamentDropdown(
@@ -102,7 +103,8 @@ fun TestamentDropdown(
                                 books = emptyList() // Clear the book list after selection
                                 val filename = booksMap[book]?.filename
 
-                                val url = "http://127.0.0.1:8080/bibles/${version}/$selectedItem/$filename"
+                                val ssl = if (PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SSL)) "https://" else "http://"
+                                val url = "${ssl}127.0.0.1:8080/bibles/${version}/$selectedItem/$filename"
                                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
                                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 }

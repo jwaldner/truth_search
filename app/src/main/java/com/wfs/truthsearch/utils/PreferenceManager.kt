@@ -21,6 +21,7 @@ object PreferenceManager {
     const val KEY_DATA_VERSION = "data_version"
     const val KEY_PREFS_SEARCH_RESULTS_STYLE = "key_prefs_search_results_style"
     private const val KEY_PREFS_LIGHT_DARK_MODE = "key_prefs_light_dark_mode"
+    const val KEY_PREFS_SSL = "key_prefs_ssl"
 
     // Initialize preferences
     fun init(context: Context) {
@@ -53,6 +54,23 @@ object PreferenceManager {
         Log.d(PREF_NAME, "Retrieved int: key=$key, value=$result")
         return result
     }
+
+    // Save Boolean preference
+    fun saveBool(key: String, value: Boolean) {
+        preferences.edit().putBoolean(key, value).apply()
+        Log.d(PREF_NAME, "Saved bool: key=$key, value=$value")
+    }
+
+    // Retrieve Boolean preference
+    fun getBool(key: String, defaultValue: Boolean = false): Boolean {
+        val result = preferences.getBoolean(key, defaultValue)
+        Log.d(PREF_NAME, "Retrieved int: key=$key, value=$result")
+        return result
+    }
+
+
+
+
 
     // Clear a specific preference
     fun clearKey(key: String) {

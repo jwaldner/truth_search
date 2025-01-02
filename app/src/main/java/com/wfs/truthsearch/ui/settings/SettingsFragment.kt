@@ -137,12 +137,53 @@ fun SettingsScreen(viewModel: SettingsViewModel) {
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp)
         ) {
+
             // Title
             Text(
                 text = "Settings",
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Verse Preference Section
+            val ssl by viewModel.sslPref.observeAsState(false)
+            val sslOptions = listOf(true, false)
+
+            Column {
+                Text(
+                    text = "SSL Preference",
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                sslOptions.forEach { option ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp)
+                    ) {
+                        RadioButton(
+                            selected = ssl == option,
+                            onClick = { viewModel.updateSslPref(option) },
+                            colors = RadioButtonDefaults.colors(
+                                selectedColor = MaterialTheme.colorScheme.primary,
+                                unselectedColor = MaterialTheme.colorScheme.onSurface
+                            )
+                        )
+                        Text(
+                            text = option.toString(),
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
+                }
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 

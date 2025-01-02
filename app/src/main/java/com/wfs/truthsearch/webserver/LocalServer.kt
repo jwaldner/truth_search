@@ -2,7 +2,7 @@ package com.wfs.truthsearch.webserver
 
 import android.content.Context
 import android.util.Log
-import com.wfs.truthsearch.models.getBookFromAssets
+import com.wfs.truthsearch.BuildConfig
 import com.wfs.truthsearch.utils.AppCloser
 import fi.iki.elonen.NanoHTTPD
 import java.io.File
@@ -11,9 +11,42 @@ import com.wfs.truthsearch.utils.extractPayload
 import com.wfs.truthsearch.utils.validatePayload
 import java.io.IOException
 
-class LocalServer(private val cacheDir: File, private val context: Context) : NanoHTTPD(8080) {
+import java.security.KeyStore
+import javax.net.ssl.KeyManagerFactory
+import javax.net.ssl.SSLContext
+import org.bouncycastle.jce.provider.BouncyCastleProvider
+import java.security.Security
+
+
+
+class LocalServer(private val cacheDir: File, private val context: Context, private val ssl: Boolean = false) : NanoHTTPD(8080) {
 
     private val tag = "ServerStatus"
+
+    // Load keystore and configure SSL
+    init {
+        Log.d(tag, "SSL: ${PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SSL)}")
+
+        if (ssl) {
+            val keystorePassword = BuildConfig.KEYSTORE_PASSWORD
+
+            // Copy keystore file to the cache directory
+            copyKeystoreFile(context)
+
+            // Access the keystore file from cacheDir
+            val keystoreFile = File(context.cacheDir, "bibles/server.keystore")
+
+            // Load keystore and configure SSL
+            Security.addProvider(BouncyCastleProvider())
+            Log.d(tag, "BouncyCastleProvider initialized: ${Security.getProvider("BC") != null}")
+
+            val keystore = loadKeystore(keystoreFile, keystorePassword.toCharArray())
+            val sslContext = createSslContext(keystore, keystorePassword.toCharArray())
+
+            makeSecure(sslContext.serverSocketFactory, null)
+        }
+    }
+
     override fun serve(session: IHTTPSession): Response {
         Log.d(tag, "Serve: ${session.uri}")
 
@@ -172,5 +205,43 @@ class LocalServer(private val cacheDir: File, private val context: Context) : Na
         }
     }
 
+
+
+    private fun copyKeystoreFile(context: Context) {
+        val assetFilePath = "bibles/server.keystore"
+        val targetFile = File(context.filesDir.path + "/bibles/server.keystore")
+
+        if (!targetFile.exists()) {
+            targetFile.parentFile?.mkdirs() // Ensure the parent directories exist
+            context.assets.open(assetFilePath).use { inputStream ->
+                targetFile.outputStream().use { outputStream ->
+                    inputStream.copyTo(outputStream)
+                }
+            }
+        }
+    }
+
+    private fun loadKeystore(file: File, password: CharArray): KeyStore {
+        val keyStore = KeyStore.getInstance("PKCS12")
+        Log.d(tag, "exists: ${file.exists()} can read ${file.name}  ${file.canRead()}"  )
+        return try {
+            file.inputStream().use { inputStream ->
+                keyStore.load(inputStream, password)
+            }
+            keyStore
+        } catch (e: Exception) {
+            Log.e(tag, "Failed to load keystore: ${e.message}", e)
+            throw e // Re-throw the exception to avoid suppressing the error
+        }
+    }
+
+
+    private fun createSslContext(keystore: KeyStore, password: CharArray): SSLContext {
+        val keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm())
+        keyManagerFactory.init(keystore, password)
+        val sslContext = SSLContext.getInstance("TLS")
+        sslContext.init(keyManagerFactory.keyManagers, null, null)
+        return sslContext
+    }
 
 }

@@ -228,8 +228,10 @@ class MainActivity : AppCompatActivity() {
 
        // val verse = PreferenceManager.getString(versionEntry.value,"01_01:001")
 
+       val ssl = if (PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SSL)) "https://" else "http://"
+
         val url =
-            encodeUrl("http://127.0.0.1:8080/${bookVerseData.testament}/${bookVerseData.filename}#${verseId}")
+            encodeUrl("${ssl}127.0.0.1:8080/${bookVerseData.testament}/${bookVerseData.filename}#${verseId}")
 
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

@@ -16,7 +16,18 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+
+        android.buildFeatures.buildConfig = true
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val keystorePassword = project.findProperty("keystore.password") as String?
+        buildConfigField("String", "KEYSTORE_PASSWORD", "\"$keystorePassword\"")
+        // println("Assigned password: $keystorePassword")
+        // println("Keystore Password: ${BuildConfig.KEYSTORE_PASSWORD}")
+
+
+        buildConfigField("String", "KEYSTORE_PASSWORD", "\"${project.findProperty("keystore.password")}\"")
     }
 
     buildTypes {
@@ -84,7 +95,7 @@ dependencies {
 
     // NanoHTTPD for server
     implementation(libs.nanohttpd)
-
+    implementation(libs.bouncycastle)
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
