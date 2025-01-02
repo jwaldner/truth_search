@@ -37,4 +37,19 @@ class SettingsViewModel(private val prefManager: PreferenceManager) : ViewModel(
         _lightDarkModePref.value = pref
         prefManager.setLightDarkModePref(pref) // Save to the preference manager
     }
+
+    // Backing property to observe the current ssl preference
+    private val _sslPref = MutableLiveData<Boolean>().apply {
+        value = prefManager.getBool(PreferenceManager.KEY_PREFS_SSL) ?: false // Default to system
+    }
+
+    val sslPref: LiveData<Boolean> get() = _sslPref
+
+    // Function to update the selected light/dark mode preference
+    fun updateSslPref(pref: Boolean) {
+        _sslPref.value = pref
+        prefManager.saveBool(PreferenceManager.KEY_PREFS_SSL, pref) // Save to the preference manager
+    }
+
+
 }

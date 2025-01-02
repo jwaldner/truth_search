@@ -1,6 +1,7 @@
 package com.wfs.truthsearch.ui.esv
 
 import TestamentDropdown
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -34,7 +35,6 @@ class EsvFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return ComposeView(requireContext()).apply {
-
 
             setContent {
                 AppTheme {
@@ -84,6 +84,18 @@ class EsvFragment : Fragment() {
         // Emit the launch browser event
         lifecycleScope.launch {
             sharedViewModel.emitLaunchBrowserEvent()
+        }
+
+        view.viewTreeObserver.addOnGlobalLayoutListener {
+            val orientation = resources.configuration.orientation
+            when (orientation) {
+                Configuration.ORIENTATION_LANDSCAPE -> Log.d(tag, "Landscape detected")
+                Configuration.ORIENTATION_PORTRAIT -> Log.d(tag, "Portrait detected")
+                else -> Log.d(tag, "None or undefined orientation detected")
+            }
+
+
+
         }
     }
 }

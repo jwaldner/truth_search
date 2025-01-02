@@ -7,6 +7,7 @@ import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
 import android.content.Context
+import com.wfs.truthsearch.utils.PreferenceManager
 
 
 class WebServerManager(private val cacheDir: File, private val context: Context) {
@@ -17,7 +18,7 @@ class WebServerManager(private val cacheDir: File, private val context: Context)
     fun startServer() {
         Thread {
             try {
-                server = LocalServer(cacheDir, context).apply {
+                server = LocalServer(cacheDir, context, PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SSL)).apply {
                     start()
                 }
                 Log.d(tag, "Server started successfully on port 8080")

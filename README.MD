@@ -45,3 +45,5 @@ Database: [Room]
    git clone https://github.com/<your-username>/<project-name>.git
    cd <project-name>
 
+### ssl cert
+## keytool -genkeypair -alias localserver -keyalg RSA -keysize 2048 -validity 10000 -keystore server.keystore
