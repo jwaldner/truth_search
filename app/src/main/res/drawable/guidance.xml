@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+    <!-- Dark Gray Background -->
+    <path
+        android:fillColor="#424242"
+        android:pathData="M0 0h128v128h-128z" />
+    <!-- Main North Star -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M64,10l4,12h12l-10,8l4,12l-10,-8l-10,8l4,-12l-10,-8h12z" />
+    <!-- Compass Star -->
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M64,50l14,54 -14,-10 -14,10z" />
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M64,60l8,30 -8,-6 -8,6z" />
+
+    <!-- Crescent Moon -->
+    <path
+        android:fillColor="#FFE57F"
+        android:pathData="M110,20 a10,10 0 1,1 -10,-7a6,6 0 1,0 6,10z" />
+
+    <!-- Smaller Stars -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M10,20l2,6h6l-5,4l2,6l-5,-4l-5,4l2,-6l-5,-4h6z" />
+
+    <!-- Smaller Stars -->
+    <path
+        android:fillColor="#B0BEC5"
+        android:pathData="M100,40l1,6h6l-5,4l2,6l-5,-4l-5,4l2,-6l-5,-4h6z" />
+
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M40,100l1,3h4l-3,2l1,3l-3,-2l-3,2l1,-3l-3,-2h4z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M80,110l1.5,4h4l-3,2.5l1.5,4l-3,-2.5l-3,2.5l1.5,-4l-3,-2.5h4z" />
+</vector>

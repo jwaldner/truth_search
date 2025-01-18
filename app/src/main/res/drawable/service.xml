@@ -1,0 +1,29 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128.0"
+    android:viewportHeight="128.0">
+
+    <!-- Left Hand -->
+    <path
+        android:fillColor="#F1D1A2"
+        android:pathData="M40,60 C30,70 40,85 50,85 C60,85 60,75 50,70 C45,65 40,60 40,60 Z" />
+
+    <!-- Right Hand -->
+    <path
+        android:fillColor="#F1D1A2"
+        android:pathData="M88,60 C98,70 88,85 78,85 C68,85 68,75 78,70 C83,65 88,60 88,60 Z" />
+
+    <!-- Slightly Smaller Heart Shape, Moved Up -->
+    <path
+        android:fillColor="#E91E63"
+        android:pathData="M64 75
+                         C56 60, 46 45, 46 25
+                         C46 10, 52 1, 56 1
+                         C64 1, 68 5, 72 9
+                         C76 5, 80 1, 84 1
+                         C92 1, 98 10, 98 25
+                         C98 45, 88 60, 64 75
+                         Z" />
+
+</vector>

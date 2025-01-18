@@ -42,6 +42,7 @@ fun JustifiedContent(
     val context = LocalContext.current
 
     if (isDialogVisible) {
+
         AlertDialog(
             onDismissRequest = {
                 isDialogVisible = false

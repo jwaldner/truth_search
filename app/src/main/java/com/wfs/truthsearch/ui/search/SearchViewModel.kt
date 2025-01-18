@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import com.wfs.truthsearch.data.BibleDatabase
+import com.wfs.truthsearch.utils.PreferenceManager
 import com.wfs.truthsearch.utils.VerseUtils
 class SearchViewModel : ViewModel() {
 
@@ -40,9 +41,15 @@ class SearchViewModel : ViewModel() {
         viewModelScope.launch {
             val database = BibleDatabase.getInstance(context)
             val fullVerseDao = database.fullVerseDao()
-            val searchIndexDao = database.searchIndexDao()
 
-            val results = searchIndexDao.search(query)
+            val searchIndexDao = database.searchIndexDao()
+            val searchIndexEsvDao = database.searchIndexEsvDao()
+
+            val results = if (PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SEARCH_ESV))
+                searchIndexEsvDao.search(query)
+            else
+                searchIndexDao.search(query)
+
             val friendlyVerses = VerseUtils.formatFriendlyVerseIds(results)
             val verseText = fullVerseDao.getVerses(results)
 

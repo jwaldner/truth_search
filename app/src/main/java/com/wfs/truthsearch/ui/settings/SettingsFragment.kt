@@ -146,7 +146,52 @@ fun SettingsScreen(viewModel: SettingsViewModel) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Verse Preference Section
+            // version to search
+            val searchIndex by viewModel.searchIndexPref.observeAsState( PreferenceManager.KEY_PREFS_SEARCH_ESV)
+            val searchOptions = listOf(
+                "KJV" to false,
+                "ESV" to true
+            )
+
+            Column {
+                Text(
+                    text = "Bible version to search",
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                searchOptions.forEach { (label, mode) ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp)
+                    ) {
+                        RadioButton(
+                            selected = searchIndex == mode,
+                            onClick = {
+                                viewModel.updateSearchIndexPref(mode)
+                            },
+                            colors = RadioButtonDefaults.colors(
+                                selectedColor = MaterialTheme.colorScheme.primary,
+                                unselectedColor = MaterialTheme.colorScheme.onSurface
+                            )
+                        )
+                        Text(
+                            text = label,
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // ssl
             val ssl by viewModel.sslPref.observeAsState(PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SSL))
             val sslOptions = listOf(true, false)
 

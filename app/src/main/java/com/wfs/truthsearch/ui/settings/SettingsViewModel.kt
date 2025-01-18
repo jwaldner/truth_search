@@ -51,5 +51,21 @@ class SettingsViewModel(private val prefManager: PreferenceManager) : ViewModel(
         prefManager.saveBool(PreferenceManager.KEY_PREFS_SSL, pref) // Save to the preference manager
     }
 
+    // Backing property to observe the current search index preference
+    private val _searchIndexPref = MutableLiveData<Boolean>().apply {
+        value = prefManager.getBool(PreferenceManager.KEY_PREFS_SEARCH_ESV) ?: false // Default to system
+    }
+
+    val searchIndexPref: LiveData<Boolean> get() = _searchIndexPref
+
+    // Function to update the selected light/dark mode preference
+    fun updateSearchIndexPref(pref: Boolean) {
+        _searchIndexPref.value = pref
+        prefManager.saveBool(PreferenceManager.KEY_PREFS_SEARCH_ESV, pref) // Save to the preference manager
+    }
+
+
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.wfs.truthsearch.webserver
 
+import android.app.Application
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -7,20 +8,42 @@ import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
 import android.content.Context
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
+import com.wfs.truthsearch.SharedViewModel
 import com.wfs.truthsearch.utils.PreferenceManager
 
 
-class WebServerManager(private val cacheDir: File, private val context: Context) {
+class WebServerManager(
+    private val cacheDir: File,
+    private val context: Context) {
+
     private var server: LocalServer? = null
     private val handler = Handler(Looper.getMainLooper())
     private val tag = "ServerManager" // Tag for logging
 
+//    private val sharedViewModel: SharedViewModel by lazy {
+//        // Ensure the context is an instance of Application
+//        val app = context.applicationContext as Application
+//        ViewModelProvider(ViewModelStore(), ViewModelProvider.AndroidViewModelFactory.getInstance(app))
+//            .get(SharedViewModel::class.java)
+//    }
+
     fun startServer() {
+        // Initialize the ViewModel on the main thread
+
         Thread {
             try {
-                server = LocalServer(cacheDir, context, PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SSL)).apply {
-                    start()
+                // Initialize and start the server on a background thread
+                server = LocalServer(
+                    cacheDir,
+                    context,
+                    PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SSL)
+                    //,sharedViewModel
+                ).apply {
+                    start() // Start the server
                 }
+
                 Log.d(tag, "Server started successfully on port 8080")
                 startPinging()
             } catch (e: Exception) {
@@ -62,5 +85,7 @@ class WebServerManager(private val cacheDir: File, private val context: Context)
         }
         handler.post(pingRunnable) // Start the first ping
     }
+
+
 
 }

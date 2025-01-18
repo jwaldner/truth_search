@@ -1,0 +1,72 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+
+    <!-- Sky Background -->
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M0 0h128v128h-128z" />
+
+    <!-- Grass -->
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M0 108h128v20h-128z" />
+
+    <!-- Seedlings -->
+    <path
+        android:fillColor="#795548"
+        android:pathData="M38 106L40 105L42 106ZM78 106L80 105L82 106Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M36 105C38 100,42 100,44 105L40 103ZM76 105C78 100,82 100,84 105L80 103Z" />
+
+    <!-- Sun -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M96 16a12,12 0 1,1 -24,0a12,12 0 1,1 24,0" />
+
+    <!-- Upper Cloud -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M20 40c6 0,12 -5,18 -5s12 5,18 5c6 0,12 -5,18 -5s12 5,18 5c0 10,-12 15,-36 15s-36 -5,-36 -15z" />
+
+    <!-- Tree Trunk -->
+    <path
+        android:fillColor="#6D4C41"
+        android:pathData="M58 120L70 120L64 60Z" />
+
+    <!-- Left Branch -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M64 60C50 50,40 40,40 30C40 25,45 20,50 25C55 30,60 40,64 50Z" />
+
+    <!-- Right Branch -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M64 60C78 50,88 40,88 30C88 25,83 20,78 25C73 30,68 40,64 50Z" />
+
+    <!-- Center Branch -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M64 60C64 50,64 40,64 30C64 25,68 20,72 25C76 30,72 40,64 50Z" />
+
+    <!-- Hourglass Icon (Time - Left Branch) -->
+    <path
+        android:fillColor="#FF7043"
+        android:pathData="M36 30L44 30L42 34L44 38L36 38L38 34Z" />
+
+    <!-- Copper Coin with Stack of Coins (Treasure - Right Branch) -->
+    <path
+        android:fillColor="#B87333"
+        android:pathData="M96 48a8,8 0 1,1 -16,0a8,8 0 1,1 16,0" />
+    <path
+        android:fillColor="#FFD600"
+        android:pathData="M84 36H80V38H84V40H80V42H84V44H88V42H84V40H88V38H84Z" />
+
+    <!-- Star Icon (Talents - Center Branch) -->
+    <path
+        android:fillColor="#FFD600"
+        android:pathData="M64 25L66 30L72 30L68 33L70 38L64 35L58 38L60 33L56 30L62 30Z" />
+</vector>

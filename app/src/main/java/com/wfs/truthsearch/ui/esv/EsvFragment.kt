@@ -85,17 +85,5 @@ class EsvFragment : Fragment() {
         lifecycleScope.launch {
             sharedViewModel.emitLaunchBrowserEvent()
         }
-
-        view.viewTreeObserver.addOnGlobalLayoutListener {
-            val orientation = resources.configuration.orientation
-            when (orientation) {
-                Configuration.ORIENTATION_LANDSCAPE -> Log.d(tag, "Landscape detected")
-                Configuration.ORIENTATION_PORTRAIT -> Log.d(tag, "Portrait detected")
-                else -> Log.d(tag, "None or undefined orientation detected")
-            }
-
-
-
-        }
     }
 }

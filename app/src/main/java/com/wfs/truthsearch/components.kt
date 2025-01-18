@@ -136,9 +136,10 @@ fun SearchDialogExample() {
 
     // Dialog
     if (isDialogOpen) {
+        val version = if (PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SEARCH_ESV)) "[ ESV ]" else "[ KJV ]"
         AlertDialog(
             onDismissRequest = { isDialogOpen = false },
-            title = { Text(text = "Search Bible") },
+            title = { Text(text = "Search Bible $version") },
             text = {
                 Column {
                     // Search input field

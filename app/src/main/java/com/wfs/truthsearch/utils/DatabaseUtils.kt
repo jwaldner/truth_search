@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken
 import com.wfs.truthsearch.data.BibleDatabase
 import com.wfs.truthsearch.data.SearchIndex
 import com.wfs.truthsearch.data.FullVerse
+import com.wfs.truthsearch.data.SearchIndexEsv
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -42,6 +43,21 @@ fun parseFullVerseJson(json: String): List<FullVerse> {
     return data.map { FullVerse(verseId = it.key, text = it.value.trim()) }
 }
 
+fun parseSearchIndexEsvJson(json: String): List<SearchIndexEsv> {
+    val gson = Gson()
+
+    // Parse the root JSON object
+    val type = object : TypeToken<Map<String, Any>>() {}.type
+    val root: Map<String, Any> = gson.fromJson(json, type)
+
+    // Extract the "data" object and cast it to a Map
+    val data = root["data"] as Map<String, String>
+
+    // Convert the data map into a list of SearchIndex objects
+    return data.map { SearchIndexEsv(verseId = it.key, text = it.value.trim()) }
+}
+
+
 // Load JSON file from the assets folder
 fun loadJsonFromAssets(context: Context, fileName: String): String {
     return context.assets.open(fileName).bufferedReader().use { it.readText() }
@@ -62,16 +78,19 @@ suspend fun populateDatabase(context: Context) {
         // Load JSON files
         val searchIndexJson = loadJsonFromAssets(context, "bibles/kjv/search_index.json")
         val fullVerseJson = loadJsonFromAssets(context, "bibles/esv/full_verse_index.json")
+        val searchIndexEsvJson = loadJsonFromAssets(context, "bibles/esv/search_index.json")
 
         // Extract current and new versions
         val currentVersion = PreferenceManager.getInt(PreferenceManager.KEY_DATA_VERSION, 0)
         val newSearchIndexVersion = extractDataVersion(searchIndexJson)
         val newFullVerseVersion = extractDataVersion(fullVerseJson)
 
+        val currentEsvVersion = PreferenceManager.getInt(PreferenceManager.KEY_DATA_ESV_VERSION, 0)
+        val newSearchIndexEsvVersion = extractDataVersion(searchIndexEsvJson)
+
         // Determine if updates are required
         if (newSearchIndexVersion > currentVersion || newFullVerseVersion > currentVersion) {
             Log.wtf(TAG, "Updating database to version $newSearchIndexVersion or $newFullVerseVersion...")
-
             // Parse JSON data
             val searchIndexes = parseSearchIndexJson(searchIndexJson)
             val fullVerses = parseFullVerseJson(fullVerseJson)
@@ -86,6 +105,21 @@ suspend fun populateDatabase(context: Context) {
             Log.wtf(TAG, "Database updated successfully to version $updatedVersion.")
         } else {
             Log.wtf(TAG, "Database is already up-to-date. Current version: $currentVersion")
+        }
+
+        // Determine if updates are required for esv
+        if (newSearchIndexEsvVersion > currentEsvVersion) {
+            Log.wtf(TAG, "Updating esv search database to version $newSearchIndexEsvVersion")
+
+            val searchIndexes = parseSearchIndexEsvJson(searchIndexEsvJson)
+            database.searchIndexEsvDao().insertAll(searchIndexes)
+
+            // Save the new version in preferences
+            val updatedVersion = maxOf(newSearchIndexEsvVersion, 0)
+            PreferenceManager.saveInt(PreferenceManager.KEY_DATA_ESV_VERSION, updatedVersion)
+            Log.wtf(TAG, "Esv Search Database updated successfully to version $updatedVersion.")
+        } else {
+            Log.wtf(TAG, "Esv Search Database is already up-to-date. Current version: $currentEsvVersion")
         }
     }
 }

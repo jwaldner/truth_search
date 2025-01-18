@@ -1,0 +1,51 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="1000"
+    android:viewportHeight="1000">
+
+    <!-- Warm Background -->
+    <path
+        android:fillColor="#FFF3E0"
+        android:pathData="M0 0h1000v1000h-1000z" />
+
+    <!-- Full Heart -->
+    <path
+        android:fillColor="#E57373"
+        android:pathData="M480,840L422,788Q321,697 255,631Q189,565 150,512.5Q111,460 95.5,416Q80,372 80,326Q80,232 143,169Q206,106 300,106Q352,106 399,128Q446,150 480,190Q514,150 561,128Q608,106 660,106Q754,106 817,169Q880,232 880,326Q880,372 864.5,416Q849,460 810,512.5Q771,565 705,631Q639,697 538,788L480,840Z" />
+
+    <!-- Larger Bandage -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M300,450h400v100h-400z" />
+
+    <!-- First Smiley Face -->
+    <path
+        android:fillColor="#FFD600"
+        android:pathData="M400,480a20,20 0 1,1 0,40a20,20 0 1,1 0,-40z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M390,490a3,3 0 1,1 0,6a3,3 0 1,1 0,-6zM410,490a3,3 0 1,1 0,6a3,3 0 1,1 0,-6zM390,500c10,8 20,8 30,0" />
+
+    <!-- Second Smiley Face -->
+    <path
+        android:fillColor="#FFD600"
+        android:pathData="M500,480a20,20 0 1,1 0,40a20,20 0 1,1 0,-40z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M490,490a3,3 0 1,1 0,6a3,3 0 1,1 0,-6zM510,490a3,3 0 1,1 0,6a3,3 0 1,1 0,-6zM490,500c10,8 20,8 30,0" />
+
+    <!-- Third Smiley Face -->
+    <path
+        android:fillColor="#FFD600"
+        android:pathData="M600,480a20,20 0 1,1 0,40a20,20 0 1,1 0,-40z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M590,490a3,3 0 1,1 0,6a3,3 0 1,1 0,-6zM610,490a3,3 0 1,1 0,6a3,3 0 1,1 0,-6zM590,500c10,8 20,8 30,0" />
+
+    <!-- Stitches -->
+    <path
+        android:strokeColor="#B0BEC5"
+        android:strokeWidth="5"
+        android:pathData="M340,460l40,40m60,-40l40,40m60,-40l40,40m60,-40l40,40" />
+</vector>

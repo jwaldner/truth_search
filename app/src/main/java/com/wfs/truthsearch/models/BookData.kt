@@ -1,4 +1,5 @@
 package com.wfs.truthsearch.models
+
 import android.content.Context
 import android.util.Log
 

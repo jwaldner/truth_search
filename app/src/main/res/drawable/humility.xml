@@ -1,0 +1,105 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp"
+    android:height="72dp"
+    android:viewportWidth="72"
+    android:viewportHeight="72">
+
+    <!-- Restful Background -->
+    <path
+        android:fillColor="#D7E3FC"
+        android:pathData="M0 0h72v72H0z" />
+
+    <!-- Blue Background Shape -->
+    <path
+        android:fillColor="#92D3F5"
+        android:pathData="M21.167,33.042c-1.221,0.781-2.444,1.561-3.665,2.333c-2.216,1.773-3.918,16.334-3.834,17.667
+                         c0.083,1.333,1.583,7.916,2.25,7.916H56.25c0.667-1,2.167-3.333,2.083-4.333c-0.083-1,0.25-14.749-1.167-16.583
+                         c-1.417-1.834-1.546-4.189-2.418-4.833c-1.084-0.749-2.269-1.448-3.582-2.167" />
+
+    <!-- Skin Elements -->
+    <path
+        android:fillColor="#FCEA2B"
+        android:pathData="M39.167,36.042c0,4-14,2-14,6c0,4,4.873,8,10.937,8c5.937,0,11.063-4,11.063-10c0-2-7-2-8-4" />
+
+    <!-- Left Hand -->
+    <path
+        android:fillColor="#FCEA2B"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M32,64c-1.102,0-6,0.059-6,0.059h-6c0-4,5-4,7-4h7c1.104,0,2,0.836,2,1.941c0,1.104-0.896,2-2,2z" />
+
+    <!-- Right Hand -->
+    <path
+        android:fillColor="#FCEA2B"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M42,64c1.102,0,6,0.059,6,0.059h6c0-4-5-4-7-4h-7c-1.104,0-2,0.836-2,1.941c0,1.104,0.896,2,2,2z" />
+
+    <!-- Hair Part -->
+    <path
+        android:fillColor="#F1B31C"
+        android:pathData="M39.007,36.42c-2.143,3.326-14.702,1.646-13.841,6.622c-2,0-3-3-3-10s4-14,14-14s14,7,14,14
+                         s-1,10-3,10C49.488,38.062,39.007,36.42,39.007,36.42" />
+
+    <!-- Lower Curved Eyes -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M30,42 Q32,45 34,42" /> <!-- Left Eye -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M40,42 Q42,45 44,42" /> <!-- Right Eye -->
+
+    <!-- Outline Lines -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M25.167,43.042c-2,0-3-3-3-10s4-14,14-14s14,7,14,14s-1,10-3,10" />
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M39.167,36.042c0,4-14,2-14,6c0,4,4.873,8,10.937,8c5.937,0,11.063-4,11.063-10c0-2-7-2-8-4" />
+
+    <!-- Robe Lines -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M18.167,36.042c-4,3-4,12-4,12v4c0,3,0,6,2,8" />
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M54.167,36.042c4,3,4,12,4,12v5c0,3,0,5-2,7" />
+
+
+    <!-- Vertical Hair Part Line -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M39,24 L39,36" />
+
+
+    <!-- Left Emphasis Line 1 -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M22,12 L28,18" />
+
+    <!-- Left Emphasis Line 2 -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M26,8 L32,14" />
+
+    <!-- Right Emphasis Line 1 -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M44,18 L50,12" />
+
+    <!-- Right Emphasis Line 2 -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M40,14 L46,8" />
+</vector>

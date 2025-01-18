@@ -21,19 +21,19 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-app
 <a href='./64_III_John.html'>Next: III John</a>
 <h1>II John</h1>
 <h2 id='chapter_1'>Chapter 1</h2>
-<p id='63_01:001'><strong>1.</strong> The elder to the elect lady and her children, whom I love in truth, and not only I, but also all who know the truth,</p>
-<p id='63_01:002'><strong>2.</strong> because of the truth that abides in us and will be with us forever:</p>
-<p id='63_01:003'><strong>3.</strong> Grace, mercy, and peace will be with us, from God the Father and from Jesus Christ the Father’s Son, in truth and love.</p>
-<p id='63_01:004'><strong>4.</strong> I rejoiced greatly to find some of your children walking in the truth, just as we were commanded by the Father.</p>
-<p id='63_01:005'><strong>5.</strong> And now I ask you, dear lady — not as though I were writing you a new commandment, but the one we have had from the beginning — that we love one another.</p>
-<p id='63_01:006'><strong>6.</strong> And this is love, that we walk according to his commandments; this is the commandment, just as you have heard from the beginning, so that you should walk in it.</p>
-<p id='63_01:007'><strong>7.</strong> For many deceivers have gone out into the world, those who do not confess the coming of Jesus Christ in the flesh. Such a one is the deceiver and the antichrist.</p>
-<p id='63_01:008'><strong>8.</strong> Watch yourselves, so that you may not lose what we have worked for, but may win a full reward.</p>
-<p id='63_01:009'><strong>9.</strong> Everyone who goes on ahead and does not abide in the teaching of Christ, does not have God. Whoever abides in the teaching has both the Father and the Son.</p>
-<p id='63_01:010'><strong>10.</strong> If anyone comes to you and does not bring this teaching, do not receive him into your house or give him any greeting,</p>
-<p id='63_01:011'><strong>11.</strong> for whoever greets him takes part in his wicked works.</p>
-<p id='63_01:012'><strong>12.</strong> Though I have much to write to you, I would rather not use paper and ink. Instead I hope to come to you and talk face to face, so that our joy may be complete.</p>
-<p id='63_01:013'><strong>13.</strong> The children of your elect sister greet you.</p>
+<p id='63_01:001' data-selected='false'><strong>1.</strong> The elder to the elect lady and her children, whom I love in truth, and not only I, but also all who know the truth,</p>
+<p id='63_01:002' data-selected='false'><strong>2.</strong> because of the truth that abides in us and will be with us forever:</p>
+<p id='63_01:003' data-selected='false'><strong>3.</strong> Grace, mercy, and peace will be with us, from God the Father and from Jesus Christ the Father’s Son, in truth and love.</p>
+<p id='63_01:004' data-selected='false'><strong>4.</strong> I rejoiced greatly to find some of your children walking in the truth, just as we were commanded by the Father.</p>
+<p id='63_01:005' data-selected='false'><strong>5.</strong> And now I ask you, dear lady — not as though I were writing you a new commandment, but the one we have had from the beginning — that we love one another.</p>
+<p id='63_01:006' data-selected='false'><strong>6.</strong> And this is love, that we walk according to his commandments; this is the commandment, just as you have heard from the beginning, so that you should walk in it.</p>
+<p id='63_01:007' data-selected='false'><strong>7.</strong> For many deceivers have gone out into the world, those who do not confess the coming of Jesus Christ in the flesh. Such a one is the deceiver and the antichrist.</p>
+<p id='63_01:008' data-selected='false'><strong>8.</strong> Watch yourselves, so that you may not lose what we have worked for, but may win a full reward.</p>
+<p id='63_01:009' data-selected='false'><strong>9.</strong> Everyone who goes on ahead and does not abide in the teaching of Christ, does not have God. Whoever abides in the teaching has both the Father and the Son.</p>
+<p id='63_01:010' data-selected='false'><strong>10.</strong> If anyone comes to you and does not bring this teaching, do not receive him into your house or give him any greeting,</p>
+<p id='63_01:011' data-selected='false'><strong>11.</strong> for whoever greets him takes part in his wicked works.</p>
+<p id='63_01:012' data-selected='false'><strong>12.</strong> Though I have much to write to you, I would rather not use paper and ink. Instead I hope to come to you and talk face to face, so that our joy may be complete.</p>
+<p id='63_01:013' data-selected='false'><strong>13.</strong> The children of your elect sister greet you.</p>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const stickyTitle = document.getElementById('sticky-title');
@@ -124,6 +124,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+    const verses = document.querySelectorAll('p[data-selected]');
+    verses.forEach(verse => {
+        verse.addEventListener('click', (event) => {
+            if (event.target.tagName === 'STRONG') {
+                const isSelected = verse.getAttribute('data-selected') === 'true';
+                verse.setAttribute('data-selected', isSelected ? 'false' : 'true');
+                verse.style.backgroundColor = isSelected ? 'transparent' : '#D3F9D8';
+            }
+        });
+    });
+    const exitButton = document.querySelector('a[href="/exit"]');
+    exitButton.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default navigation
+
+        // Collect all selected verse IDs
+        const selectedVerses = [];
+        document.querySelectorAll('p[data-selected="true"]').forEach(verse => {
+            selectedVerses.push(verse.id); // Collect the verse ID
+        });
+
+        // If no verses are selected, do nothing
+        if (selectedVerses.length === 0) {
+            console.log('No verses selected. Exiting without action.');
+            return;
+        }
+
+        // Build and send the payload
+        fetch('/exit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ selectedVerses: selectedVerses, version: version })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Selected verses sent successfully.');
+            } else {
+                console.error('Failed to send selected verses.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
 </script>
 </body>
 </html>

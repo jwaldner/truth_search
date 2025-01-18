@@ -20,6 +20,7 @@ build/
 bin/
 gen/
 out/
+assets/
 
 # Gradle log files
 *.log
@@ -55,4 +56,4 @@ desktop.ini
 # Android specific folders
 .cxx/
 .externalNativeBuild/
-/app/src/main/assets/bibles/
+app/src/main/assets/bibles/

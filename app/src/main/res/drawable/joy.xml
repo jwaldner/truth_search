@@ -1,0 +1,53 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+
+    <!-- Background -->
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M0 0h128v128h-128z" />
+
+    <!-- Face Circle -->
+    <path
+        android:fillColor="#FFD600"
+        android:pathData="M64,16a48,48 0 1,1 0,96a48,48 0 1,1 0,-96z" />
+
+    <!-- Radiating Rays -->
+    <path
+        android:fillColor="#FFE082"
+        android:pathData="M64,4v12 M64,112v12 M16,64h12 M100,64h12 M26,26l8,8 M94,94l8,8 M26,94l8,-8 M94,26l8,-8" />
+
+    <!-- Smiling Eyes -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M50,50c4,-6 12,-6 16,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M78,50c4,-6 12,-6 16,0" />
+
+    <!-- Big Smile -->
+    <path
+        android:fillColor="@color/black"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeColor="#000000"
+        android:pathData="M44,78c10,16 30,16 40,0" />
+
+    <!-- Open Palms -->
+    <path
+        android:fillColor="#FFB74D"
+        android:pathData="M28,85c-2,-10 6,-12 10,-8c4,4 4,8 0,10c-2,4 -6,8 -10,-2z" />
+    <path
+        android:fillColor="#FFB74D"
+        android:pathData="M100,85c2,-10 -6,-12 -10,-8c-4,4 -4,8 0,10c2,4 6,8 10,-2z" />
+
+    <!-- Party Poppers -->
+    <path
+        android:fillColor="#FF4081"
+        android:pathData="M16,116l8,-8l-8,-8h8l8,8l-8,8h-8z" />
+    <path
+        android:fillColor="#448AFF"
+        android:pathData="M104,116l8,-8l-8,-8h8l8,8l-8,8h-8z" />
+</vector>

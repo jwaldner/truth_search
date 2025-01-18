@@ -1,0 +1,41 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Background -->
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M0 0h24v24h-24z" />
+
+    <!-- Anchor Loop -->
+    <path
+        android:fillColor="#455A64"
+        android:pathData="M12,2a2,2 0 1,1 0,4a2,2 0 1,1 0,-4z" />
+
+    <!-- Vertical Shaft -->
+    <path
+        android:fillColor="#455A64"
+        android:pathData="M11,6h2v10h-2z" />
+
+    <!-- Crossbar -->
+    <path
+        android:fillColor="#455A64"
+        android:pathData="M7,10h10v2h-10z" />
+
+    <!-- Left Fluke -->
+    <path
+        android:fillColor="#607D8B"
+        android:pathData="M6,16c-2,2 -1,4 1,2l2,-2c-2,2 -2,0 -3,-2z" />
+
+    <!-- Right Fluke -->
+    <path
+        android:fillColor="#78909C"
+        android:pathData="M18,16c2,2 1,4 -1,2l-2,-2c2,2 2,0 3,-2z" />
+
+    <!-- Rounded Base -->
+    <path
+        android:fillColor="#455A64"
+        android:pathData="M6,18a10,10 0 0,1 12,0" />
+</vector>

@@ -1,0 +1,57 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="1000"
+    android:viewportHeight="1000">
+
+    <!-- Sky Background -->
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M0 0h1000v1000h-1000z" />
+
+    <!-- Green Lawn -->
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M0 800h1000v200h-1000z" />
+
+    <!-- Path to Door -->
+    <path
+        android:fillColor="#D7CCC8"
+        android:pathData="M450,800L475,1000L525,1000L550,800z" />
+
+    <!-- Church Base -->
+    <path
+        android:fillColor="#B0BEC5"
+        android:pathData="M300,800L300,500L700,500L700,800z" />
+
+    <!-- Roof -->
+    <path
+        android:fillColor="#90A4AE"
+        android:pathData="M300,500L500,300L700,500z" />
+
+    <!-- Steeple -->
+    <path
+        android:fillColor="#78909C"
+        android:pathData="M470,300L470,200L530,200L530,300z" />
+
+    <!-- Cross -->
+    <path
+        android:fillColor="#8B4513"
+        android:pathData="M490,200h20v60h-20z" />
+    <path
+        android:fillColor="#8B4513"
+        android:pathData="M470,210h60v20h-60z" />
+
+    <!-- Door -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M450,800L450,600L550,600L550,800z" />
+
+    <!-- Windows -->
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M350,700L350,600L400,600L400,700z" />
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M600,700L600,600L650,600L650,700z" />
+</vector>

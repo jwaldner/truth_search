@@ -29,6 +29,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.wfs.truthsearch.utils.PreferenceManager
 
 
 @Composable
@@ -44,9 +45,11 @@ fun TextContent(
 
 
     if (isDialogVisible) {
+
+        val version = if (PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SEARCH_ESV)) "[ ESV ]" else "[ KJV ]"
         AlertDialog(
             onDismissRequest = { isDialogVisible = false },
-            title = { Text("Search Dialog") },
+            title = { Text("Search Dialog $version") },
             text = {
                 Column {
                     val focusManager = LocalFocusManager.current

@@ -1,0 +1,53 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="1000"
+    android:viewportHeight="1000">
+
+    <!-- Sky Background -->
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M0 0h1000v150h-1000z" /> <!-- Sky ends at the line -->
+
+    <!-- Yellow Ground -->
+    <path
+        android:fillColor="#FFF9C4"
+        android:pathData="M0 150h1000v850h-1000z" /> <!-- Ground starts at the line -->
+
+    <!-- Transparent Line -->
+    <path
+        android:strokeColor="#80BBDEFB"
+        android:strokeWidth="5"
+        android:pathData="M0,150L1000,150" /> <!-- Line separates sky and ground -->
+
+    <!-- Sun -->
+    <path
+        android:fillColor="#FFD54F"
+        android:pathData="M500,-50a150,150 0 1,1 0,300a150,150 0 1,1 0,-300z" />
+
+    <!-- Greenery Left -->
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M100,900C200,800 300,700 350,600C380,500 300,400 250,300C200,200 150,100 100,50L0,1000H100z" />
+
+    <!-- Greenery Right -->
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M900,900C800,800 700,700 650,600C620,500 700,400 750,300C800,200 850,100 900,50L1000,1000H1000z" />
+
+    <!-- Light Clouds -->
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M200,200c40,-20 100,0 140,-20c40,-20 80,10 120,0c40,-10 80,-30 100,-10c30,30 -10,60 -40,80c-60,40 -180,10 -220,20c-50,10 -80,-40 -100,-70z" />
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M600,150c40,-20 100,0 140,-20c40,-20 80,10 120,0c40,-10 80,-30 100,-10c30,30 -10,60 -40,80c-60,40 -180,10 -220,20c-50,10 -80,-40 -100,-70z" />
+
+    <!-- Dark Clouds -->
+    <path
+        android:fillColor="#B0BEC5"
+        android:pathData="M150,100c60,-30 140,10 200,-10c50,-20 100,20 150,0c50,-10 100,-30 120,-10c40,40 -20,80 -50,100c-70,50 -200,20 -250,40c-60,20 -90,-50 -120,-90z" />
+    <path
+        android:fillColor="#B0BEC5"
+        android:pathData="M650,50c60,-30 140,10 200,-10c50,-20 100,20 150,0c50,-10 100,-30 120,-10c40,40 -20,80 -50,100c-70,50 -200,20 -250,40c-60,20 -90,-50 -120,-90z" />
+</vector>

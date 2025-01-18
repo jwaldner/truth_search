@@ -1,8 +1,12 @@
 package com.wfs.truthsearch.webserver
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.wfs.truthsearch.BuildConfig
+import com.wfs.truthsearch.SharedViewModel
+import com.wfs.truthsearch.models.Topic
 import com.wfs.truthsearch.utils.AppCloser
 import fi.iki.elonen.NanoHTTPD
 import java.io.File
@@ -15,13 +19,21 @@ import java.security.KeyStore
 import javax.net.ssl.KeyManagerFactory
 import javax.net.ssl.SSLContext
 import org.bouncycastle.jce.provider.BouncyCastleProvider
+import org.json.JSONObject
 import java.security.Security
 
 
 
-class LocalServer(private val cacheDir: File, private val context: Context, private val ssl: Boolean = false) : NanoHTTPD(8080) {
+class LocalServer(
+    private val cacheDir: File,
+    private val context: Context,
+    private val ssl: Boolean = false
+    // private val sharedViewModel: SharedViewModel
+    ) : NanoHTTPD(8080) {
 
     private val tag = "ServerStatus"
+
+
 
     // Load keystore and configure SSL
     init {
@@ -118,20 +130,63 @@ class LocalServer(private val cacheDir: File, private val context: Context, priv
                 }
 
                 session.uri == "/exit" -> {
-                    AppCloser.closeApp()
-                    newFixedLengthResponse(
-                        Response.Status.OK, "text/html", """
-                    <html>
-                    <body>
-                        <script>
-                            window.location.href = "app://com.wfs.truthsearch";
-                        </script>
-                        <p>If the app doesn’t open, <a href="app://com.wfs.truthsearch">click here to return to the app.</a></p>
-                    </body>
-                    </html>
-                """.trimIndent()
+                    val contentLength = session.headers["content-length"]?.toIntOrNull() ?: 0
+
+                    if (contentLength <= 0) {
+                        Log.e(tag, "Invalid or missing Content-Length")
+                        return newFixedLengthResponse(
+                            Response.Status.BAD_REQUEST,
+                            "text/plain",
+                            "Invalid or missing Content-Length"
+                        )
+                    }
+
+                    val requestBody = try {
+                        val buffer = ByteArray(contentLength)
+                        session.inputStream.read(buffer, 0, contentLength)
+                        String(buffer, Charsets.UTF_8)
+                    } catch (e: IOException) {
+                        Log.e(tag, "Error reading input stream", e)
+                        return newFixedLengthResponse(
+                            Response.Status.INTERNAL_ERROR,
+                            "text/plain",
+                            "Error reading input stream"
+                        )
+                    }
+
+                    if (requestBody.isBlank()) {
+                        Log.e(tag, "Empty request body")
+                        return newFixedLengthResponse(
+                            Response.Status.BAD_REQUEST,
+                            "text/plain",
+                            "Request body is empty"
+                        )
+                    }
+
+                    // Parse verses from the payload
+                    val verses = parseVersesFromPayload(requestBody) // Use your existing logic to parse the JSON payload
+
+                    val default = "${verses.count()} verse${if (verses.count() == 1) "" else "s"}"
+
+                    Log.d(tag, "added ${default}")
+
+                    val intent = Intent(Topic.ACTION_TOPIC_UPDATE).apply {
+                        putExtra("topic_title", default)
+                        putExtra("topic_description", "")
+                        putExtra("topic_notes", "")
+                        putStringArrayListExtra("topic_verses", ArrayList(verses))
+                    }
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
+                    Log.d("TopicBroadcast","intent created in ${tag} for ${default}" )
+
+
+                    return newFixedLengthResponse(
+                        Response.Status.OK,
+                        "text/plain",
+                        "Verses received and added as a topic"
                     )
                 }
+
 
                 session.uri == "/close" -> {
                     Log.d(tag, "close browser")
@@ -205,8 +260,6 @@ class LocalServer(private val cacheDir: File, private val context: Context, priv
         }
     }
 
-
-
     private fun copyKeystoreFile(context: Context) {
         val assetFilePath = "bibles/server.keystore"
         val targetFile = File(context.filesDir.path + "/bibles/server.keystore")
@@ -243,5 +296,17 @@ class LocalServer(private val cacheDir: File, private val context: Context, priv
         sslContext.init(keyManagerFactory.keyManagers, null, null)
         return sslContext
     }
+
+    private fun parseVersesFromPayload(payload: String): List<String> {
+        // Example: Extract "selectedVerses" from JSON payload
+        val jsonObject = JSONObject(payload)
+        val selectedVerses = jsonObject.getJSONArray("selectedVerses")
+        val verses = mutableListOf<String>()
+        for (i in 0 until selectedVerses.length()) {
+            verses.add(selectedVerses.getString(i))
+        }
+        return verses
+    }
+
 
 }

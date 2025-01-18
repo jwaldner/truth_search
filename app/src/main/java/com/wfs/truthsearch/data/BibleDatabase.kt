@@ -2,8 +2,6 @@ package com.wfs.truthsearch.data
 
 import android.content.Context
 import androidx.room.*
-import androidx.room.Entity
-import androidx.room.RoomDatabase
 
 @Entity(tableName = "search_index")
 data class SearchIndex(
@@ -17,10 +15,17 @@ data class FullVerse(
     val text: String
 )
 
-@Database(entities = [SearchIndex::class, FullVerse::class], version = 1)
+@Entity(tableName = "search_index_esv")
+data class SearchIndexEsv(
+    @PrimaryKey val verseId: String,
+    val text: String
+)
+
+@Database(entities = [SearchIndex::class, FullVerse::class, SearchIndexEsv::class], version = 1)
 abstract class BibleDatabase : RoomDatabase() {
     abstract fun searchIndexDao(): SearchIndexDao
     abstract fun fullVerseDao(): FullVerseDao
+    abstract fun searchIndexEsvDao(): SearchIndexEsvDao
 
     companion object {
         @Volatile private var instance: BibleDatabase? = null

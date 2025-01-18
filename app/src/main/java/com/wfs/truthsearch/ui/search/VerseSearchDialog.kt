@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import com.wfs.truthsearch.utils.PreferenceManager
 
 @Composable
 fun VerseSearchDialog(
@@ -33,9 +34,12 @@ fun VerseSearchDialog(
     val context = LocalContext.current
 
     if (isDialogVisible) {
+        val version = if (PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SEARCH_ESV)) "[ ESV ]" else "[ KJV ]"
         AlertDialog(
             onDismissRequest = { isDialogVisible = false },
-            title = { Text("Search Dialog") },
+
+            title = { Text("Search Dialog $version") },
+
             text = {
                 Column {
                     val focusManager = LocalFocusManager.current

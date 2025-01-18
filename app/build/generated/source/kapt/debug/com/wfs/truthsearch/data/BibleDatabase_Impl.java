@@ -30,6 +30,8 @@ public final class BibleDatabase_Impl extends BibleDatabase {
 
   private volatile FullVerseDao _fullVerseDao;
 
+  private volatile SearchIndexEsvDao _searchIndexEsvDao;
+
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
@@ -38,14 +40,16 @@ public final class BibleDatabase_Impl extends BibleDatabase {
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `search_index` (`verseId` TEXT NOT NULL, `text` TEXT NOT NULL, PRIMARY KEY(`verseId`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `full_verse` (`verseId` TEXT NOT NULL, `text` TEXT NOT NULL, PRIMARY KEY(`verseId`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `search_index_esv` (`verseId` TEXT NOT NULL, `text` TEXT NOT NULL, PRIMARY KEY(`verseId`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cda9998933abebebba14fe6685dfb8de')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dbce777b765d3f43b54aea1146aa26b5')");
       }
 
       @Override
       public void dropAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS `search_index`");
         db.execSQL("DROP TABLE IF EXISTS `full_verse`");
+        db.execSQL("DROP TABLE IF EXISTS `search_index_esv`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
           for (RoomDatabase.Callback _callback : _callbacks) {
@@ -113,9 +117,21 @@ public final class BibleDatabase_Impl extends BibleDatabase {
                   + " Expected:\n" + _infoFullVerse + "\n"
                   + " Found:\n" + _existingFullVerse);
         }
+        final HashMap<String, TableInfo.Column> _columnsSearchIndexEsv = new HashMap<String, TableInfo.Column>(2);
+        _columnsSearchIndexEsv.put("verseId", new TableInfo.Column("verseId", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsSearchIndexEsv.put("text", new TableInfo.Column("text", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysSearchIndexEsv = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesSearchIndexEsv = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoSearchIndexEsv = new TableInfo("search_index_esv", _columnsSearchIndexEsv, _foreignKeysSearchIndexEsv, _indicesSearchIndexEsv);
+        final TableInfo _existingSearchIndexEsv = TableInfo.read(db, "search_index_esv");
+        if (!_infoSearchIndexEsv.equals(_existingSearchIndexEsv)) {
+          return new RoomOpenHelper.ValidationResult(false, "search_index_esv(com.wfs.truthsearch.data.SearchIndexEsv).\n"
+                  + " Expected:\n" + _infoSearchIndexEsv + "\n"
+                  + " Found:\n" + _existingSearchIndexEsv);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "cda9998933abebebba14fe6685dfb8de", "132a809ce8fd9ac448686bca03ae2204");
+    }, "dbce777b765d3f43b54aea1146aa26b5", "f7e349727aba8ac50e8580dee2abcada");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -126,7 +142,7 @@ public final class BibleDatabase_Impl extends BibleDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "search_index","full_verse");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "search_index","full_verse","search_index_esv");
   }
 
   @Override
@@ -137,6 +153,7 @@ public final class BibleDatabase_Impl extends BibleDatabase {
       super.beginTransaction();
       _db.execSQL("DELETE FROM `search_index`");
       _db.execSQL("DELETE FROM `full_verse`");
+      _db.execSQL("DELETE FROM `search_index_esv`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -153,6 +170,7 @@ public final class BibleDatabase_Impl extends BibleDatabase {
     final HashMap<Class<?>, List<Class<?>>> _typeConvertersMap = new HashMap<Class<?>, List<Class<?>>>();
     _typeConvertersMap.put(SearchIndexDao.class, SearchIndexDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(FullVerseDao.class, FullVerseDao_Impl.getRequiredConverters());
+    _typeConvertersMap.put(SearchIndexEsvDao.class, SearchIndexEsvDao_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -195,6 +213,20 @@ public final class BibleDatabase_Impl extends BibleDatabase {
           _fullVerseDao = new FullVerseDao_Impl(this);
         }
         return _fullVerseDao;
+      }
+    }
+  }
+
+  @Override
+  public SearchIndexEsvDao searchIndexEsvDao() {
+    if (_searchIndexEsvDao != null) {
+      return _searchIndexEsvDao;
+    } else {
+      synchronized(this) {
+        if(_searchIndexEsvDao == null) {
+          _searchIndexEsvDao = new SearchIndexEsvDao_Impl(this);
+        }
+        return _searchIndexEsvDao;
       }
     }
   }

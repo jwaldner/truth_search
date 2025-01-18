@@ -64,22 +64,31 @@ class CompareFragment : Fragment() {
         }) {
 
         private val drawables = listOf(
-            R.drawable.avatar_1,
-            R.drawable.avatar_2,
-            R.drawable.avatar_3,
-            R.drawable.avatar_4,
-            R.drawable.avatar_5,
-            R.drawable.avatar_6,
-            R.drawable.avatar_7,
-            R.drawable.avatar_8,
-            R.drawable.avatar_9,
-            R.drawable.avatar_10,
-            R.drawable.avatar_11,
-            R.drawable.avatar_12,
-            R.drawable.avatar_13,
-            R.drawable.avatar_14,
-            R.drawable.avatar_15,
-            R.drawable.avatar_16,
+            R.drawable.holiness,
+            R.drawable.shalom,
+            R.drawable.joy,
+            R.drawable.temple,
+            R.drawable.growth,
+            R.drawable.agape,
+            R.drawable.stewardship,
+            R.drawable.prayer,
+            R.drawable.faith,
+            R.drawable.sabbath,
+            R.drawable.wisdom,
+            R.drawable.servie_people,
+            R.drawable.hope,
+            R.drawable.foregivenes,
+            R.drawable.courage,
+            R.drawable.live_truth,
+            R.drawable.compassion,
+            R.drawable.humility,
+            R.drawable.graditude,
+            R.drawable.unity,
+            R.drawable.patience,
+            R.drawable.warfare
+
+
+
         )
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransformViewHolder {

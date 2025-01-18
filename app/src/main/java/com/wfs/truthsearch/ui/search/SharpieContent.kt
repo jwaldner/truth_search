@@ -34,6 +34,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import com.wfs.truthsearch.R
 import com.wfs.truthsearch.ui.search.SearchViewModel
+import com.wfs.truthsearch.utils.PreferenceManager
 
 @Composable
 fun SharpieContent(
@@ -52,9 +53,10 @@ fun SharpieContent(
     )
 
     if (isDialogVisible) {
+        val version = if (PreferenceManager.getBool(PreferenceManager.KEY_PREFS_SEARCH_ESV)) "[ ESV ]" else "[ KJV ]"
         AlertDialog(
             onDismissRequest = { isDialogVisible = false },
-            title = { Text("Sharpie Verses") },
+            title = { Text("Sharpie Verses $version") },
             text = {
                 Column {
                     val focusManager = LocalFocusManager.current

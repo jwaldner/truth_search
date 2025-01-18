@@ -1,0 +1,59 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Background with Blue Sky -->
+    <path
+        android:fillColor="#81D4FA"
+        android:pathData="M0 0h200v200h-200z" />
+
+    <!-- Puffy Clouds -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M40 50c10 0,20 -10,30 -10s20 10,30 10c10 0,20 -10,30 -10s20 10,30 10c0 15,-15 25,-50 25s-50 -10,-50 -25z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M100 120c20 0,40 -20,60 -20s40 20,60 20c0 15,-20 25,-60 25s-60 -10,-60 -25z" />
+
+    <!-- Grass (Wider and Consistent) -->
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M0 180c20 -10,40 0,60 0s40 -10,60 0s40 0,60 0s40 -10,60 0v20h-200z" />
+
+    <!-- Growth Stem -->
+    <path
+        android:fillColor="#388E3C"
+        android:pathData="M100 50c0 30 12 60 12 80s-12 40 -12 70" />
+
+    <!-- Leaves -->
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M100 60c-6 6,-12 18,-12 24s6 18,12 24" />
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M100 100c-6 6,-12 18,-12 24s6 18,12 24" />
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M100 140c-6 6,-12 18,-12 24s6 18,12 24" />
+
+    <!-- Light (Shining) -->
+    <path
+        android:fillColor="#FFEB3B"
+        android:pathData="M60 40a15,15 0 1,1 -30,0a15,15 0 1,1 30,0" />
+
+    <!-- Sun Rays -->
+    <path
+        android:fillColor="#FFEB3B"
+        android:pathData="M60 40l-10 -10" />
+    <path
+        android:fillColor="#FFEB3B"
+        android:pathData="M60 40l-10 10" />
+    <path
+        android:fillColor="#FFEB3B"
+        android:pathData="M60 40l10 10" />
+    <path
+        android:fillColor="#FFEB3B"
+        android:pathData="M60 40l10 -10" />
+</vector>

@@ -1,7 +1,9 @@
 package com.wfs.truthsearch
 
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -9,24 +11,27 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.lifecycleScope
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.wfs.truthsearch.data.BibleDatabase
 import com.wfs.truthsearch.databinding.ActivityMainBinding
 import com.wfs.truthsearch.models.BookVerseData
+import com.wfs.truthsearch.models.Topic
 import com.wfs.truthsearch.models.getBookFromAssetsMyVerse
 import com.wfs.truthsearch.models.resolveBookById
 import com.wfs.truthsearch.ui.search.SearchFragment
-import com.wfs.truthsearch.utils.AppCloser
 import com.wfs.truthsearch.utils.PreferenceManager
 import com.wfs.truthsearch.utils.populateDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -40,6 +45,37 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val sharedViewModel: SharedViewModel by viewModels()
 
+    private val topicUpdateReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            if (intent.action == Topic.ACTION_TOPIC_UPDATE) {
+                val title = intent.getStringExtra("topic_title") ?: return
+                val description = intent.getStringExtra("topic_description") ?: ""
+                val notes = intent.getStringExtra("topic_notes") ?: ""
+                val verses = intent.getStringArrayListExtra("topic_verses") ?: arrayListOf()
+
+                // Create a Topic object and handle the update
+                val topic = Topic(title, description, notes, verses)
+                handleTopicUpdate(topic)
+            }
+        }
+    }
+
+    private fun handleTopicUpdate(topic: Any) {
+        Log.d("TopicBroadcast", "received topic in $tag")
+
+        // Explicit cast to Topic
+        val receivedTopic = topic as Topic
+
+        // Set the temporary topic with all required properties
+        sharedViewModel.setTemporaryTopic(
+            Topic(
+                title = receivedTopic.title,
+                description = "Temporary Description",
+                notes = receivedTopic.notes,
+                verses = receivedTopic.verses
+            )
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +130,7 @@ class MainActivity : AppCompatActivity() {
         val database = BibleDatabase.getInstance(this@MainActivity)
         val fullVerseDao = database.fullVerseDao()
         val searchIndexDao = database.searchIndexDao()
+        val searchIndexEsvDao = database.searchIndexEsvDao()
 
         lifecycleScope.launch {
             val count = fullVerseDao.getFullVerseCount()
@@ -101,15 +138,12 @@ class MainActivity : AppCompatActivity() {
             else  Log.d(tag, "FullVerse row count: $count")
 
             val count2 = searchIndexDao.getSearchIndexCount()
-            if (count2 == 0) Log.e(tag, "SearchIndex row count: $count2")
+            if (count2 == 0) Log.e(tag, "Esv SearchIndex empty!")
             else  Log.d(tag, "SearchIndex row count: $count2")
-        }
 
-        AppCloser.setCloseAppCallback {
-            Log.w(tag, "app closing called: ${this.applicationInfo.name}")
-        // this closes the WebServer but not the app
-        // finishAffinity() // Properly closes the app
-        // finish()
+            val count3 = searchIndexEsvDao.getSearchIndexCount()
+            if (count3 == 0) Log.e(tag, "Esv SearchIndex empty!")
+            else  Log.d(tag, "Search Esv Index row count: $count3")
         }
 
         // Copy assets to cache for server use
@@ -121,14 +155,31 @@ class MainActivity : AppCompatActivity() {
         Log.d("tag", "File Cache: ${this.cacheDir}")
 
         // Observe the browser launch event
-
-        // Observe the browser launch event
         lifecycleScope.launch {
             sharedViewModel.launchBrowserEvent.collect { (version, verseId, id) ->
                 Log.d(tag, "view model: ${verseId} ${id} ")
                 launchBrowser(version, verseId)
             }
         }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                sharedViewModel.temporaryTopic.collect { topic ->
+                    if (topic != null) {
+                        Log.d("TopicBroadcast", "Observed temporary topic: ${topic.title}")
+                        // Handle the temporary topic here (e.g., update the UI)
+
+                        handleTemporaryTopic(topic)
+                    } else {
+                        Log.d("TopicBroadcast", "No temporary topic observed")
+                    }
+                }
+            }
+        }
+
+    }
+
+    private fun handleTemporaryTopic(topic: Topic) {
+        Log.d("TopicBroadCast", "handle temp topic in ${tag}")
     }
 
     fun launchBrowser(version: String, verseId: String ) {
@@ -147,12 +198,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        // Register the BroadcastReceiver
+        val intentFilter = IntentFilter(Topic.ACTION_TOPIC_UPDATE)
+        LocalBroadcastManager.getInstance(this).registerReceiver(topicUpdateReceiver, intentFilter)
+        Log.d("TopicBroadCast", "registered in ${tag}")
+    }
+
     override fun onDestroy() {
         super.onDestroy()
 
+        // Unregister the BroadcastReceiver
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(topicUpdateReceiver)
+        Log.d("TopicBroadCast", "un registered in ${tag}")
+
         val serviceIntent = Intent(this, ServerService::class.java)
         stopService(serviceIntent)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -212,7 +275,6 @@ class MainActivity : AppCompatActivity() {
         return if (fragment != null) "$baseUrl#$fragment" else baseUrl
     }
 
-
     private fun handleIntent() {
         if (intent.resolveActivity(this.packageManager) == null) {
             Toast.makeText(this, "No browser or app found to open HTML files.", Toast.LENGTH_SHORT).show()
@@ -245,6 +307,5 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(context, "No application can handle this request.", Toast.LENGTH_SHORT).show()
         }
     }
-
 
 }

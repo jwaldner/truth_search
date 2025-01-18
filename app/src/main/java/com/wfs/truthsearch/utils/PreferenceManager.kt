@@ -19,9 +19,11 @@ object PreferenceManager {
     const val KEY_PLACE_HOLDER_ESV = "place_holder_esv"
     const val KEY_PLACE_HOLDER_KJV = "place_holder_kjv"
     const val KEY_DATA_VERSION = "data_version"
+    const val KEY_DATA_ESV_VERSION = "data_esv_version"
     const val KEY_PREFS_SEARCH_RESULTS_STYLE = "key_prefs_search_results_style"
     private const val KEY_PREFS_LIGHT_DARK_MODE = "key_prefs_light_dark_mode"
     const val KEY_PREFS_SSL = "key_prefs_ssl"
+    const val KEY_PREFS_SEARCH_ESV = "key_prefs_search_esv"
 
     // Initialize preferences
     fun init(context: Context) {

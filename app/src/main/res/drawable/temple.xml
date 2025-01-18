@@ -1,0 +1,50 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="128"
+    android:viewportHeight="200">
+
+    <!-- Background -->
+    <path
+        android:fillColor="#E3DAC9"
+        android:pathData="M0 0h128v200h-128z" />
+
+    <!-- Temple Roof (Dome-like) -->
+    <path
+        android:fillColor="#B97C4F"
+        android:pathData="M24 40h80l24 40h-128z" />
+
+    <!-- Temple Columns -->
+    <path
+        android:fillColor="#C8A65E"
+        android:pathData="M32 80v80h16v-80z" />
+    <path
+        android:fillColor="#C8A65E"
+        android:pathData="M64 80v80h16v-80z" />
+    <path
+        android:fillColor="#C8A65E"
+        android:pathData="M96 80v80h16v-80z" />
+
+    <!-- Temple Base -->
+    <path
+        android:fillColor="#B97C4F"
+        android:pathData="M24 160h80v20h-80z" />
+
+    <!-- Menorah Symbol -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M44 40l6 20h8l6 -20z" />
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M56 40v20h-8z" />
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M64 40v20h-8z" />
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M72 40v20h-8z" />
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M80 40l6 20h8l6 -20z" />
+
+</vector>
