@@ -264,6 +264,7 @@ class MainActivity : AppCompatActivity() {
                         inputStream.copyTo(outputStream)
                     }
                 }
+                Log.d("AssetCopy", "Copied: $assetFilePath to ${targetFile.absolutePath}")
             }
         }
     }

@@ -2,7 +2,6 @@
 .gradle/
 build/
 !gradle-wrapper.jar
-.gradle/
 .idea/
 
 # Built application files
@@ -27,7 +26,6 @@ assets/
 
 # Android Studio files
 *.iml
-.idea/
 *.hprof
 
 # Keystore files (usually safe to ignore)
@@ -39,7 +37,6 @@ proguard/
 proguard-cache/
 
 # Log files
-*.log
 
 # Temporary files
 *.swp
@@ -56,5 +53,8 @@ desktop.ini
 # Android specific folders
 .cxx/
 .externalNativeBuild/
-app/src/main/assets/bibles/
+/app/src/main/assets/bibles/
+
+
+
 

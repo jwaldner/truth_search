@@ -51,13 +51,13 @@ class SearchViewModel : ViewModel() {
                 searchIndexDao.search(query)
 
             val friendlyVerses = VerseUtils.formatFriendlyVerseIds(results)
-            val verseText = fullVerseDao.getVerses(results)
+            val verseMap = fullVerseDao.getFullVerses(results).associate { it.verseId to it.text }
 
             _searchResults.value = results.mapIndexed { index, verseId ->
                 Triple(
                     verseId,
                     friendlyVerses.getOrNull(index) ?: "Unknown Reference",
-                    verseText.getOrNull(index) ?: "Text not found"
+                    verseMap[verseId] ?: "Text not found"
                 )
             }
         }

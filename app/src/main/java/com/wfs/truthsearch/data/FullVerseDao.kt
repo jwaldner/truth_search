@@ -12,8 +12,8 @@ interface FullVerseDao {
     @Query("SELECT text FROM full_verse WHERE verseId = :verseId")
     suspend fun getVerse(verseId: String): String
 
-    // New Query: Fetch a list of text for a given list of verseIds
-    @Query("SELECT text FROM full_verse WHERE verseId IN (:verseIds)")
-    suspend fun getVerses(verseIds: List<String>): List<String>
+    // Fetch full verse objects (verseId, text) for a given list of verseIds
+    @Query("SELECT * FROM full_verse WHERE verseId IN (:verseIds)")
+    suspend fun getFullVerses(verseIds: List<String>): List<FullVerse>
 }
 

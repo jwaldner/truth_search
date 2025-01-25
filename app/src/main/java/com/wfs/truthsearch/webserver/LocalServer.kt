@@ -216,7 +216,11 @@ class LocalServer(
                             "text/css", // Set correct MIME type for CSS
                             fileInputStream,
                             file.length()
-                        )
+                        ).apply {
+                            addHeader("Cache-Control", "no-cache, no-store, must-revalidate")
+                            addHeader("Pragma", "no-cache")
+                            addHeader("Expires", "0")
+                        }
                     } else {
                         Log.e(tag, "CSS File not found: $requestedPath")
                         newFixedLengthResponse(
@@ -230,16 +234,22 @@ class LocalServer(
                 else -> {
                     // Serve static files from cache
                     val requestedPath = session.uri.trimStart('/')
-                    val file = File(cacheDir, requestedPath)
+                    // Ensure we look in the 'bibles' subdirectory if the path doesn't already start with it
+                    val effectivePath = if (!requestedPath.startsWith("bibles/")) "bibles/$requestedPath" else requestedPath
+                    val file = File(cacheDir, effectivePath)
                     if (file.exists()) {
-                        Log.d(tag, "Serving: ${file.name}")
+                        Log.d(tag, "Serving: ${file.name} from $effectivePath")
                         val fileInputStream = file.inputStream()
                         newFixedLengthResponse(
                             Response.Status.OK,
                             "text/html",
                             fileInputStream,
                             file.length()
-                        )
+                        ).apply {
+                            addHeader("Cache-Control", "no-cache, no-store, must-revalidate")
+                            addHeader("Pragma", "no-cache")
+                            addHeader("Expires", "0")
+                        }
                     } else {
                         Log.e(tag, "File not found: $requestedPath")
                         newFixedLengthResponse(
